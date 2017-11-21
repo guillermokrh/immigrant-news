@@ -1,0 +1,56 @@
+/* Ensure layout covers the entire screen. */
+html {
+  height: 100%;
+}
+
+/* Place drawer and content side by side. */
+.demo-body {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+/* Stack toolbar and main on top of each other. */
+.demo-content {
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.demo-card__avatar {
+  position: absolute;
+  background: #bdbdbd;
+  height: 2.5rem;
+  /* 40sp */
+  width: 2.5rem;
+  /* 40sp */
+  border-radius: 50%;
+}
+.mdc-card__title,
+.mdc-card__subtitle {
+  margin-left: 56px;
+}
+
+#storyHeader{
+  background-color:;
+}
+
+.fullheight{
+  height: 100%;
+  background-color: green;
+}
+
+.mdc-layout-grid,.mdc-layout-grid__inner{
+  padding:0px;
+  height: 100%;
+}
+.mdc-layout-grid__cell--span-10-desktop,  .mdc-layout-grid__cell--span-6-tablet, .mdc-layout-grid__cell--span-2-phone{
+  padding:20px;
+  height: 100%;
+}
