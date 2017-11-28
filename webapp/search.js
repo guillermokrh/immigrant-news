@@ -11,8 +11,8 @@ drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
     console.log('Received MDCPersistentDrawer:close');
 });
 
-$("#mainsearchbox").keyup(function(event) {
-    if (event.keyCode === 13) {
+$("#mainsearchbox").keypress(function(event) {
+    if (event.which == 13) {
         $("#do_search").click();
     }
 });
