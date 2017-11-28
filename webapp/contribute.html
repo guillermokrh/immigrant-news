@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Immigrant News</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link rel="stylesheet" href="aa-style.css">
+</head>
+<body class="demo-body mdc-typography">
+  <aside class="mdc-persistent-drawer">
+    <nav class="mdc-persistent-drawer__drawer">
+      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+      <div class="mdc-list-group">
+        <nav class="mdc-list">
+          <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
+          </a>
+        </nav>
+
+        <hr class="mdc-list-divider">
+
+        <nav class="mdc-list">
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+          </a>
+        </nav>
+      </div>
+    </nav>
+  </aside>
+  <div class="demo-content">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
+          <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+        </section>
+      </div>
+    </header>
+
+    <main class="mdc-toolbar-fixed-adjust">
+      <section class="bar fixed-heigh-bar">
+        <div class="mdc-layout-grid">
+          <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
+              <section style="padding-left: 1em;padding-top: 1.2em;">
+                <div class="demo-card__avatar"></div>
+                <h1 class="mdc-card__title">ICE Raid Illinois</h1>
+                <h2 class="mdc-card__subtitle">Author</h2>
+              </section>
+            </div>
+            <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+              <button class="mdc-button full-height full-width">
+                Follow
+              </button>
+            </div>
+            <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+              <button class="mdc-button full-height full-width verified" title="Contributors">
+                +5
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
+          <a class="mdc-tab mdc-tab--active validate-button story-contribution-buttons" href="#one">Validate</a>
+          <a class="mdc-tab invalidate-button story-contribution-buttons" href="#two">Invalidate</a>
+          <a class="mdc-tab edit-button story-contribution-buttons" href="#three">Edit</a>
+        </nav>
+
+        <div id="validate-form">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
+                  <li class="mdc-list-item">
+                    <div class="mdc-checkbox">
+                      <input type="checkbox"
+                      class="mdc-checkbox__native-control"/>
+                      <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                        viewBox="0 0 24 24">
+                        <path class="mdc-checkbox__checkmark__path"
+                        fill="none"
+                        stroke="white"
+                        d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                      </svg>
+                      <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                  </div>
+                  <span class="mdc-list-item__text">
+                    I saw this happened
+                  </span>
+                </li>
+                <li class="mdc-list-item">
+                  <div class="mdc-checkbox">
+                    <input type="checkbox"
+                    class="mdc-checkbox__native-control"/>
+                    <div class="mdc-checkbox__background">
+                      <svg class="mdc-checkbox__checkmark"
+                      viewBox="0 0 24 24">
+                      <path class="mdc-checkbox__checkmark__path"
+                      fill="none"
+                      stroke="white"
+                      d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                  </div>
+                </div>
+                <span class="mdc-list-item__text">
+                  This happened to me
+                </span>
+              </li>
+              <li class="mdc-list-item">
+                <div class="mdc-checkbox">
+                  <input type="checkbox"
+                  class="mdc-checkbox__native-control"/>
+                  <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                    viewBox="0 0 24 24">
+                    <path class="mdc-checkbox__checkmark__path"
+                    fill="none"
+                    stroke="white"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                  </svg>
+                  <div class="mdc-checkbox__mixedmark"></div>
+                </div>
+              </div>
+              <span class="mdc-list-item__text">
+                This happened to a friend of mine
+              </span>
+            </li>
+            <li class="mdc-list-item">
+              <div class="mdc-checkbox">
+                <input type="checkbox"
+                class="mdc-checkbox__native-control"/>
+                <div class="mdc-checkbox__background">
+                  <svg class="mdc-checkbox__checkmark"
+                  viewBox="0 0 24 24">
+                  <path class="mdc-checkbox__checkmark__path"
+                  fill="none"
+                  stroke="white"
+                  d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+              </div>
+            </div>
+            <span class="mdc-list-item__text">
+              Other
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+
+       <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+            <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
+              <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
+            </div>
+          </div>
+          <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+           <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
+                <div class="mdc-text-field full-width full-height">
+                  <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
+                  <div class="mdc-text-field__bottom-line"></div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
+                <button class="mdc-button full-height full-width">
+                 <i class="material-icons mdc-button__icon">photo</i>
+                 Photo
+              </button>
+              </div>
+              <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
+                <button class="mdc-button full-height full-width">
+                 <i class="material-icons mdc-button__icon">movie</i>
+                 Video
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="invalidate-form">
+
+</div>
+<div id="edit-form">
+
+</div>
+</section>
+<footer>
+  <section class="footer">
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
+          <button id="contribute" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>
+</main>
+</div>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="story.js"></script>
+</body>
+</html>
