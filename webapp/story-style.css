@@ -21,6 +21,7 @@ html {
   flex-grow: 1;
   height: 100%;
   box-sizing: border-box;
+  margin-bottom: 50px;
 }
 
 .demo-card__avatar {
@@ -52,6 +53,7 @@ html {
 .mdc-layout-grid,.mdc-layout-grid__inner{
   padding:0px;
   height: 100%;
+  grid-gap: 1px !important;
 }
 
 .fixed-padding-20{
@@ -92,4 +94,39 @@ html {
 .comment-list-item{
   padding-left: 1em;
 }
+
+.footer{
+  height: 50px;
+  width: 100%;
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  margin-bottom:0px;
+}
+
+.alert{
+  background-color: #ff8080 !important;
+  color: white !important;
+}
+
+.alert:hover{
+  background-color: #ff3333 !important;
+}
+
+#contribute{
+  background-color: #585858 !important;
+}
+
+footer{
+
+}
+
+/*div{
+    margin:20px 20px;
+}
+body
+{
+    margin-bottom:50px;
+}*/
 
