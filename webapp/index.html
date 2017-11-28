@@ -21,10 +21,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png">
-    <script src="/assets/toolbar/toolbar.css.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="search.css">
+
     <style>
       .mdc-toolbar-demo {
         margin: 0px;
@@ -100,15 +103,16 @@
         
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
                 <div id="tf-box-trailing-example" class=" mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" data-demo-no-auto-js="" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:28px, -55.5875px; --mdc-ripple-fg-translate-end:60px, -62px;">
-            <input type="text" id="tf-box-trailing" class="mdc-text-field__input custom-text-field-input">
+            <input type="text" id="mainsearchbox" class="mdc-text-field__input custom-text-field-input">
             <label for="tf-box-trailing" class="mdc-text-field__label">Search</label>
-            <i class="material-icons mdc-text-field__icon" tabindex="0">search</i>
+            <a class="material-icons mdc-text-field__icon" onclick='search_news(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
+           <!-- <a class="material-icons mdc-text-field__icon" onclick='search(&quot;donalds&quot;);' tabindex="0">search</a> -->
             <div class="mdc-text-field__bottom-line mdc-text-field__bottom-line--active" style="transform-origin: 118px center"></div>
           </div>
           <!--<a href="#" class="material-icons mdc-toolbar__icon" aria-label="Download" alt="Download">search</a>-->
           <!--<a href="#" class="material-icons mdc-toolbar__icon" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>-->
           <!--<a href="#" class="material-icons mdc-toolbar__icon" aria-label="Print this page" alt="Print this page">star</a>-->
-          <a href="#" class="mdc-button--stroked mdc-toolbar__icon" style="color: white">LOGIN</a>
+          <a href="#" id="do_search" class="mdc-button--stroked mdc-toolbar__icon" style="color: white">LOGIN</a>
         </section>
       </div>
     </header>
@@ -116,32 +120,11 @@
 
       <div class="mdc-toolbar-fixed-adjust">
        <h2>Newsfeed</h2>
-<ul class="mdc-list mdc-list--avatar-list">
-  <li class="mdc-list-item">
-    <img class="mdc-list-item__start-detail" src="img/percent.png"
-         width="56" height="56">
-    Mc Donalds raided, two taken by ICE
-    <a class="mdc-list-item__end-detail material-icons" href="#" aria-label="Add to favorites" title="Add to favorites" onclick="event.preventDefault();">
-                  star_border
-                </a>
-  </li>
-  <li class="mdc-list-item">
-    <img class="mdc-list-item__start-detail" src="img/percent.png"
-         width="56" height="56">
-    Factory workers taken into custody
-    <a class="mdc-list-item__end-detail material-icons" href="#" aria-label="Add to favorites" title="Add to favorites" onclick="event.preventDefault();">
-                  star_border
-                </a>
-  </li>
-  <li class="mdc-list-item">
-    <img class="mdc-list-item__start-detail" src="img/percent.png"
-         width="56" height="56">
-    LAX not safe for immigrants
-    <a href="#" class="mdc-list-item__end-detail material-icons"
-       aria-label="Remove from favorites" title="Remove from favorites">
-      star
-    </a>
-  </li>
+<ul class="mdc-list search-results-list">
+
+  
+  
+
 </ul>
       </div>
     </main>
@@ -169,18 +152,7 @@
         window.mdc.autoInit();
     </script>    
     
-     <script>      var drawerEl = document.querySelector('.mdc-persistent-drawer');
-        var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
-        var drawer = new MDCPersistentDrawer(drawerEl);
-        document.querySelector('.hamburger-menu').addEventListener('click', function() {
-          drawer.open = !drawer.open;
-        });
-        drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
-          console.log('Received MDCPersistentDrawer:open');
-        });
-        drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
-          console.log('Received MDCPersistentDrawer:close');
-        });
-      </script>
+
+      <script src="search.js"></script>
   </body>
 </html>
