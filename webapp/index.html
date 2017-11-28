@@ -92,7 +92,7 @@
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <a href="#" class="material-icons hamburguer-menu mdc-toolbar__menu-icon">menu</a>
+          <a href="#" class="material-icons hamburger-menu mdc-toolbar__menu-icon">menu</a>
           <span class="mdc-toolbar__title">Title</span>
         </section>
         
@@ -147,7 +147,7 @@
     </main>
 
 
-    <!--ADDING FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF HTML FILE BEFORE ALL OTHER SCRIPTS  -->
+    <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
      <script>
          // Initialize Firebase
@@ -172,7 +172,7 @@
      <script>      var drawerEl = document.querySelector('.mdc-persistent-drawer');
         var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
         var drawer = new MDCPersistentDrawer(drawerEl);
-        document.querySelector('.hamburguer-menu').addEventListener('click', function() {
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
           drawer.open = !drawer.open;
         });
         drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
