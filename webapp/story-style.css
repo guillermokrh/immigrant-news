@@ -76,7 +76,6 @@ html {
 }
 
 /*
-
 w3schools example modal login
 */
 /* Full-width input fields */
@@ -98,6 +97,10 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 button:hover {
@@ -186,7 +189,7 @@ span.psw {
   from {transform: scale(0)}
   to {transform: scale(1)}
 }
-
+/*
 .footer{
   height: 50px;
   width: 100%;
@@ -196,6 +199,7 @@ span.psw {
   right:0px;
   margin-bottom:0px;
 }
+*/
 
 .alert{
   background-color: #ff8080 !important;
@@ -205,14 +209,10 @@ span.psw {
 .alert:hover{
   background-color: #ff3333 !important;
 }
-
+/*
 #contribute{
   background-color: #585858 !important;
-}
-
-footer{
-
-}
+}*/
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
