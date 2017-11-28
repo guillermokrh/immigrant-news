@@ -177,7 +177,6 @@
 
 
         <div id="loginModal" class="modal">
-
             <form class="modal-content animate" action="/action_page.php">
                 <div class="imgcontainer">
                     <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -185,20 +184,22 @@
                 </div>
 
                 <div class="container">
-                    <!--<label><b>Username</b></label>-->
-                    <input type="text" placeholder="Username" name="uname" required>
+                    <input id="txtEmail" type="email" placeholder="Email" required>
+                    <input id="txtPassword" type="password" placeholder="Password" required>
 
-                    <!--<label><b>Password</b></label>-->
-                    <input type="password" placeholder="Password" name="psw" required>
+                    <button id="btnLogin" type="submit" class="btn btn-action">
+                        Login
+                    </button>
 
-                    <button type="submit">Login</button>
+                    <button id="btnSignUp" class="btn btn-secondary">
+                        Sign up
+                    </button>
+
+                    <button id="btnLogout" class="btn btn-action hide">
+                        Log out
+                    </button>
 
                     <input type="checkbox"> Remember me
-                </div>
-
-                <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
             </form>
         </div>
@@ -214,10 +215,7 @@
                 }
             }
         </script>
-
-        <!--
-              <script src="app.js"></script>
-        -->
+        <script src="indexLogin.js"></script>
     </main>
 
 
