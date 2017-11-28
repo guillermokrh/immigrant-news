@@ -37,8 +37,8 @@ html {
   margin-left: 56px;
 }
 
-#storyHeader{
-  background-color:;
+.bar{
+  background-color:#e0ebeb;
 }
 
 .full-height{
@@ -54,9 +54,13 @@ html {
   height: 100%;
 }
 
-.mdc-layout-grid__cell--span-10-desktop,  .mdc-layout-grid__cell--span-6-tablet, .mdc-layout-grid__cell--span-2-phone{
+.fixed-padding-20{
   padding:20px;
   height: 100%;
+}
+
+.fixed-heigh-bar{
+  height: 80px;
 }
 
 .verified{
@@ -72,3 +76,22 @@ html {
   margin-left: 1px;
   margin-right: 1px;
 }
+.grey-bg {
+    background: rgba(0, 0, 0, .26);
+}
+
+.comment-box{
+  background-color: #e6ecff;
+  border-bottom: 1px solid #ccd8ff;
+}
+
+.comment-list{
+  padding:0;
+}
+
+.comment-list-item{
+  padding-left: 1em;
+}
+
+
+
