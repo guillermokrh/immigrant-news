@@ -17,10 +17,8 @@ $("#mainsearchbox").keypress(function(event) {
     }
 });
 
-function say() {
-    alert("hello");
-}
-
+/* Search for some word and look it up on all news 
+   and add those results to the result list */
 function search_news(what) {
     $(".search-results-list").empty();
     $.getJSON("https://immigrant-news.firebaseio.com/stories.json", function(data) {
@@ -31,8 +29,16 @@ function search_news(what) {
             console.log(val);
             if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
                 items.push("<li class='mdc-list-item' id='" + key + "'> <img class='mdc-list-item__start-detail' src='img/percent.png' width='56' height='56'>" +
-                    val.title +
-                    "<a  class='mdc-list-item__end-detail material-icons resultNav' style='text-decoration: none;color='#000';' href='https://preview.c9users.io/dihara/test/immigrant-news/webapp/story.html?id=" +
+                
+                "<span class='mdc-list-item__text'> " + 
+                "<a href='story.html?id=" +
+                    key + 
+                    "' > " +
+                  val.title + 
+                  "</a> <span class='mdc-list-item__text__secondary'>" + 
+                  "Secondary text" +
+                  "</span> </span>" +
+                    "<a  class='mdc-list-item__end-detail material-icons resultNav' style='text-decoration: none;color='#000';' href='story1.html?id=" +
                     key + "' aria-label='Add to favorites' title='Add to favorites' onclick='alert(&quot;you like it! you really like it!&quot;);'> star_border </a> </li>");
             }
         });
