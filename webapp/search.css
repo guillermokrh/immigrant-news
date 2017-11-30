@@ -1,0 +1,24 @@
+a.resultNav:link    {
+  /* Applies to unvisited links of class mainNav */
+  text-decoration:  none;
+  font-weight:      normal;
+  color:            black;
+  } 
+a.resultNav:visited {
+  /* Applies to visited links of class mainNav */
+  text-decoration:  none;
+  font-weight:      normal;
+  color:            #000;
+  } 
+a.resultNav:hover   {
+  /* Applies to links under the pointer of class mainNav */
+  text-decoration:  none;
+  font-weight:      normal;
+  color:            #000;
+  } 
+a.resultNav:active  {
+  /* Applies to activated links of class mainNav */
+  text-decoration:  none;
+  font-weight:      normal;
+  color: black;
+  } 
