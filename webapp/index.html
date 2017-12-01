@@ -114,8 +114,10 @@
 
           <div class="mdc-text-field__bottom-line mdc-text-field__bottom-line--active" style="transform-origin: 118px center"></div>
         </div>
+        <a href="#" class="mdc-button--stroked mdc-toolbar__icon"
+           onclick="document.getElementById('loginModal').style.display='block'"
+           style="color: white; width:auto;">LOGIN</a>
 
-        <a href="#" class="mdc-button--stroked mdc-toolbar__icon" style="color: white">LOGIN</a>
       </section>
     </div>
   </header>
@@ -128,6 +130,61 @@
       </ul>
     </div>
   </main>
+
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="animate modal-box">
+
+      <div class="modal-header mdc-toolbar">
+        <h1>Login</h1>
+        <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+
+      <form class="modal-form">
+        <div class="mdc-form-field">
+          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <input id="txtEmail" type="email" class="mdc-text-field__input" required autocomplete="off">
+            <label for="txtEmail" class="mdc-text-field__label">Email</label>
+            <div class="mdc-text-field__bottom-line"></div>
+          </div>
+        </div>
+        <div class="mdc-form-field">
+          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <input id="txtPassword" type="password" class="mdc-text-field__input" required minlength=8 autocomplete="off">
+            <label for="txtPassword" class="mdc-text-field__label">Password</label>
+            <div class="mdc-text-field__bottom-line"></div>
+          </div>
+        </div>
+
+        <button id="btnLogin"
+                type="submit"
+                class="mdc-button mdc-button--raised mdc-ripple-surface"
+                data-mdc-auto-init="MDCRipple">
+          Login
+        </button>
+
+        <button id="btnSignUp"
+                type="submit"
+                class="mdc-button mdc-button--raised mdc-ripple-surface"
+                data-mdc-auto-init="MDCRipple">
+          Sign up
+        </button>
+
+        <button id="btnLogout"
+                type="submit"
+                class="mdc-button mdc-button--raised mdc-ripple-surface hide"
+                data-mdc-auto-init="MDCRipple">
+          Logout
+        </button>
+      </form>
+
+    </div>
+  </div>
+  <script src="login.js"></script>
+
+
+
 
 
   <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
