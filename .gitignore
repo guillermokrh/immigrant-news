@@ -4,3 +4,11 @@
 .vs/ProjectSettings.json
 .vs/slnx.sqlite
 .vs/VSWorkspaceState.json
+webapp/.idea/misc.xml
+webapp/.idea/modules.xml
+*.xml
+webapp/.idea/webapp.iml
+webapp/.idea/workspace.xml
+webapp/.idea/workspace.xml
+*.xml
+webapp/.idea/workspace.xml
