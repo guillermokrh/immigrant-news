@@ -156,53 +156,60 @@
 
 
 
-<!--
-        <div class = "container">
-            <input id="txtEmail" type="email" placeholder="Email">
-
-            <input id="txtPassword" type="password" placeholder="Password">
-
-            <button id="btnLogin" class="btn btn-action">
-                Log in
-            </button>
-
-            <button id="btnSignUp" class="btn btn-secondary">
-                Sign up
-            </button>
-
-            <button id="btnLogout" class="btn btn-action hide">
-                Log out
-            </button>
-        </div>
--->
-
-
+        <!--TODO learn modal and modal-content/animate html and css styling -->
         <div id="loginModal" class="modal">
-            <form class="modal-content animate">
-                <div class="imgcontainer">
+            <div class="animate modal-box">
+
+                <div class="modal-header mdc-toolbar">
+                    <h1>Login</h1>
                     <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <img src="img/avatar.png" alt="Avatar" class="avatar">
                 </div>
 
-                <div class="container">
-                    <input id="txtEmail" type="email" placeholder="Email" required>
-                    <input id="txtPassword" type="password" placeholder="Password" required>
+                <form class="modal-form">
+                    <div class="mdc-form-field">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                            <input id="txtEmail" type="email" class="mdc-text-field__input" required autocomplete="off">
+                            <label for="txtEmail" class="mdc-text-field__label">Email</label>
+                            <div class="mdc-text-field__bottom-line"></div>
+                        </div>
+                    </div>
+                    <div class="mdc-form-field">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                            <input id="txtPassword" type="password" class="mdc-text-field__input" required minlength=8 autocomplete="off">
+                            <label for="txtPassword" class="mdc-text-field__label">Password</label>
+                            <div class="mdc-text-field__bottom-line"></div>
+                        </div>
+                    </div>
 
-                    <button id="btnLogin" type="submit" class="btn btn-action">
+                    <button id="btnLogin"
+                            type="submit"
+                            class="mdc-button mdc-button--raised mdc-ripple-surface"
+                            data-mdc-auto-init="MDCRipple">
                         Login
                     </button>
 
-                    <button id="btnSignUp" class="btn btn-secondary">
+                    <button id="btnSignUp"
+                            type="submit"
+                            class="mdc-button mdc-button--raised mdc-ripple-surface"
+                            data-mdc-auto-init="MDCRipple">
                         Sign up
                     </button>
 
-                    <button id="btnLogout" class="btn btn-action hide">
-                        Log out
+                    <button id="btnLogout"
+                            type="submit"
+                            class="mdc-button mdc-button--raised mdc-ripple-surface hide"
+                            data-mdc-auto-init="MDCRipple">
+                        Logout
                     </button>
+                </form>
 
-                </div>
-            </form>
+            </div>
         </div>
+
+
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script>window.mdc.autoInit();</script>
+
 
         <script>
             // Get the modal

@@ -51,7 +51,4 @@
             btnLogout.classList.add('hide');
         }
     });
-
-
-
 }());
