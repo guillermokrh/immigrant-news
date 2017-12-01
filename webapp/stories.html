@@ -189,9 +189,7 @@
 
             //comments
             $.getJSON(commentsUrl, function (data) {
-                if (data != null) {
-                    DisplayComments(data);
-                }
+                DisplayComments(data);
             });
 
             //fill the fields
@@ -207,6 +205,13 @@
                     $.each(comments, function (index, value) {
                         $('#storyComments').append(GetCommnetaryTemplate(value));
                     });
+                }
+                else {
+                    $('#storyComments').append('<li class="mdc-list-item comment-box comment-list-item">' +
+                        '<div>' +
+                        'Be the first to comment this story!' +
+                        '</div>' +
+                        '</li>');
                 }
             }
 
