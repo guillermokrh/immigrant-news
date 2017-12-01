@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="aa-style.css">
+    <link rel="stylesheet" href="assets/percircle/css/percircle.css" />
 </head>
 <body class="demo-body mdc-typography">
     <aside class="mdc-persistent-drawer">
@@ -62,10 +63,11 @@
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
                             <section style="padding-left: 1em;padding-top: 1.2em;">
-                                <div class="demo-card__avatar"></div>
-                                <h1 class="mdc-card__title" id="storyTitle">ICE Raid Illinois</h1>
-                                <h2 class="mdc-card__subtitle">Author</h2>
-                            </section>
+                                <!--div class="demo-card__avatar"></!--div>-->
+                                <div id="storyAuthorAvatar" title="Credibility rate of this user"></div>
+                                    <h1 class="mdc-card__title" id="storyTitle">ICE Raid Illinois</h1>
+                                    <h2 class="mdc-card__subtitle"><a id="storyAuthor" href="#">Author</a></h2>
+</section>
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
                             <button class="mdc-button full-height full-width">
@@ -156,9 +158,13 @@
     </script>
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
     <script src="story.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+           
+
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
                 var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -183,7 +189,8 @@
             $.getJSON(storyUrl, function (data) {
                 if (data != null) {
                     //alert(data.date);
-                    FillStoryFields(data);  
+                    FillStoryFields(data);
+                    SetUserAvatar(data.author, true);
                 }
             });
 
@@ -198,12 +205,16 @@
                 $('#storyDate').text(story.date);
                 $('#storyLocation').text(story.location);
                 $('#storyDescription').text(story.description);
+                $('#storyAuthor').text(story.author);
             }
 
+            //display comments
             function DisplayComments(comments) {
                 if (comments != null) {
                     $.each(comments, function (index, value) {
                         $('#storyComments').append(GetCommnetaryTemplate(value));
+                        //set the commentary user credibility avatar
+                        SetUserAvatar(value.user, false);
                     });
                 }
                 else {
@@ -215,15 +226,47 @@
                 }
             }
 
+            //get a commentary html template
             function GetCommnetaryTemplate(comment) {
                 var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<span class="mdc-list-item__start-detail grey-bg"></span>' +
+                    '<div class="' + comment.user + '" title="Credibility rate of this user"></div>' +
                     '<div>' +
                     '<a href="#">' + comment.user + '</a>' +
                     comment.text +
                     '</div>' +
                     '</li>';
                 return commentTemplate;
+            }
+
+            //set author avatar
+            function SetUserAvatar(author, isStoryAuthor) {
+                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
+                $.getJSON(userUrl, function (data) {
+                    if (data != null) {
+                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
+                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
+                        $(authorSelector).percircle({
+                            progressBarColor: credibilityColor,
+                            percent: data['credibility-rate']
+                        }).addClass('small');
+                    }
+                });
+            }
+
+            //get credibility color
+            function GetCredibilityColor(percentage) {
+                if (percentage <= 40) {
+                    return '#ff0000';
+                }
+                else if(percentage > 40 && percentage <= 60) {
+                    return '#ff8000';
+                }
+                else if (percentage > 60 && percentage < 80) {
+                    return '#bfff00';
+                }
+                else {
+                    return '#31b404';
+                } 
             }
         });
     </script>
