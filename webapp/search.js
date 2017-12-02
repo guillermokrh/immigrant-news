@@ -34,7 +34,7 @@ function search_news(what) {
                 $t.prop('id', key);
                 //$t.children('.mdc-list-item__start-detail').
                 $t.find('.result-title').text(val.title);
-                $t.find('.result-title').prop('href', 'story.html?id=' + key);
+                $t.find('.result-title').prop('href', 'stories.html?id=' + key);
                 $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
                 $t.removeClass('hide');
                 $t.appendTo('#search-results-list');
