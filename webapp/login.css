@@ -1,0 +1,67 @@
+/* Login Modal */
+
+/* Modal animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/*Modal Background*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-box {
+    background-color: #fefefe;
+    margin: 10% auto 10% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-header {
+    padding: 40px 0 0 40px;
+    border: 0;
+    margin: 0;
+    font-size: x-small;
+}
+
+.modal-form {
+    background-color: #fefefe;
+    margin: 0% auto 5% auto; /* 5% from the top, 15% from the bottom and centered */
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+}
+
+input[type=email], input[type=password] {
+    padding-right: 90px;
+}
+
+.hide{
+    visibility: hidden;
+}
