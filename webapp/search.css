@@ -1,3 +1,7 @@
+.hide{
+  display:none;  
+}
+
 a.resultNav:link    {
   /* Applies to unvisited links of class mainNav */
   text-decoration:  none;
