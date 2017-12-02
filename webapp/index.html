@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <link rel="stylesheet" href="search.css">
 
@@ -153,7 +155,7 @@
           <label for="mainsearchbox" class="mdc-text-field__label">Search</label>
           <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_news(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
 
-          <div class="mdc-text-field__bottom-line" style="color:white; transform-origin: 118px center"></div>
+          <div class="mdc-text-field__bottom-line" style="    --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
 
 
         </div>
@@ -166,12 +168,12 @@
 
     <div class="mdc-toolbar-fixed-adjust">
       <h2>Newsfeed</h2>
-      <ul class="mdc-list search-results-list">
+      <ul class="mdc-list" id="search-results-list">
         
-        <li class="mdc-list-item" id="story1"> 
+        <li class="hide mdc-list-item" id="template"> 
           <img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">
             <span class="mdc-list-item__text"> 
-              <a href="story.html?id=story1">title</a> 
+              <a class='result-title' href="story.html?id=story1">title</a> 
               <span class="mdc-list-item__text__secondary">Secondary text</span>          
               </span>
               

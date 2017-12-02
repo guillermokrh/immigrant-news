@@ -20,7 +20,7 @@ $("#mainsearchbox").keypress(function(event) {
 /* Search for some word and look it up on all news 
    and add those results to the result list */
 function search_news(what) {
-    $(".search-results-list").empty();
+    $('#template').not('.hide').remove();
     $.getJSON("https://immigrant-news.firebaseio.com/stories.json", function(data) {
         var items = [];
         var i = 0;
@@ -28,25 +28,19 @@ function search_news(what) {
             console.log(key);
             console.log(val);
             if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-                items.push("<li class='mdc-list-item' id='" + key + "'> <img class='mdc-list-item__start-detail' src='img/percent.png' width='56' height='56'>" +
-                
-                "<span class='mdc-list-item__text'> " + 
-                "<a href='story.html?id=" +
-                    key + 
-                    "' > " +
-                  val.title + 
-                  "</a> <span class='mdc-list-item__text__secondary'>" + 
-                  "Secondary text" +
-                  "</span> </span>" +
-                    "<a  class='mdc-list-item__end-detail material-icons resultNav' style='text-decoration: none;color='#000';' href='story1.html?id=" +
-                    key + "' aria-label='Add to favorites' title='Add to favorites' onclick='alert(&quot;you like it! you really like it!&quot;);'> star_border </a> </li>");
+               
+                 
+                var $t = $('#template').clone();
+                $t.prop('id', key);
+                //$t.children('.mdc-list-item__start-detail').
+                $t.find('.result-title').text(val.title);
+                $t.find('.result-title').prop('href', 'story.html?id=' + key);
+                $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
+                $t.removeClass('hide');
+                $t.appendTo('#search-results-list');
+                console.log($t);
+                   
             }
         });
-
-
-        $("<ul/>", {
-            "class": "my-new-list",
-            html: items.join("")
-        }).appendTo(".search-results-list");
     });
 }
