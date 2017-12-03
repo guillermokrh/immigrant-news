@@ -61,6 +61,8 @@
     <main class="mdc-toolbar-fixed-adjust">
       <!-- TODO goes here-->
       <section>
+
+        <!--Fix: this shows up every time -->
         <div class="hide mdc-toolbar-fixed-adjust">
           <h3 id='results-header'>Search results for</h3>
           <ul class="mdc-list" id="search-results-list">
@@ -71,7 +73,6 @@
               <a class='result-title' href="stories.html?id=story1">title</a>
               <span class="mdc-list-item__text__secondary">Secondary text</span>
               </span>
-
               <a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>
             </li>
           </ul>
@@ -117,13 +118,13 @@
         <section class="footer">
           <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-              <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
-                <button class="mdc-button full-height full-width alert" title="Report as innapriopriate">
-                  <i class="material-icons mdc-button__icon">report problem</i>
-                </button>
+              <div class="mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone right-align">
+                <a id="do_search" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" onclick='search_news(document.getElementById(&quot;submission_title&quot;).value);' tabindex="0">
+                  Search
+                </a>
               </div>
               <div class="mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone right-align">
-                <a id="do_submit" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" onclick='search_news(document.getElementById(&quot;submission_title&quot;).value);' tabindex="0">
+                <a id="do_submit" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" onclick='submit_story();' tabindex="0">
                   Submit
                 </a>
               </div>
@@ -137,18 +138,6 @@
 
   <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
-      authDomain: "immigrant-news.firebaseapp.com",
-      databaseURL: "https://immigrant-news.firebaseio.com",
-      projectId: "immigrant-news",
-      storageBucket: "immigrant-news.appspot.com",
-      messagingSenderId: "598567031572"
-    };
-    firebase.initializeApp(config);
-  </script>
 
   <script>
     window.mdc.autoInit();

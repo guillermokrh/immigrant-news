@@ -1,8 +1,33 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
+    authDomain: "immigrant-news.firebaseapp.com",
+    databaseURL: "https://immigrant-news.firebaseio.com",
+    projectId: "immigrant-news",
+    storageBucket: "immigrant-news.appspot.com",
+    messagingSenderId: "598567031572"
+};
+firebase.initializeApp(config);
+
 var drawerEl = document.querySelector('.mdc-persistent-drawer');
 var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
 var drawer = new MDCPersistentDrawer(drawerEl);
 var myResults = [];
 
+
+// Page initialize
+window.mdc.autoInit();
+
+(function() {
+  var tfs = document.querySelectorAll(
+    '.mdc-text-field:not([data-demo-no-auto-js])'
+  );
+  for (var i = 0, tf; tf = tfs[i]; i++) {
+    mdc.textField.MDCTextField.attachTo(tf);
+  }
+})();
+
+// Hamburger Menu
 document.querySelector('.hamburger-menu').addEventListener('click', function() {
     drawer.open = !drawer.open;
 });
@@ -13,11 +38,6 @@ drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
     console.log('Received MDCPersistentDrawer:close');
 });
 
-$("#mainsearchbox").keypress(function(event) {
-    if (event.which == 13) {
-        $("#do_search").click();
-    }
-});
 
 $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -114,3 +134,135 @@ function show_results(limit) {
     }
 
 }
+
+
+
+function submit_story(){
+
+    // Get elements
+    var submission_title = document.getElementById('submission_title').value;
+    var submission_date = document.getElementById('submission_date').value;
+    var submission_location = document.getElementById('submission_location').value;
+    var submission_description = document.getElementById('submission_description').value;
+    var submission_author = "immi2";
+
+    console.log(submission_title);
+    console.log(submission_date);
+    console.log(submission_location);
+    console.log(submission_description);
+
+    var postStory = {
+        author: submission_author,
+        date: submission_date,
+        description: submission_description,
+        images: "none",
+        location: submission_location,
+        no_of_comments: 0,
+        percentage: 0,
+        title: submission_title
+    }
+
+      // Get a key for a new Post.
+      var newStoryKey = firebase.database().ref().child('stories').push().key;
+
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      var updates = {};
+      updates['/stories/' + newStoryKey] = postStory;
+
+    console.log("submitting story")
+    return firebase.database().ref().update(updates);
+ }
+
+    // Add login events
+    /*
+    btnLogin.addEventListener('click', e => {
+       var email = txtEmail.value;
+       var password = txtPassword.value;
+       var auth = firebase.auth();
+       // Sign in
+       var promise = auth.signInWithEmailAndPassword(email, password);
+       promise
+        .then(function() {
+            console.log("successfully logged in");
+            modalAction();
+            toggleLoginText();
+        })
+        .catch(function(e) {
+            console.log(e.message);
+            loginError = document.getElementById('loginError');
+            loginError.innerText = "Sorry, the username and/or password are incorrect.";
+        });
+
+    });
+    */
+
+    // Add sign up event
+    /*
+    btnSignUp.addEventListener('click', e => {
+        var email = txtEmail.value;
+        var password = txtPassword.value;
+        var auth = firebase.auth();
+        // Sign in
+        var promise = auth.createUserWithEmailAndPassword(email, password);
+        promise
+        .then(function() {
+            console.log("successfully created account and logged in");
+            modalAction();
+            toggleLoginText();
+        })
+        .catch(function(e) {
+            console.log(e.message);
+            loginError = document.getElementById('loginError');
+            loginError.innerText = e;
+        });
+    });
+    */
+
+    // Add log out event
+    /*
+    btnLogout.addEventListener('click', e=> {
+        if(logButton.textContent == "LOGOUT") {
+            firebase.auth().signOut();
+            toggleLoginText();
+        }
+    });
+    */
+
+    /*
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(firebaseUser) {
+            console.log(firebaseUser);
+            //btnLogout.classList.remove('hide');
+        } else {
+            console.log('not logged in');
+            //btnLogout.classList.add('hide');
+        }
+    });
+    */
+
+
+//Log-in Code
+/*
+const loginModal = document.getElementById('loginModal');
+var logButton = document.getElementById('logButton');
+
+// Change text of login button on login/logout
+function toggleLoginText() {
+
+    logButton.textContent = logButton.textContent == "LOGIN" ? "LOGOUT" : "LOGIN";
+}
+
+// open/close modal
+function modalAction() {
+
+    if(logButton.textContent == "LOGIN")
+        loginModal.style.display = loginModal.style.display == "block"? "none" : "block";
+}
+
+// Close the modal when clicking outside the modal
+window.onclick = function(event) {
+    if (event.target === loginModal) {
+        loginModal.style.display = "none";
+    }
+};
+*/
