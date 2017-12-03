@@ -20,20 +20,15 @@ $("#mainsearchbox").keypress(function(event) {
 });
 
 $(window).scroll(function() {
+    
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
-        $('hide', 'mdc-list-item').not('template').removeClass('hide');
-           // ajax call get data from server and append to the div
+        $('.hide, .mdc-list-item').not('#template').first().removeClass('hide');;
     }
 });
 
-function search_and_display(what) {
-   myResults = search_news(what) ;
-   show_results(5);
-}
-
 /* Search for some word and look it up on all news 
    and add those results to the result list */
-function search_news(what) {
+function search_and_display(what) {
     var count = 0;
     var result = [];
     var news = {};
@@ -46,9 +41,10 @@ function search_news(what) {
         
         $.each(data, function(key, val) {
             if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-                news.id = key;
-                news.value = val;
-                result.push(news);
+                // news.id = key;
+                // news.value = JSON.parse(val);
+                // console.log(hola, news);
+                // result.push(news);
                 
                 count++;
                 
@@ -65,50 +61,37 @@ function search_news(what) {
                 $t.find('.result-title').text(val.title.substring(0,100));
                 $t.find('.result-title').prop('href', 'stories.html?id=' + key);
                 $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
-                $t.removeClass('hide');
+                if (count < 10) {
+                    $t.removeClass('hide');    
+                };
+                
                 $t.appendTo('#search-results-list');
             };
         });
         
+        
         if (count > 0) {
-                $('#results-header').text('Results for: ' + what + ' ' + count + 'results found');
-
+                $('#results-header').text('Results for: ' + what);
+                $('#showmoreresults').removeClass('hide');
+                $('#results-footer').text(count + ' results found');
+        } else {
+            $('#results-footer').removeClass('hide').text(count + ' results found');
         }
     });
     return result;
 }
+    
+function show_more_results(count) {
+    if (count > 0) {
+        $('.hide.mdc-list-item').not('#template').first().removeClass('hide');  
+        setTimeout(function(){
+           show_more_results(count -1);
+        }, 70);
+    };
 
-function show_results(limit) {
-    var i = 0;
-    var news = {};
-    console.log('hola');
-    console.log(myResults);
-    
-    while (i < limit) {
-        if (myResults.length >= 0){
-            news = myResults[0];
-            console.log(news);
-            myResults.shift();
-            i++;
-            
-            var $t = $('#template').clone();
-            $t.prop('id', news.id);
-            $t.find('.ranking').text(news.value.percentage + '%');
-            if (news.value.percentage > 80) {
-                $t.find('.ranking').addClass('high_ranking');    
-            } else if (news.value.percentage < 40) {
-                $t.find('.ranking').addClass('low_ranking');    
-            } else {
-                $t.find('.ranking').addClass('medium_ranking');    
-            }
-            $t.find('.result-title').text(news.value.title.substring(0,100));
-            $t.find('.result-title').prop('href', 'stories.html?id=' + news.id);
-            $t.find('.mdc-list-item__text__secondary').text(news.value.description.substring(0,100));
-            $t.removeClass('hide');
-            $t.appendTo('#search-results-list');            
-        } else {
-            break;
-        }
+    if ($('.hide.mdc-list-item').not('#template').length == 0) {
+        $('#showmoreresults').hide();
+        $('#results-footer').removeClass('hide').text(count + ' results found');
+
     }
-    
 }

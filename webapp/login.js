@@ -16,7 +16,7 @@
     var txtPassword = document.getElementById('txtPassword');
     var btnLogin = document.getElementById('btnLogin');
     var btnSignUp = document.getElementById('btnSignUp');
-    var btnLogout = document.getElementById('btnLogout');
+    var btnLogout = document.getElementById('logButton');
 
     // Add login events
     btnLogin.addEventListener('click', e => {
@@ -25,7 +25,18 @@
        var auth = firebase.auth();
        // Sign in
        var promise = auth.signInWithEmailAndPassword(email, password);
-       promise.catch(e => console.log(e.message));
+       promise
+        .then(function() {
+            console.log("successfully logged in");
+            modalAction();
+            toggleLoginText();
+        })
+        .catch(function(e) {
+            console.log(e.message);
+            loginError = document.getElementById('loginError');
+            loginError.innerText = "Sorry, the username and/or password are incorrect.";
+        });
+
     });
 
     // Add sign up event
@@ -35,21 +46,34 @@
         var auth = firebase.auth();
         // Sign in
         var promise = auth.createUserWithEmailAndPassword(email, password);
-        promise.catch(e => console.log(e.message));
+        promise
+        .then(function() {
+            console.log("successfully created account and logged in");
+            modalAction();
+            toggleLoginText();
+        })
+        .catch(function(e) {
+            console.log(e.message);
+            loginError = document.getElementById('loginError');
+            loginError.innerText = e;
+        });
     });
 
     // Add log out event
     btnLogout.addEventListener('click', e=> {
-        firebase.auth().signOut();
+        if(logButton.textContent == "LOGOUT") {
+            firebase.auth().signOut();
+            toggleLoginText();
+        }
     });
 
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser) {
             console.log(firebaseUser);
-            btnLogout.classList.remove('hide');
+            //btnLogout.classList.remove('hide');
         } else {
             console.log('not logged in');
-            btnLogout.classList.add('hide');
+            //btnLogout.classList.add('hide');
         }
     });
 }());
@@ -57,26 +81,19 @@
 
 
 const loginModal = document.getElementById('loginModal');
+var logButton = document.getElementById('logButton');
 
 // Change text of login button on login/logout
-function toggleText(loginButtonID) {
+function toggleLoginText() {
     
-    var logButton = document.getElementById(loginButtonID);
-
-    if(logButton.textContent == "LOGIN")
-    {
-        logButton.textContent = "LOGOUT";
-    }
-    else
-    {
-        logButton.textContent = "LOGIN";
-    }
+    logButton.textContent = logButton.textContent == "LOGIN" ? "LOGOUT" : "LOGIN";
 }
 
 // open/close modal
 function modalAction() {
     
-    loginModal.style.display = loginModal.style.display == "block"? "none" : "block";
+    if(logButton.textContent == "LOGIN")
+        loginModal.style.display = loginModal.style.display == "block"? "none" : "block";
 }
 
 // Close the modal when clicking outside the modal

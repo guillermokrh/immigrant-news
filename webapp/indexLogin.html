@@ -175,7 +175,7 @@
                   </div>
                   <div class="mdc-form-field">
                       <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                          <input id="txtPassword" type="password" class="mdc-text-field__input" required minlength=8 autocomplete="off">
+                          <input id="txtPassword" type="password" class="mdc-text-field__input" required minlength=6 autocomplete="off">
                           <label for="txtPassword" class="mdc-text-field__label">Password</label>
                           <div class="mdc-text-field__bottom-line"></div>
                       </div>
@@ -195,12 +195,8 @@
                       Sign up
                   </button>
 
-                  <button id="btnLogout"
-                          type="submit"
-                          class="mdc-button mdc-button--raised mdc-ripple-surface hide"
-                          data-mdc-auto-init="MDCRipple">
-                      Logout
-                  </button>
+                  <p id='loginError' style="color:red;"></p>
+
               </form>
 
           </div>
