@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 
 
   <link rel="stylesheet" href="search.css">
@@ -140,21 +140,19 @@
   </aside>
 
 
-  <header class="mdc-toolbar mdc-toolbar--fixed">
+  <header class="topbar mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
         <a href="#" class="material-icons hamburger-menu mdc-toolbar__menu-icon">menu</a>
         <span class="mdc-toolbar__title">Immigrant news</span>
       </section>
 
-
-
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
 
         <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:131px, -55.3875px; --mdc-ripple-fg-translate-end:60px, -62px;">
           <input type="text" id="mainsearchbox" class="mdc-text-field__input custom-text-field-input">
           <label for="mainsearchbox" class="mdc-text-field__label">Search</label>
-          <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_news(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
+          <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_and_display(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
 
           <div class="mdc-text-field__bottom-line" style="    --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
 
@@ -167,15 +165,14 @@
     </div>
   </header>
   <main>
-
-    <div class="mdc-toolbar-fixed-adjust">
-      <h2>Newsfeed</h2>
+    <div class="hide mdc-toolbar-fixed-adjust">
+      <span style="display:inline-block; width: 30px;"></span><h3 id='results-header'>Search results for</h3>
       <ul class="mdc-list" id="search-results-list">
-        
         <li class="hide mdc-list-item" id="template"> 
-          <img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">
+          <p class='ranking'>95%</p>
+          <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
             <span class="mdc-list-item__text"> 
-              <a class='result-title' href="story.html?id=story1">title</a> 
+              <a class='result-title' href="stories.html?id=story1">title</a> 
               <span class="mdc-list-item__text__secondary">Secondary text</span>          
               </span>
               
@@ -191,7 +188,7 @@
 
 
   <!-- Login Modal -->
-  <div id="loginModal" class="modal">
+  <div id="loginModal" class="hide modal">
     <div class="animate modal-box">
 
       <div class="modal-header mdc-toolbar">

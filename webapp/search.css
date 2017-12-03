@@ -1,6 +1,74 @@
+.topbar{
+  --mdc-theme-primary: #03A9F4;
+}
+
 .hide{
   display:none;  
 }
+
+/*.ranking{*/
+/*    display: inline-block;*/
+/*    background: #000;*/
+/*    border-radius: 4px;*/
+/*    font-family: "arial-black";*/
+/*    font-size: 14px;*/
+/*    color: #FFF;*/
+/*    padding: 8px 12px;*/
+/*    cursor: pointer;*/
+    
+/*}*/
+
+.ranking{
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 
+  40px;
+  cursor: pointer;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  color: rgb(30, 205, 151);
+  text-align: center;
+}
+
+.low_ranking{
+  border: 2px solid #e91e63;
+}
+
+.medium_ranking{
+  border: 2px solid #FFEB3B;
+  
+}
+
+.high_ranking{
+    border: 2px solid rgb(30,205,151);
+}
+
+.ranking:hover{
+    background: red;
+
+}
+
+a.result-title:link    {
+  text-decoration:  none;
+  font-weight:      normal;
+  color:            #1a0dab;
+  } 
+a.result-title:visited {
+  text-decoration:  none;
+  font-weight:      normal;
+  color:            #1a0dab;
+  } 
+a.result-title:hover   {
+  text-decoration:  underline !important;
+  font-weight:      normal;
+  color:            #1a0dab;
+  } 
+a.result-title:active  {
+  text-decoration:  none;
+  font-weight:      normal;
+  color: #1a0dab;
+  } 
 
 a.resultNav:link    {
   /* Applies to unvisited links of class mainNav */
@@ -26,3 +94,4 @@ a.resultNav:active  {
   font-weight:      normal;
   color: black;
   } 
+  
