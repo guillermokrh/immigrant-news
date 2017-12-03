@@ -95,3 +95,7 @@ function show_more_results(count) {
 
     }
 }
+
+function toggleAdvancedSearch() {
+    $('#advanced_search_form').slideToggle();
+}
