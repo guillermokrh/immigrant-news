@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="aa-style.css">
+    <link rel="stylesheet" href="assets/percircle/css/percircle.css" />
 </head>
 <body class="demo-body mdc-typography">
     <aside class="mdc-persistent-drawer">
@@ -62,9 +63,9 @@
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
                             <section style="padding-left: 1em;padding-top: 1.2em;">
-                                <div class="demo-card__avatar"></div>
-                                <h1 class="mdc-card__title">ICE Raid Illinois</h1>
-                                <h2 class="mdc-card__subtitle">Author</h2>
+                                <div id="storyAuthorAvatar" title="Credibility rate of this user"></div>
+                                <h1 id="storyTitle" class="mdc-card__title">ICE Raid Illinois</h1>
+                                <h2 class="mdc-card__subtitle"><a id="storyAuthor" href="#">Author</a></h2>
                             </section>
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
@@ -189,13 +190,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                        <button class="mdc-button full-height full-width" title="Upload a picture">
+                                                        <button class="mdc-button full-height full-width fileOpener" title="Upload a picture">
                                                             <i class="material-icons mdc-button__icon">photo</i>
                                                             Photo
                                                         </button>
                                                     </div>
                                                     <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                        <button class="mdc-button full-height full-width" title="Upload a video">
+                                                        <button class="mdc-button full-height full-width fileOpener" title="Upload a video">
                                                             <i class="material-icons mdc-button__icon">movie</i>
                                                             Video
                                                         </button>
@@ -217,7 +218,7 @@
                                     <li class="mdc-list-item">
                                         <div class="mdc-checkbox">
                                             <input type="checkbox"
-                                                   class="mdc-checkbox__native-control" />
+                                                   class="mdc-checkbox__native-control" checked/>
                                             <div class="mdc-checkbox__background">
                                                 <svg class="mdc-checkbox__checkmark"
                                                      viewBox="0 0 24 24">
@@ -311,17 +312,18 @@
                                                         </div>
                                                     </div>
                                                     <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                        <button class="mdc-button full-height full-width" title="Upload a picture">
+                                                        <button class="mdc-button full-height full-width fileOpener" title="Upload a picture">
                                                             <i class="material-icons mdc-button__icon">photo</i>
                                                             Photo
                                                         </button>
                                                     </div>
                                                     <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                        <button class="mdc-button full-height full-width" title="Upload a video">
+                                                        <button class="mdc-button full-height full-width fileOpener" title="Upload a video">
                                                             <i class="material-icons mdc-button__icon">movie</i>
                                                             Video
                                                         </button>
                                                     </div>
+                                                    <input id="fileOpener" type="file" style="visibility:hidden;"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -350,9 +352,125 @@
             </footer>
         </main>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
+            authDomain: "immigrant-news.firebaseapp.com",
+            databaseURL: "https://immigrant-news.firebaseio.com",
+            projectId: "immigrant-news",
+            storageBucket: "immigrant-news.appspot.com",
+            messagingSenderId: "598567031572"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
     <script src="story.js"></script>
-    <script src="functions.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var currentStory = null;
+            var currentUser = null;
+            var currentStatusOfAction = "Validate";
+
+            //validating or invalidating data
+            var validateReason = "";
+            var invalidateReason = "";
+
+            //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+
+            var storyId = getUrlParameter("id");
+            currentStory = storyId;
+            currentUser = "immi2";
+            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
+
+            //story data
+            $.getJSON(storyUrl, function (data) {
+                if (data != null) {
+                    //alert(data.date);
+                    FillStoryFields(data);
+                    SetUserAvatar(data.author, true);
+                }
+            });
+
+            //fill the fields
+            function FillStoryFields(story) {
+                $('#storyTitle').text(story.title);
+                $('#storyAuthor').text(story.author);
+            }
+
+            //set author avatar
+            function SetUserAvatar(author, isStoryAuthor) {
+                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
+                $.getJSON(userUrl, function (data) {
+                    if (data != null) {
+                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
+                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
+                        $(authorSelector).percircle({
+                            progressBarColor: credibilityColor,
+                            percent: data['credibility-rate']
+                        }).addClass('small');
+                    }
+                });
+            }
+
+            //get credibility color
+            function GetCredibilityColor(percentage) {
+                if (percentage <= 40) {
+                    return '#ff0000';
+                }
+                else if (percentage > 40 && percentage <= 60) {
+                    return '#ff8000';
+                }
+                else if (percentage > 60 && percentage < 80) {
+                    return '#bfff00';
+                }
+                else {
+                    return '#31b404';
+                }
+            }
+
+            $(".fileOpener").click(function () {
+                OpenFileExplorer();
+            });
+            function OpenFileExplorer() {
+                $('#fileOpener').trigger('click');
+            }
+
+
+            //functions when clicking on validate or invalidate tabs
+            $('#validate-form, #invalidate-form').hide();
+            $('#validate-form').show();
+
+            $('#validate-tab').click(function () {
+                $('#validate-form').show();
+                $('#invalidate-form').hide();
+                currentStatusOfAction = "Validate";
+            });
+
+            $('#invalidate-tab').click(function () {
+                $('#validate-form').hide();
+                $('#invalidate-form').show();
+                currentStatusOfAction = "Invalidate";
+            });
+        });
+    </script>
+
 </body>
 </html>
