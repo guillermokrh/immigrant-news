@@ -152,7 +152,7 @@
         <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:131px, -55.3875px; --mdc-ripple-fg-translate-end:60px, -62px;">
           <input type="text" id="mainsearchbox" class="mdc-text-field__input custom-text-field-input">
           <label for="mainsearchbox" class="mdc-text-field__label">Search</label>
-          <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_news(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
+          <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_and_display(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
 
           <div class="mdc-text-field__bottom-line" style="    --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
 
@@ -165,11 +165,9 @@
     </div>
   </header>
   <main>
-
-    <div class="mdc-toolbar-fixed-adjust">
-      <h3>Search results for</h3>
+    <div class="hide mdc-toolbar-fixed-adjust">
+      <span style="display:inline-block; width: 30px;"></span><h3 id='results-header'>Search results for</h3>
       <ul class="mdc-list" id="search-results-list">
-        
         <li class="hide mdc-list-item" id="template"> 
           <p class='ranking'>95%</p>
           <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
