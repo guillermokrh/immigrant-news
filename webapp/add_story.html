@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
   <link rel="stylesheet" href="story-style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body class="demo-body mdc-typography">
   <aside class="mdc-persistent-drawer">
@@ -51,7 +52,7 @@
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
+          <button class="demo-menu material-icons hamburger-menu mdc-toolbar__menu-icon">menu</button>
           <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
         </section>
       </div>
@@ -60,10 +61,26 @@
     <main class="mdc-toolbar-fixed-adjust">
       <!-- TODO goes here-->
       <section>
+        <div class="hide mdc-toolbar-fixed-adjust">
+          <h3 id='results-header'>Search results for</h3>
+          <ul class="mdc-list" id="search-results-list">
+            <li class="hide mdc-list-item" id="template">
+              <p class='ranking'>95%</p>
+              <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
+              <span class="mdc-list-item__text">
+              <a class='result-title' href="stories.html?id=story1">title</a>
+              <span class="mdc-list-item__text__secondary">Secondary text</span>
+              </span>
+
+              <a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>
+            </li>
+          </ul>
+        </div>
+
         <div id="demo-tf-box-trailing-wrapper">
           <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width" data-demo-no-auto-js="" style="--mdc-ripple-fg-size: 180px; --mdc-ripple-fg-scale: 1.75101; --mdc-ripple-fg-translate-start: 181px, -58.3438px; --mdc-ripple-fg-translate-end: 60px, -62px;">
-            <input type="text" id="tf-box-trailing" class="mdc-text-field__input custom-text-field-input">
-            <label for="tf-box-trailing" class="mdc-text-field__label">Title</label>
+            <input type="text" id="submission_title" class="mdc-text-field__input custom-text-field-input">
+            <label for="submission_title" class="mdc-text-field__label">Title</label>
             <!--<i class="material-icons mdc-text-field__icon" tabindex="-1">delete</i>-->
             <div class="mdc-text-field__bottom-line"></div>
           </div>
@@ -71,8 +88,8 @@
 
         <div id="demo-tf-box-trailing-wrapper">
           <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width" data-demo-no-auto-js="" style="--mdc-ripple-fg-size: 180px; --mdc-ripple-fg-scale: 1.75101; --mdc-ripple-fg-translate-start: 181px, -58.3438px; --mdc-ripple-fg-translate-end: 60px, -62px;">
-            <input type="text" id="tf-box-trailing" class="mdc-text-field__input custom-text-field-input">
-            <label for="tf-box-trailing" class="mdc-text-field__label">Date</label>
+            <input type="text" id="submission_date" class="mdc-text-field__input custom-text-field-input">
+            <label for="submission_date" class="mdc-text-field__label">Date</label>
             <!--<i class="material-icons mdc-text-field__icon" tabindex="-1">delete</i>-->
             <div class="mdc-text-field__bottom-line"></div>
           </div>
@@ -80,22 +97,75 @@
 
         <div id="demo-tf-box-trailing-wrapper">
           <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width" data-demo-no-auto-js="" style="--mdc-ripple-fg-size: 180px; --mdc-ripple-fg-scale: 1.75101; --mdc-ripple-fg-translate-start: 181px, -58.3438px; --mdc-ripple-fg-translate-end: 60px, -62px;">
-            <input type="text" id="tf-box-trailing" class="mdc-text-field__input custom-text-field-input">
-            <label for="tf-box-trailing" class="mdc-text-field__label">Location</label>
+            <input type="text" id="submission_location" class="mdc-text-field__input custom-text-field-input">
+            <label for="submission_location" class="mdc-text-field__label">Location</label>
             <!--<i class="material-icons mdc-text-field__icon" tabindex="-1">delete</i>-->
             <div class="mdc-text-field__bottom-line"></div>
           </div>
         </div>
 
         <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth full-width-textarea-example mdc-text-field--upgraded">
-          <textarea id="full-width-textarea" class="mdc-text-field__input" rows="8"></textarea>
-          <label for="full-width-textarea" class="mdc-text-field__label">Description</label>
+          <textarea id="submission_description" class="mdc-text-field__input" rows="8"></textarea>
+          <label for="submission_description" class="mdc-text-field__label">Description</label>
         </div>
 
 
+
       </section>
+
+      <footer>
+        <section class="footer">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                <button class="mdc-button full-height full-width alert" title="Report as innapriopriate">
+                  <i class="material-icons mdc-button__icon">report problem</i>
+                </button>
+              </div>
+              <div class="mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone right-align">
+                <a id="do_submit" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" onclick='search_news(document.getElementById(&quot;submission_title&quot;).value);' tabindex="0">
+                  Submit
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </footer>
     </main>
   </div>
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+  <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
+      authDomain: "immigrant-news.firebaseapp.com",
+      databaseURL: "https://immigrant-news.firebaseio.com",
+      projectId: "immigrant-news",
+      storageBucket: "immigrant-news.appspot.com",
+      messagingSenderId: "598567031572"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script>
+    window.mdc.autoInit();
+
+
+    (function() {
+      var tfs = document.querySelectorAll(
+        '.mdc-text-field:not([data-demo-no-auto-js])'
+      );
+      for (var i = 0, tf; tf = tfs[i]; i++) {
+        mdc.textField.MDCTextField.attachTo(tf);
+      }
+    })();
+  </script>
+
+
+  <script src="add_story.js"></script>
+
 </body>
 </html>
