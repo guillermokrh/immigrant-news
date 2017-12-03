@@ -165,7 +165,7 @@
     </div>
   </header>
   <main>
-    <div class="hide mdc-toolbar-fixed-adjust">
+    <div class="search-results hide mdc-toolbar-fixed-adjust">
       <span style="display:inline-block; width: 30px;"></span><h3 id='results-header'>Search results for</h3>
       <ul class="mdc-list" id="search-results-list">
         <li class="hide mdc-list-item" id="template"> 
@@ -181,8 +181,10 @@
 
 
       </ul>
-
-
+      <button class="hide mdc-button mdc-button--compact mdc-ripple-upgraded" onClick='show_more_results(5)' id='showmoreresults'
+      style="--mdc-ripple-fg-size:51.2025px; --mdc-ripple-fg-scale:2.0042; --mdc-ripple-fg-translate-start:-0.93876px, -7.90127px; --mdc-ripple-fg-translate-end:17.0675px, -7.60125px;">
+        Show more results</button>
+      <h3 class='hide' id='results-footer'>Search results for</h3>
     </div>
   </main>
 
