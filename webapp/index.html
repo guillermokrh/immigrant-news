@@ -25,12 +25,21 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://<ajax class="googl"></ajax>eapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 
 
   <link rel="stylesheet" href="search.css">
+  
+  
+   <!-- Compiled and minified CSS -->
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
   <style>
     .mdc-toolbar-demo {
@@ -74,34 +83,6 @@
         <div class="mdc-text-field__bottom-line"></div>
       </div>
 
-      <div id="hero-js-select" class="mdc-select" role="listbox" tabindex="0" style="width: 364px;">
-        <span class="mdc-select__selected-text">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</span>
-        <div class="mdc-simple-menu mdc-select__menu" style="left: 574px; top: 219.5px; transform-origin: center 8px 0px; transform: scale(0, 0);">
-          <ul class="mdc-list mdc-simple-menu__items" style="transform: scale(1, 1);">
-            <li class="mdc-list-item" role="option" aria-disabled="true" style="">
-              Pick a food group
-            </li>
-            <li class="mdc-list-item" role="option" tabindex="0" style="">
-              Bread, Cereal, Rice, and Pasta
-            </li>
-            <li class="mdc-list-item" role="option" aria-disabled="true" tabindex="0" style="">
-              Vegetables
-            </li>
-            <li class="mdc-list-item" role="option" tabindex="0" style="">
-              Fruit
-            </li>
-            <li class="mdc-list-item" role="option" tabindex="0" style="">
-              Milk, Yogurt, and Cheese
-            </li>
-            <li class="mdc-list-item" role="option" tabindex="0" style="" aria-selected="true">
-              Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts
-            </li>
-            <li class="mdc-list-item" role="option" tabindex="0" style="">
-              Fats, Oils, and Sweets
-            </li>
-          </ul>
-        </div>
-      </div>
 
 
       <div class="mdc-list-group">
@@ -163,7 +144,43 @@
            onclick="document.getElementById('loginModal').style.display='block'">LOGIN</a>
       </section>
     </div>
+    
+    
+    <div class="mdc-form-field">
+      <div class="mdc-checkbox">
+        <input type="checkbox"
+               id="my-checkbox"
+               class="mdc-checkbox__native-control"/>
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark"
+               viewBox="0 0 24 24">
+            <path class="mdc-checkbox__checkmark__path"
+                  fill="none"
+                  stroke="white"
+                  d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+          </svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+      </div>
+    
+      <div class="mdc-switch">
+        <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" />
+        <div class="mdc-switch__background">
+          <div class="mdc-switch__knob"></div>
+        </div>
+      </div>
+      <label for="basic-switch" class="mdc-switch-label">off/on</label>    
+
+<input id="birthdate" type="text" class="datepicker picker__input" readonly="" tabindex="-1" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="birthdate_root">  
+    </div>
+    
+    
+    
   </header>
+  
+  
+  
+  
   <main>
     <div class="search-results hide mdc-toolbar-fixed-adjust">
       <span style="display:inline-block; width: 30px;"></span><h3 id='results-header'>Search results for</h3>
@@ -265,6 +282,7 @@
   <script>
     window.mdc.autoInit();
 
+    $('.datepicker').pickadate({selectYears: 20});
 
     (function() {
       var tfs = document.querySelectorAll(
