@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 
 
   <link rel="stylesheet" href="search.css">
@@ -140,14 +140,12 @@
   </aside>
 
 
-  <header class="mdc-toolbar mdc-toolbar--fixed">
+  <header class="topbar mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
         <a href="#" class="material-icons hamburger-menu mdc-toolbar__menu-icon">menu</a>
         <span class="mdc-toolbar__title">Immigrant news</span>
       </section>
-
-
 
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
 
@@ -169,13 +167,14 @@
   <main>
 
     <div class="mdc-toolbar-fixed-adjust">
-      <h2>Newsfeed</h2>
+      <h3>Search results for</h3>
       <ul class="mdc-list" id="search-results-list">
         
         <li class="hide mdc-list-item" id="template"> 
-          <img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">
+          <p class='ranking'>95%</p>
+          <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
             <span class="mdc-list-item__text"> 
-              <a class='result-title' href="story.html?id=story1">title</a> 
+              <a class='result-title' href="stories.html?id=story1">title</a> 
               <span class="mdc-list-item__text__secondary">Secondary text</span>          
               </span>
               
@@ -191,7 +190,7 @@
 
 
   <!-- Login Modal -->
-  <div id="loginModal" class="modal">
+  <div id="loginModal" class="hide modal">
     <div class="animate modal-box">
 
       <div class="modal-header mdc-toolbar">

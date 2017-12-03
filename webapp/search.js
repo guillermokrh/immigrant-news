@@ -28,11 +28,16 @@ function search_news(what) {
             console.log(key);
             console.log(val);
             if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-               
-                 
                 var $t = $('#template').clone();
                 $t.prop('id', key);
-                //$t.children('.mdc-list-item__start-detail').
+                $t.find('.ranking').text(val.percentage + '%');
+                if (val.percentage > 80) {
+                    $t.find('.ranking').addClass('high_ranking');    
+                } else if (val.percentage < 40) {
+                    $t.find('.ranking').addClass('low_ranking');    
+                } else {
+                    $t.find('.ranking').addClass('medium_ranking');    
+                }
                 $t.find('.result-title').text(val.title);
                 $t.find('.result-title').prop('href', 'stories.html?id=' + key);
                 $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
