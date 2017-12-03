@@ -111,8 +111,29 @@
                             </section>
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width" title="Add a new commentary">
+                            <button id="addCommentary" class="mdc-button full-height full-width" title="Add a new commentary">
                                 Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="addCommentarySection" style="padding-left: 1em;">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
+                            <label for="text-field-no-js">Commentary: </label>
+                            <div class="mdc-text-field full-width">
+                                <input type="text" id="commentaryInputText" class="mdc-text-field__input" placeholder="Write your commentary here...">
+                                <div class="mdc-text-field__bottom-line"></div>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-2-desktop  mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone right-align">
+                            <button id="addCommentButton" class="mdc-button full-height">
+                                Comment
+                            </button>
+                            <button id="cancelCommentButton" class="mdc-button full-height">
+                                Cancel
                             </button>
                         </div>
                     </div>
@@ -162,9 +183,8 @@
     <script src="story.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
-           
-
+            var currentStory = null;
+            var currentUser = null; 
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
                 var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -182,9 +202,12 @@
             };
 
             var storyId = getUrlParameter("id");
+            currentStory = storyId;
+            currentUser = "immi2";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
             var commentsUrl = "https://immigrant-news.firebaseio.com/commentaries/story" + storyId + ".json";
 
+            $('#contribute').attr('href', 'contribute.html?id=' + storyId);
             //story data
             $.getJSON(storyUrl, function (data) {
                 if (data != null) {
@@ -268,6 +291,69 @@
                     return '#31b404';
                 } 
             }
+
+
+            function SaveCommentary(commentary) {
+                var ref = firebase.database().ref('/commentaries/story' + currentStory);
+                var commentName = 'comment-' + currentStory + '-';
+                var countCommentaries = 0;
+                ref.once('value', function (snapshot) {
+                    countCommentaries = snapshot.numChildren();
+                    commentName += countCommentaries;
+                    var obj = {};
+                    obj[commentName] = {
+                        'text': commentary,
+                        'user': currentUser
+                    };
+                    ref.update(obj); // Updates only the specified attributes
+                    $('#commentaryInputText').val('');
+                    $('#addCommentary').attr('disabled', false);
+                    $('#addCommentarySection').hide();
+
+                    //reload all comments
+                    $('#storyComments').append(GetCommnetaryTemplate({ user: currentUser, text: commentary }));
+                    //set the commentary user credibility avatar
+                    SetUserAvatar(currentUser, false);
+                   // alert('Comment was added');
+
+                });
+            }
+
+            
+
+            //add commentary button action
+            $('#addCommentary').click(function () {
+                $(this).attr('disabled', true);
+                $('#addCommentarySection').show();
+            });
+
+            //when cancel adding commentary is clicked
+            $('#cancelCommentButton').click(function () {
+                $('#addCommentary').attr('disabled', false);
+                $('#addCommentarySection').hide();
+            });
+
+            //when add a commentary button is clicked
+            $('#addCommentButton').click(function () {
+                //get the comment from the input
+                var commentary = $('#commentaryInputText').val();
+                commentary = $.trim(commentary);
+                if (commentary.length == 0) {
+                    alert('Commentary cannot be empty');
+                    return;
+                }
+                if (commentary.length < 10) {
+                    alert('the comment should have at least 10 letters');
+                    return;
+                }
+                SaveCommentary(commentary);
+                
+               // alert(commentary);
+            }); 
+
+            
+            //hide adding a new commentary section
+            $('#addCommentarySection').hide();
         });
     </script>
 </body>
