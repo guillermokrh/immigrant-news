@@ -1,13 +1,5 @@
 (function() {
 
-    // Open and close the modal
-    const loginModal = document.getElementById('loginModal');
-    window.onclick = function(event) {
-        if (event.target === loginModal) {
-            loginModal.style.display = "none";
-        }
-    };
-
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
@@ -61,3 +53,36 @@
         }
     });
 }());
+
+
+
+const loginModal = document.getElementById('loginModal');
+
+// Change text of login button on login/logout
+function toggleText(loginButtonID) {
+    
+    var logButton = document.getElementById(loginButtonID);
+
+    if(logButton.textContent == "LOGIN")
+    {
+        logButton.textContent = "LOGOUT";
+    }
+    else
+    {
+        logButton.textContent = "LOGIN";
+    }
+}
+
+// open/close modal
+function modalAction() {
+    
+    loginModal.style.display = loginModal.style.display == "block"? "none" : "block";
+}
+
+// Close the modal when clicking outside the modal
+window.onclick = function(event) {
+    if (event.target === loginModal) {
+        loginModal.style.display = "none";
+    }
+};
+
