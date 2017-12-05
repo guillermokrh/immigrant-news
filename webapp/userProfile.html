@@ -64,7 +64,7 @@
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
                             <img id="user-icon" src='img/icons/Unknown.png' class="mdc-button user-icon">
                         </div>
-                        <div class="mdc-layout-grid__cell--span-8-desktop  mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone"
+                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone"
                             style="display:flex;">
                             <h2 id="username" class="username">Username</h2>
                             <!-- <button class="mdc-button" style="flex:1; align-self: center;">Follow</button>                     -->
@@ -84,9 +84,9 @@
             <!-- TODO: TAB BAR -->
             <section>
                 <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
-                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button story-contribution-buttons" href="#one">Validate</a>
-                    <a id="invalidate-tab" class="mdc-tab invalidate-button story-contribution-buttons" href="#two">Invalidate</a>
-                    <a id="edit-tab" class="mdc-tab edit-button story-contribution-buttons" href="#three">Edit</a>
+                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button user-tabs" href="#one">Contributions</a>
+                    <a id="invalidate-tab" class="mdc-tab invalidate-button user-tabs" href="#two">Validations</a>
+                    <a id="edit-tab" class="mdc-tab edit-button user-tabs" href="#three">Comments</a>
                 </nav>
 
                 <div id="validate-form">
@@ -106,82 +106,7 @@
                                             I saw this happened
                                         </label>
                                     </li>
-                                    <li class="mdc-list-item">
-
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-2" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-2-label" for="radio-2">
-                                            This happened to me
-                                        </label>
-                                    </li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-3" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-3-label" for="radio-3">
-                                            This happened to a friend of mine
-                                        </label>
-                                    </li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-4" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-4-label" for="radio-4">
-                                            Other
-                                        </label>
-                                    </li>
                                 </ul>
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-
-                                <div class="mdc-layout-grid">
-                                    <div class="mdc-layout-grid__inner">
-                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                            <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
-                                                <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                            <div class="mdc-layout-grid">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
-                                                        <div class="mdc-text-field full-width full-height">
-                                                            <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
-                                                            <div class="mdc-text-field__bottom-line"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                        <button class="mdc-button full-height full-width picturefileOpener" title="Upload a picture">
-                                                            <i class="material-icons mdc-button__icon">photo</i>
-                                                            Photo
-                                                        </button>
-                                                    </div>
-                                                    <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                        <button class="mdc-button full-height full-width videofileOpener" title="Upload a video">
-                                                            <i class="material-icons mdc-button__icon">movie</i>
-                                                            Video
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <label class="selectedPicVal">File Name</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -202,82 +127,8 @@
                                         <label id="radio-5-label" for="radio-5">
                                             This did not happen
                                             </label>
-</li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-6" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-6-label" for="radio-6">
-                                            This is innacurate
-                                            </label>
-</li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-7" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-7-label" for="radio-7">
-                                            No supporting evidence
-                                            </label>
-</li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-8" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-8-label" for="radio-8">
-                                            Other
-                                            </label>
-</li>
+                                    </li>
                                 </ul>
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-
-                                <div class="mdc-layout-grid">
-                                    <div class="mdc-layout-grid__inner">
-                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                            <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
-                                                <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                            <div class="mdc-layout-grid">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
-                                                        <div class="mdc-text-field full-width full-height">
-                                                            <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
-                                                            <div class="mdc-text-field__bottom-line"></div>
-                                                        </div>
-                                                    </div>
-                                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                            <button class="mdc-button full-height full-width picturefileOpener" title="Upload a picture">
-                                                                <i class="material-icons mdc-button__icon">photo</i>
-                                                                Photo
-                                                            </button>
-                                                        </div>
-                                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                            <button class="mdc-button full-height full-width videofileOpener" title="Upload a video">
-                                                                <i class="material-icons mdc-button__icon">movie</i>
-                                                                Video
-                                                            </button>
-                                                        </div>
-                                                        <input id="pictureFileOpener" type="file" style="visibility:hidden;" accept=".jpg,.png,.jpeg" />
-                                                        <input id="videoFileOpener" type="file" style="visibility:hidden;" accept=".mp4" />
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -302,6 +153,7 @@
         </main>
     </div>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="userProfile.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -318,6 +170,9 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
     <script src="story.js"></script>
+    
+
+
     <script type="text/javascript">
         $(document).ready(function () {
             var currentStory = null;
@@ -416,19 +271,28 @@
 
 
             //functions when clicking on validate or invalidate tabs
-            $('#validate-form, #invalidate-form').hide();
+            $('#validate-form, #invalidate-form, #edit-form').hide();
             $('#validate-form').show();
 
             $('#validate-tab').click(function () {
                 $('#validate-form').show();
                 $('#invalidate-form').hide();
+                $('#edit-form').hide();
                 currentStatusOfAction = "Validate";
             });
 
             $('#invalidate-tab').click(function () {
                 $('#validate-form').hide();
                 $('#invalidate-form').show();
+                $('#edit-form').hide();
                 currentStatusOfAction = "Invalidate";
+            });
+
+            $('#edit-tab').click(function () {
+                $('#validate-form').hide();
+                $('#invalidate-form').hide();
+                $('#edit-form').show();
+                currentStatusOfAction = "Edit";
             });
         });
     </script>

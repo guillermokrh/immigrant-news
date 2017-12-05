@@ -141,7 +141,7 @@ html {
 
 .user-icon {
   height: 85%;
-  width: 95%;
+  width: 100%;
   padding: 9px 10px; 
 }
 
@@ -156,4 +156,9 @@ html {
   align-self: flex-end;
   padding-bottom: 15px;
   padding-right: 10px;
+}
+
+.user-tabs {
+  color: white;
+  font-size: x-small;
 }
