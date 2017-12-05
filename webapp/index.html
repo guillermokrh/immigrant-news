@@ -86,7 +86,7 @@
       <!-- ADVANCED SEARCH TOGGLE-->
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <div class="mdc-switch">
-            <input type="checkbox" id="basic-switch" onclick='toggleAdvancedSearch();' class="mdc-switch__native-control">
+            <input type="checkbox" id="adv-search-switch" onclick='toggleAdvancedSearch();' class="mdc-switch__native-control">
             <div class="mdc-switch__background">
               <div class="mdc-switch__knob"></div>
             </div>
@@ -127,7 +127,7 @@
     
     <div id='advanced_search_form' class="srch mdc-toolbar__row">
       <section class="mdc-toolbar__section">
-          <button class="mdc-button mdc-button--raised" onclick='search_and_display(document.getElementById(&quot;advanced-search-box&quot;).value);' data-demo-no-js="">
+          <button class="mdc-button mdc-button--raised" onclick='advanced_search(document.getElementById(&quot;advanced-search-box&quot;).value);' data-demo-no-js="">
               <i class="material-icons mdc-button__icon">search</i>
               Search
             </button>

@@ -86,7 +86,7 @@ function search_news(what) {
                 $t.find('.result-title').text(val.title.substring(0,100));
                 $t.find('.result-title').prop('href', 'stories.html?id=' + key);
                 $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
-                $t.removeClass('hide');
+                $t.show();
                 $t.appendTo('#search-results-list');
             };
         });
@@ -96,6 +96,9 @@ function search_news(what) {
 
         }
     });
+    
+    $('#do_search').hide();
+    $('#do_submit').show();
     console.log(result);
     return result;
 }
