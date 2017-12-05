@@ -86,6 +86,21 @@ function search_and_display(what) {
         }
     });
 }
+
+function show_more_results(count) {
+    if (count > 0) {
+        $('.hide.mdc-list-item').not('#template').first().removeClass('hide');  
+        setTimeout(function(){
+           show_more_results(count -1);
+        }, 70);
+    };
+
+    if ($('.hide.mdc-list-item').not('#template').length == 0) {
+        $('#showmoreresults').hide();
+        $('#results-footer').removeClass('hide').text(count + ' results found');
+
+    }
+}
     
 function toggleAdvancedSearch() {
     // $('#advanced_search_form').slideToggle();
