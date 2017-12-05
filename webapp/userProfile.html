@@ -89,29 +89,15 @@
                     <a id="edit-tab" class="mdc-tab edit-button user-tabs" href="#three">Comments</a>
                 </nav>
 
-                <div id="validate-form">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-1-label" for="radio-1">
-                                            I saw this happened
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div id="contributions-tab">
+                    <section>
+                        <ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                    </section>                    
                 </div>
-                <div id="invalidate-form">
+                <div id="validations-tab">
+                 <!--    <section>
+                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                    </section>   -->
                     <div class="mdc-layout-grid">
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
@@ -133,8 +119,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="edit-form">
-
+                <div id="comments-tab">
+                    <section>
+                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                    </section>                    
                 </div>
             </section>
             <footer>
@@ -153,7 +141,6 @@
         </main>
     </div>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-    <script src="userProfile.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -199,11 +186,17 @@
                 }
             };
 
+
             var storyId = getUrlParameter("id");
+            var username = getUrlParameter("username");    
+            username = "Armadillo";
+            document.getElementById('user-icon').src = "img/icons/"+username+".png";
             currentStory = storyId;
             currentUser = "immi2";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-
+            var contributionsUrl = "https://immigrant-news.firebaseio.com/stories.json";
+            var commentsUrl = "https://immigrant-news.firebaseio.com/comments.json";
+            
             //story data
             $.getJSON(storyUrl, function (data) {
                 if (data != null) {
@@ -212,6 +205,40 @@
                     SetUserAvatar(data.author, true);
                 }
             });
+            
+            // comments
+            $.getJSON(commentsUrl, function (data) {
+                DisplayComments(data);
+            });
+
+            //display comments
+            function DisplayComments(comments) {
+                if (comments != null) {
+                    $.each(comments, function (index, value) {
+                        $('#userComments').append(GetCommnetaryTemplate(value));
+                        //set the commentary user credibility avatar
+                        SetUserAvatar(value.user, false);
+                    });
+                }
+                else {
+                    $('#userComments').append('<li class="mdc-list-item comment-box comment-list-item">' +
+                        '<div>' +
+                        'No comments!' +
+                        '</div>' +
+                        '</li>');
+                }
+            }
+       // <img id="user-icon" src='img/icons/Unknown.png' class="mdc-button user-icon">
+            //get a commentary html template
+            function GetCommnetaryTemplate(comment) {
+                var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
+                    '<img id="user-icon" src="img/icons/'+username+'.png"  class="mdc-button user-icon-list">'+
+                    '<div class="' + username + '" title="Credibility rate of this user"></div>' +
+                    '<div>' + comment.text +
+                    '</div>' +
+                    '</li>';
+                return commentTemplate;
+            }
 
             //fill the fields
             function FillStoryFields(story) {
@@ -250,48 +277,28 @@
                 }
             }
 
-            $(".picturefileOpener").click(function () {
-                OpenFileExplorer(1);
-            });
-
-            $(".videofileOpener").click(function () {
-                OpenFileExplorer(2);
-            });
-
-            function OpenFileExplorer(option) {
-                if (option == 1)
-                    $('#pictureFileOpener').trigger('click');
-                else if (option == 2)
-                    $('#videoFileOpener').trigger('click');
-            }
-
-            $('#pictureFileOpener').change(function (value) {
-                $('.selectedPicVal').text($(this).val());
-            });
-
-
             //functions when clicking on validate or invalidate tabs
-            $('#validate-form, #invalidate-form, #edit-form').hide();
-            $('#validate-form').show();
+            $('#contributions-tab, #validations-tab, #comments-tab').hide();
+            $('#contributions-tab').show();
 
             $('#validate-tab').click(function () {
-                $('#validate-form').show();
-                $('#invalidate-form').hide();
-                $('#edit-form').hide();
+                $('#contributions-tab').show();
+                $('#validations-tab').hide();
+                $('#comments-tab').hide();
                 currentStatusOfAction = "Validate";
             });
 
             $('#invalidate-tab').click(function () {
-                $('#validate-form').hide();
-                $('#invalidate-form').show();
-                $('#edit-form').hide();
+                $('#contributions-tab').hide();
+                $('#validations-tab').show();
+                $('#comments-tab').hide();
                 currentStatusOfAction = "Invalidate";
             });
 
             $('#edit-tab').click(function () {
-                $('#validate-form').hide();
-                $('#invalidate-form').hide();
-                $('#edit-form').show();
+                $('#contributions-tab').hide();
+                $('#validations-tab').hide();
+                $('#comments-tab').show();
                 currentStatusOfAction = "Edit";
             });
         });

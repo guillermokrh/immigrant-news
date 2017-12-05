@@ -143,6 +143,12 @@ html {
   height: 85%;
   width: 100%;
   padding: 9px 10px; 
+  filter: brightness(0%);
+}
+
+.user-icon-list {
+  margin-left: -20px;
+  filter: brightness(0%);
 }
 
 .username {
