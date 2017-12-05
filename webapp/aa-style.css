@@ -139,4 +139,21 @@ html {
   background-color: #6E6E6E;
 }
 
+.user-icon {
+  height: 85%;
+  width: 95%;
+  padding: 9px 10px; 
+}
 
+.username {
+  flex: 2; 
+  align-self: flex-end;
+  padding-top: 30px;
+}
+
+.follow-star {
+  flex: 1; 
+  align-self: flex-end;
+  padding-bottom: 15px;
+  padding-right: 10px;
+}
