@@ -26,6 +26,12 @@ $(window).scroll(function() {
     }
 });
 
+function advanced_search(what) {
+    $("#adv-search-switch").click();
+    search_and_display(what);
+    
+}
+
 /* Search for some word and look it up on all news 
    and add those results to the result list */
 function search_and_display(what) {
@@ -75,14 +81,12 @@ function search_and_display(what) {
                 $('#showmoreresults').removeClass('hide');
                 $('#results-footer').text(count + ' results found');
         } else {
+            $('#showmoreresults').hide();
             $('#results-footer').removeClass('hide').text(count + ' results found');
         }
     });
-    $('.srch').hide();
-    
-    return result;
 }
-    
+
 function show_more_results(count) {
     if (count > 0) {
         $('.hide.mdc-list-item').not('#template').first().removeClass('hide');  
@@ -97,7 +101,7 @@ function show_more_results(count) {
 
     }
 }
-
+    
 function toggleAdvancedSearch() {
     // $('#advanced_search_form').slideToggle();
     $('#simple-search-box').slideToggle();
