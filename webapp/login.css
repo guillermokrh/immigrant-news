@@ -1,6 +1,18 @@
 
-.user-icon {
+.user-avatar {
     padding-right: 0 !important;
+    /*width: 35px;*/
+    height: 35px;
+}
+
+.hide{
+    display: none;
+}
+
+.login-button {
+    color: white;
+    width:auto;
+    font-size: smaller;
 }
 
 /* Login Modal */
@@ -65,10 +77,6 @@
 
 input[type=email], input[type=password] {
     padding-right: 90px;
-}
-
-.hide{
-    visibility: hidden;
 }
 
 .login-error {
