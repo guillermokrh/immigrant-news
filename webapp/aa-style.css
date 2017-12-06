@@ -144,14 +144,14 @@ html {
     padding-right:2px;
 }
 
-.user-icon {
+.user-avatar {
   height: 85%;
   width: 100%;
   padding: 9px 10px; 
   filter: brightness(0%);
 }
 
-.user-icon-list {
+.user-avatar-list {
   margin-left: -20px;
   filter: brightness(0%);
 }
