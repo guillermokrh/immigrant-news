@@ -139,4 +139,9 @@ html {
   background-color: #6E6E6E;
 }
 
+#validate-form, #edit-form, #invalidate-form{
+    padding-left: 2px;
+    padding-right:2px;
+}
+
 

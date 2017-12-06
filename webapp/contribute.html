@@ -246,7 +246,7 @@
                                     <div class="mdc-layout-grid__inner">
                                         <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
                                             <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
-                                                <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
+                                                <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="20" placeholder="Add some details"></textarea>
                                             </div>
                                         </div>
                                         <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
@@ -282,7 +282,41 @@
                     </div>
                 </div>
                 <div id="edit-form">
-
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                                <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
+                                    <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="20" placeholder="Add some details"></textarea>
+                                </div>
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                                <div class="mdc-layout-grid">
+                                    <div class="mdc-layout-grid__inner">
+                                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
+                                            <div class="mdc-text-field full-width full-height">
+                                                <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
+                                                <div class="mdc-text-field__bottom-line"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
+                                            <button class="mdc-button full-height full-width picturefileOpener" title="Upload a picture">
+                                                <i class="material-icons mdc-button__icon">photo</i>
+                                                Photo
+                                            </button>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
+                                            <button class="mdc-button full-height full-width videofileOpener" title="Upload a video">
+                                                <i class="material-icons mdc-button__icon">movie</i>
+                                                Video
+                                            </button>
+                                        </div>
+                                        <input id="pictureFileOpener" type="file" style="visibility:hidden;" accept=".jpg,.png,.jpeg" />
+                                        <input id="videoFileOpener" type="file" style="visibility:hidden;" accept=".mp4" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <footer>
@@ -415,19 +449,28 @@
 
 
             //functions when clicking on validate or invalidate tabs
-            $('#validate-form, #invalidate-form').hide();
+            $('#validate-form, #invalidate-form, #edit-form').hide();
             $('#validate-form').show();
 
             $('#validate-tab').click(function () {
                 $('#validate-form').show();
                 $('#invalidate-form').hide();
+                $('#edit-form').hide();
                 currentStatusOfAction = "Validate";
             });
 
             $('#invalidate-tab').click(function () {
                 $('#validate-form').hide();
                 $('#invalidate-form').show();
+                $('#edit-form').hide();
                 currentStatusOfAction = "Invalidate";
+            });
+
+            $('#edit-tab').click(function () {
+                $('#validate-form').hide();
+                $('#invalidate-form').hide();
+                $("#edit-form").show();
+                currentStatusOfAction = "Edit";
             });
         });
     </script>
