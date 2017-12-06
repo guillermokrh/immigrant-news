@@ -83,7 +83,6 @@
 
 var loginModal = document.getElementById('loginModal');
 var logButton = document.getElementById('logButton');
-var avatar = document.getElementById('avatar');
 
 // Change text of login button on login/logout
 function toggleLoginText() {
@@ -123,7 +122,8 @@ function addUser(email) {
     
         // Add currAvatar as username and email     
         firebase.database().ref('users/' + currAvatar).set({
-        email: email
+        email: email,
+        rating: 0
         });
 
         // Update avatar as used
@@ -133,6 +133,7 @@ function addUser(email) {
         });
 
         // Display user avatar
+        var avatar = document.getElementById('avatar');
         avatar.classList.remove('hide');
         avatar.src = 'img/avatars/' + currAvatar + '.png';
 
@@ -157,6 +158,7 @@ function displayUserAvatar() {
                 }
         }
         // Display user avatar
+        var avatar = document.getElementById('avatar');
         avatar.classList.remove('hide');
         avatar.src = 'img/avatars/' + currUser + '.png';            
     });
