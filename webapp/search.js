@@ -2,18 +2,18 @@ var map;
 var geocoder;
 var drawerEl = document.querySelector('.mdc-persistent-drawer');
 var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
-var drawer = new MDCPersistentDrawer(drawerEl);
+// var drawer = new MDCPersistentDrawer(drawerEl);
 var myResults = [];
 
-document.querySelector('.hamburger-menu').addEventListener('click', function() {
-    drawer.open = !drawer.open;
-});
-drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
-    console.log('Received MDCPersistentDrawer:open');
-});
-drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
-    console.log('Received MDCPersistentDrawer:close');
-});
+// document.querySelector('.hamburger-menu').addEventListener('click', function() {
+//     drawer.open = !drawer.open;
+// });
+// drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
+//     console.log('Received MDCPersistentDrawer:open');
+// });
+// drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
+//     console.log('Received MDCPersistentDrawer:close');
+// });
 
 $("#mainsearchbox").keypress(function(event) {
     if (event.which == 13) {
@@ -68,9 +68,9 @@ function search_to_map(what) {
     var news = {};
 
                 
-    $('#results-header').text('Results for: ' + what);
-    $('.mdc-list-item').not('#template').remove();
-    $('.mdc-toolbar-fixed-adjust').removeClass('hide');
+    // $('#results-header').text('Results for: ' + what);
+    // $('.mdc-list-item').not('#template').remove();
+    // $('.mdc-toolbar-fixed-adjust').removeClass('hide');
     $.getJSON("https://immigrant-news.firebaseio.com/stories.json", function(data) {
         
         $.each(data, function(key, val) {
@@ -114,7 +114,7 @@ function search_to_map(what) {
                 $('#results-footer').text(count + ' results found');
         } else {
             $('#map-tab').click();
-        }
+        };
     });
     
 };
