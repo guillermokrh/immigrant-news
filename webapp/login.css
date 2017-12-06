@@ -70,3 +70,8 @@ input[type=email], input[type=password] {
 .hide{
     visibility: hidden;
 }
+
+.login-error {
+    color: red;
+    font-size: medium;
+}
