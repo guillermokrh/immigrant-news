@@ -30,13 +30,13 @@
             console.log("successfully logged in");
             modalAction();
             toggleLoginText();
+            displayUserIcon();
         })
         .catch(function(e) {
             console.log(e.message);
             loginError = document.getElementById('loginError');
             loginError.innerText = "Sorry, the username and/or password are incorrect.";
         });
-
     });
 
     // Add sign up event
@@ -48,7 +48,9 @@
         var promise = auth.createUserWithEmailAndPassword(email, password);
         promise
         .then(function() {
-            console.log("successfully created account and logged in");
+            var newUser = firebase.auth().currentUser.email;
+            addUser(newUser);
+            console.log("successfully created account, " + newUser + ", and logged in");
             modalAction();
             toggleLoginText();
         })
@@ -64,16 +66,15 @@
         if(logButton.textContent == "LOGOUT") {
             firebase.auth().signOut();
             toggleLoginText();
+            document.getElementById('avatar').src = 'img/icons/Unknown.png';
         }
     });
 
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser) {
             console.log(firebaseUser);
-            //btnLogout.classList.remove('hide');
         } else {
             console.log('not logged in');
-            //btnLogout.classList.add('hide');
         }
     });
 }());
@@ -103,3 +104,56 @@ window.onclick = function(event) {
     }
 };
 
+// Add user to database with anonymous animal avatar
+function addUser(email) {
+
+    // Find first unused icon and set to user
+    var icon = firebase.database().ref().once("value", function(snapshot) {
+        var iconList = snapshot.val().icons;
+        var icons = Object.keys(iconList);
+        for(var i = 0; i < icons.length; i++)
+        {
+            var currIcon = icons[i];
+            if(iconList[currIcon].used == false) {
+                console.log("In func " + currIcon);
+                i = icons.length;
+                }
+        }
+    
+        // Add currIcon as username and email     
+        firebase.database().ref('users/' + currIcon).set({
+        email: email
+        });
+
+        // Update icon as used
+        var iconRef = firebase.database().ref("icons/" + currIcon);
+        iconRef.update({
+            "used" : true
+        });
+
+        // Display user icon
+        document.getElementById('avatar').src = 'img/icons/' + currIcon + '.png';        
+    });
+}
+
+// Get user icon and display
+function displayUserIcon() {
+    var userEmail = firebase.auth().currentUser.email;
+    // Find user icon
+    var userIcon = firebase.database().ref().once("value", function(snapshot) {
+        var userList = snapshot.val().users;
+        var users = Object.keys(userList);
+        for(var i = 0; i < users.length; i++)
+        {
+            var currUser = users[i];
+            console.log("Looking for email: " + userEmail + "    current at email: " + userList[currUser].email);
+            console.log("currUser: " + currUser);
+            if(userList[currUser].email == userEmail) {
+                console.log("In func" + userEmail + "  matches  " + userList[currUser].email);
+                i = users.length;
+                }
+        }
+        // Display user icon
+        document.getElementById('avatar').src = 'img/icons/' + currUser + '.png';            
+    });
+}

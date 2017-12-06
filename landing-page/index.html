@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
+    <link href="css/new-age.css" rel="stylesheet">
 
   </head>
 
@@ -33,7 +33,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Immigrant news</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Immigrant News</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -41,13 +41,25 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Design</a>
+              <a class="nav-link js-scroll-trigger" href="#conceptualization">Concept</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+              <a class="nav-link js-scroll-trigger" href="#requirements">Requirements</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#design">Design</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#formative">Formative Evaluation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#implementation">Application</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#summative">Summative Evaluation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Authors</a>
             </li>
           </ul>
         </div>
@@ -59,8 +71,8 @@
         <div class="row h-100">
           <div class="col-lg-7 my-auto">
             <div class="header-content mx-auto">
-              <h1 class="mb-5">The purpose of Immigrant News is to offer a platform for immigrants to inform and be informed about safety issues that undocumented immigrants may locally face. The application will allow users to search for and read current news, contribute their own news, and validate or invalidate stories.</h1>
-              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start using this</a>
+              <h1 class="mb-5">The purpose of Immigrant News is to offer a platform for immigrants to inform and be informed about safety issues that undocumented immigrants may face.</h1>
+              <a href="#conceptualization" class="btn btn-outline btn-xl js-scroll-trigger">Start using this</a>
             </div>
           </div>
           <div class="col-lg-5 my-auto">
@@ -69,7 +81,7 @@
                 <div class="device">
                   <div class="screen">
                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
+                    <img src="img/formative_eval/media-20171205-2.png" class="img-fluid" alt="">
                   </div>
                   <div class="button">
                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -82,28 +94,121 @@
       </div>
     </header>
 
-    <section class="download bg-primary text-center" id="download">
+    <section class="conceptualization bg-primary text-center" id="conceptualization">
       <div class="container">
         <div class="row">
           <div class="col-md-8 mx-auto">
-            <h2 class="section-heading">Discover what all the buzz is about!</h2>
-            <p>Our app is available on any mobile device! Download now to get started!</p>
-            <div class="badges">
-              <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
-              <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
+            <h2 class="section-heading">Conceptualization</h2>
+            <p>
+              The internet and social networks such as Facebook allow news affecting a community to spread fast,
+              through established news sources such as the New York Times, new digital news outlets such as Salon,
+              by citizen-journalists unaffiliated with public or private institutions, and through personal testimony
+              published in personal social media accounts.  In recent years checking the accuracy of news before false
+              claims are spread has become very difficult due to the speed at which news can be shared, and the number
+              of people it can be shared with.  Both documented and undocumented immigrants can be susceptible to false
+              claims due to the lack of official news sources regarding federal enforcement of immigration, and due to
+              the way information is distributed unevenly throughout the community.  Immigrant News aims to offer a
+              platform where immigrants can find, share and verify truthful information about immigration activity and
+              related news around the country.  It aims to tackle the specific problem of verifying news and stopping
+              rumors for a community that is always seeking reliable and up to date information in a time of political
+              uncertainty.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="requirements" id="requirements">
+      <div class="container">
+        <div class="section-heading text-center">
+          <h2>Gathering Requirements</h2>
+          <p style="font-color:black;">
+            We conducted a focus group interview with three individuals, self-identified as immigrants. Our interview
+            included both structured and unstructured questions with the objective to get answers for specific doubts
+            as well as to collect unsolicited and useful clues and advice.  During the focus group, we split the
+            process into three parts by discussing the project abstract, the project proposal, and finally the
+            personas that we developed for the project.  After discussing each part, we asked prepared questions, and
+            asked impromptu questions.
+          </p>
+          <hr>
+        </div>
+        <div class="row">
+          <!--<div class="col-lg-4 my-auto">
+          </div>-->
+          <div class="col-lg-8 my-auto" style="flex: 0 0 100%; max-width: 100%;">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-screen-smartphone text-primary"></i>
+                    <h3>Location</h3>
+                    <p class="text-muted">The web application will allow the user to search for news by
+                      keyword, date, and/or location </p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-camera text-primary"></i>
+                    <h3>Details</h3>
+                    <p class="text-muted">The web application will display details of a story when the user selects a
+                      story from the news feed</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-present text-primary"></i>
+                    <h3>Community Contributions</h3>
+                    <p class="text-muted">The web application will display an anonymous list of users who have
+                      contributed to a story and their respective trust rating</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-lock-open text-primary"></i>
+                    <h3>Add Stories</h3>
+                    <p class="text-muted">The web application will allow the user to contribute a new story to the database.</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-lock-open text-primary"></i>
+                    <h3>Validation</h3>
+                    <p class="text-muted">The web application will allow users to validate or invalidate a story.</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <i class="icon-lock-open text-primary"></i>
+                    <h3>Personal Additions</h3>
+                    <p class="text-muted">The web application will allow users to contribute to an existing story
+                      (contribute to the story with details or media (i.e. pictures), add comments, react, etc.)</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="features" id="features">
+    <section class="design bg-primary" id="design">
       <div class="container">
         <div class="section-heading text-center">
-          <h2>Unlimited Features, Unlimited Fun</h2>
-          <p class="text-muted">Check out what you can do with this app theme!</p>
+          <h2>Design + Sketches</h2>
+          <p>We scheduled in-person meetings to create our sketches. All team members were in attendance and active
+            participants during the sketch process.  We went through a sketching and design process for 4 design
+            challenges that we chose from our requirements.  We will highlight the design process for one of our
+            challenges, and the details of the rest are available <a href="http://www.google.com" style="color:blue;">here</a>.</p>
           <hr>
         </div>
+          <h3>Design Challenge: Allow users to see the details of a story and contribute/interact with it.</h3>
+          <p style="font-size:16px;">The Process: For each iteration of our design challenge, we allotted ourselves 5 minutes to sketch
+            as many ideas we had for the given challenge. After the 5 minutes, we presented our sketch ideas.
+            Thereafter, we critiqued each other’s sketches and recorded the critiques which would help focus
+            the design sketches for the next iteration. We followed this process for each iteration until we
+            converged to one design sketch. The final sketch was typically drawn by one team member.
+          </p>
         <div class="row">
           <div class="col-lg-4 my-auto">
             <div class="device-container">
@@ -111,7 +216,7 @@
                 <div class="device">
                   <div class="screen">
                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
+                    <img src="img/formative_eval/media-20171205-2.png" class="img-fluid" alt="">
                   </div>
                   <div class="button">
                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -127,14 +232,14 @@
                   <div class="feature-item">
                     <i class="icon-screen-smartphone text-primary"></i>
                     <h3>Device Mockups</h3>
-                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                    <p>Ready to use HTML/CSS device mockups, no Photoshop required!</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-camera text-primary"></i>
                     <h3>Flexible Use</h3>
-                    <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                    <p>Put an image, video, animation, or anything else in the screen!</p>
                   </div>
                 </div>
               </div>
@@ -143,14 +248,14 @@
                   <div class="feature-item">
                     <i class="icon-present text-primary"></i>
                     <h3>Free to Use</h3>
-                    <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
+                    <p>As always, this theme is free to download and use for any purpose!</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-lock-open text-primary"></i>
                     <h3>Open Source</h3>
-                    <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                    <p>Since this theme is MIT licensed, you can use it commercially!</p>
                   </div>
                 </div>
               </div>
@@ -160,7 +265,81 @@
       </div>
     </section>
 
-    <section class="cta">
+    <section class="formative text-center" id="formative">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto" style="flex: 0 0 100%;">
+            <h2 class="section-heading">Formative Evaluation</h2>
+            <p>We created a low-fidelity prototype of our application in order to conduct an evaluation before development.
+              We conducted our formative evaluation with three students from UIC.
+              Each of them were given a task card at a time for each of the three tasks. We will go into the
+              evaluation process for one of the tasks, and a description of the rest of the process is available here.</p>
+            <div class="container-fluid" style="flex:0 0 100%; max-width: 0 0 100%;">
+                <img src="img/formative_eval/add_story_text.png">
+                <img src="img/formative_eval/add_story_did_you_mean.png">
+                <img src="img/formative_eval/add_story_success.png">
+              <div class="row">
+                <p>This is the example text that goes after the pictures.</p>
+              </div>
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="feature-item">
+                    <h3>Device Mockups</h3>
+                    <p>Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="feature-item">
+                    <h3>Device Mockups</h3>
+                    <h3>Flexible Use</h3>
+                    <p>Put an image, video, animation, or anything else in the screen!</p>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="feature-item">
+                    <h3>Flexible Use</h3>
+                    <p>Put an image, video, animation, or anything else in the screen!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="badges">
+              <!--<a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
+              <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="implementation bg-primary text-center" id="implementation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto">
+            <h2 class="section-heading">Application</h2>
+            <p>We created our application by using Bootstrap and Firebase</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/_VCbR3ZOBs0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="summative text-center" id="summative">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto">
+            <h2 class="section-heading">Summative Evaluation</h2>
+            <p>We facilitated a summative evaluation of our application after development.</p>
+            <div class="badges">
+              <!--<a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
+              <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--<section class="cta">
       <div class="cta-content">
         <div class="container">
           <h2>Stop waiting.<br>Start building.</h2>
@@ -168,27 +347,19 @@
         </div>
       </div>
       <div class="overlay"></div>
-    </section>
+    </section>-->
 
     <section class="contact bg-primary" id="contact">
       <div class="container">
-        <h2>We
-          <i class="fa fa-heart"></i>
-          new friends!</h2>
+        <h2> Authors</h2>
         <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a href="#">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a href="#">
-              <i class="fa fa-google-plus"></i>
+          <p>Viren Mody</p>
+          <p>Aldo Alvarez</p>
+          <p>Diego Centurion</p>
+          <p>Guillermo Rojas Hernandez</p>
+          <li class="list-inline-item github">
+            <a href="https://github.com/guillermokrh/immigrant-news.git" style="background-color:black;">
+              <i class="fa fa-github"></i>
             </a>
           </li>
         </ul>

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html class="mdc-typography">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Immigrant News</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="aa-style.css">
+    <link rel="stylesheet" href="assets/percircle/css/percircle.css" />
+</head>
+<body class="demo-body mdc-typography">
+    <aside class="mdc-persistent-drawer">
+        <nav class="mdc-persistent-drawer__drawer">
+            <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+            <div class="mdc-list-group">
+                <nav class="mdc-list">
+                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
+                    </a>
+                </nav>
+
+                <hr class="mdc-list-divider">
+
+                <nav class="mdc-list">
+                    <a class="mdc-list-item" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
+                    </a>
+                    <a class="mdc-list-item" href="#">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+                    </a>
+                </nav>
+            </div>
+        </nav>
+    </aside>
+    <div class="demo-content">
+        <header class="mdc-toolbar mdc-toolbar--fixed">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
+                    <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+                </section>
+            </div>
+        </header>
+
+        <main class="mdc-toolbar-fixed-adjust">
+            <section class="bar fixed-heigh-bar">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner" style="background: cornflowerblue">
+                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                            <img id="user-icon" src='img/icons/Unknown.png' class="mdc-button user-icon">
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone"
+                            style="display:flex;">
+                            <h2 id="username" class="username">Username</h2>
+                            <!-- <button class="mdc-button" style="flex:1; align-self: center;">Follow</button>                     -->
+                            <a class="mdc-list-item follow-star" href="#">
+                              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>
+                            </a>    
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                            <button class="mdc-button full-height full-width verified" title="Contributors">
+                                +5
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TODO: TAB BAR -->
+            <section>
+                <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
+                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button user-tabs" href="#one">Contributions</a>
+                    <a id="invalidate-tab" class="mdc-tab invalidate-button user-tabs" href="#two">Validations</a>
+                    <a id="edit-tab" class="mdc-tab edit-button user-tabs" href="#three">Comments</a>
+                </nav>
+
+                <div id="contributions-tab">
+                    <section>
+                        <ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                    </section>                    
+                </div>
+                <div id="validations-tab">
+                 <!--    <section>
+                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                    </section>   -->
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
+                                    <li class="mdc-list-item">
+                                        <div class="mdc-radio">
+                                            <input class="mdc-radio__native-control" type="radio" id="radio-5" name="radiosInvalidate" checked>
+                                            <div class="mdc-radio__background">
+                                                <div class="mdc-radio__outer-circle"></div>
+                                                <div class="mdc-radio__inner-circle"></div>
+                                            </div>
+                                        </div>
+                                        <label id="radio-5-label" for="radio-5">
+                                            This did not happen
+                                            </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="comments-tab">
+                    <section>
+                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                    </section>                    
+                </div>
+            </section>
+            <footer>
+                <section class="footer">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
+                                <button id="contribute" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
+            authDomain: "immigrant-news.firebaseapp.com",
+            databaseURL: "https://immigrant-news.firebaseio.com",
+            projectId: "immigrant-news",
+            storageBucket: "immigrant-news.appspot.com",
+            messagingSenderId: "598567031572"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
+    <script src="story.js"></script>
+    
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var currentStory = null;
+            var currentUser = null;
+            var currentStatusOfAction = "Validate";
+
+            //validating or invalidating data
+            var validateReason = "";
+            var invalidateReason = "";
+
+            //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+
+
+            var storyId = getUrlParameter("id");
+            var username = getUrlParameter("username");    
+            username = "Armadillo";
+            document.getElementById('user-icon').src = "img/icons/"+username+".png";
+            currentStory = storyId;
+            currentUser = "immi2";
+            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
+            var contributionsUrl = "https://immigrant-news.firebaseio.com/stories.json";
+            var commentsUrl = "https://immigrant-news.firebaseio.com/comments.json";
+            
+            //story data
+            $.getJSON(storyUrl, function (data) {
+                if (data != null) {
+                    //alert(data.date);
+                    FillStoryFields(data);
+                    SetUserAvatar(data.author, true);
+                }
+            });
+            
+            // comments
+            $.getJSON(commentsUrl, function (data) {
+                DisplayComments(data);
+            });
+
+            //display comments
+            function DisplayComments(comments) {
+                if (comments != null) {
+                    $.each(comments, function (index, value) {
+                        $('#userComments').append(GetCommnetaryTemplate(value));
+                        //set the commentary user credibility avatar
+                        SetUserAvatar(value.user, false);
+                    });
+                }
+                else {
+                    $('#userComments').append('<li class="mdc-list-item comment-box comment-list-item">' +
+                        '<div>' +
+                        'No comments!' +
+                        '</div>' +
+                        '</li>');
+                }
+            }
+       // <img id="user-icon" src='img/icons/Unknown.png' class="mdc-button user-icon">
+            //get a commentary html template
+            function GetCommnetaryTemplate(comment) {
+                var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
+                    '<img id="user-icon" src="img/icons/'+username+'.png"  class="mdc-button user-icon-list">'+
+                    '<div class="' + username + '" title="Credibility rate of this user"></div>' +
+                    '<div>' + comment.text +
+                    '</div>' +
+                    '</li>';
+                return commentTemplate;
+            }
+
+            //fill the fields
+            function FillStoryFields(story) {
+                $('#storyTitle').text(story.title);
+                $('#storyAuthor').text(story.author);
+            }
+
+            //set author avatar
+            function SetUserAvatar(author, isStoryAuthor) {
+                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
+                $.getJSON(userUrl, function (data) {
+                    if (data != null) {
+                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
+                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
+                        $(authorSelector).percircle({
+                            progressBarColor: credibilityColor,
+                            percent: data['credibility-rate']
+                        }).addClass('small');
+                    }
+                });
+            }
+
+            //get credibility color
+            function GetCredibilityColor(percentage) {
+                if (percentage <= 40) {
+                    return '#ff0000';
+                }
+                else if (percentage > 40 && percentage <= 60) {
+                    return '#ff8000';
+                }
+                else if (percentage > 60 && percentage < 80) {
+                    return '#bfff00';
+                }
+                else {
+                    return '#31b404';
+                }
+            }
+
+            //functions when clicking on validate or invalidate tabs
+            $('#contributions-tab, #validations-tab, #comments-tab').hide();
+            $('#contributions-tab').show();
+
+            $('#validate-tab').click(function () {
+                $('#contributions-tab').show();
+                $('#validations-tab').hide();
+                $('#comments-tab').hide();
+                currentStatusOfAction = "Validate";
+            });
+
+            $('#invalidate-tab').click(function () {
+                $('#contributions-tab').hide();
+                $('#validations-tab').show();
+                $('#comments-tab').hide();
+                currentStatusOfAction = "Invalidate";
+            });
+
+            $('#edit-tab').click(function () {
+                $('#contributions-tab').hide();
+                $('#validations-tab').hide();
+                $('#comments-tab').show();
+                currentStatusOfAction = "Edit";
+            });
+        });
+    </script>
+
+</body>
+</html>

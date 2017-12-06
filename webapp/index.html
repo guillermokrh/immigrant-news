@@ -1,21 +1,5 @@
 <!DOCTYPE html>
-<!--
-  Copyright 2016 Google Inc. All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>Immigrant news</title>
@@ -25,81 +9,37 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://<ajax class="googl"></ajax>eapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://<ajax class=" googl "></ajax>eapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <link rel="stylesheet" href="search.css">
-  
-  
-   <!-- Compiled and minified CSS -->
+
+  <!-- Compiled and minified CSS -->
   <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-  <style>
-    .mdc-toolbar-demo {
-      margin: 0px;
-    }
-
-    .demo-paragraph {
-      margin: 0px;
-      padding: 20px 28px;
-    }
-
-    /* Place drawer and content side by side. */
-
-    .demo-body {
-      display: flex;
-      flex-direction: row;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      height: 100%;
-      width: 100%;
-    }
-
-    @media (max-width: 599px) {
-      .demo-paragraph {
-        padding: 16px;
-      }
-    }
-  </style>
 </head>
 
-<body class="demo-body mdc-typography">
+<body class="mdc-typography">
   <aside class="mdc-persistent-drawer">
     <nav class="mdc-persistent-drawer__drawer">
       <div class="mdc-persistent-drawer__toolbar-spacer"></div>
 
-      <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded" data-demo-no-auto-js="" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101;">
-        <i class="material-icons mdc-text-field__icon" tabindex="0">event</i>
-        <input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">
-        <label for="tf-box-leading" class="mdc-text-field__label">Date</label>
-        <div class="mdc-text-field__bottom-line"></div>
-      </div>
-
-
+      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
 
       <div class="mdc-list-group">
         <nav class="mdc-list">
-
-
           <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>User profile
             </a>
           <a class="mdc-list-item" href="#">
-              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-            </a>
-          <a class="mdc-list-item" href="#">
-              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
-            </a>
-          <a class="mdc-list-item" href="#">
-              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>News feed
             </a>
         </nav>
 
@@ -107,13 +47,13 @@
 
         <nav class="mdc-list">
           <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
+                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>My news
               </a>
           <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
+                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Following
               </a>
           <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Logout
               </a>
         </nav>
       </div>
@@ -129,105 +69,92 @@
       </section>
 
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-
-        <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:131px, -55.3875px; --mdc-ripple-fg-translate-end:60px, -62px;">
+        <div id="simple-search-box" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:131px, -55.3875px; --mdc-ripple-fg-translate-end:60px, -62px;">
           <input type="text" id="mainsearchbox" class="mdc-text-field__input custom-text-field-input">
           <label for="mainsearchbox" class="mdc-text-field__label">Search</label>
           <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_and_display(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
 
-          <div class="mdc-text-field__bottom-line" style="    --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
+          <div class="mdc-text-field__bottom-line" style=" --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
         </div>
-        
-        <a id="login"
-           class="mdc-button--stroked mdc-toolbar__icon"
-           onclick="document.getElementById('loginModal').style.display='block'">LOGIN</a>
-      </section>
-    </div>
-    
-    
-    <!--<div class="mdc-form-field">-->
-    <!--  <div class="mdc-checkbox">-->
-    <!--    <input type="checkbox"-->
-    <!--           id="my-checkbox"-->
-    <!--           class="mdc-checkbox__native-control"/>-->
-    <!--    <div class="mdc-checkbox__background">-->
-    <!--      <svg class="mdc-checkbox__checkmark"-->
-    <!--           viewBox="0 0 24 24">-->
-    <!--        <path class="mdc-checkbox__checkmark__path"-->
-    <!--              fill="none"-->
-    <!--              stroke="white"-->
-    <!--              d="M1.73,12.91 8.1,19.28 22.79,4.59"/>-->
-    <!--      </svg>-->
-    <!--      <div class="mdc-checkbox__mixedmark"></div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-      <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
 
-        <div class="demo-switch-wrapper">
+        <a id="login" class="mdc-button--stroked mdc-toolbar__icon" onclick="document.getElementById('loginModal').style.display='block'">LOGIN</a>
+      </section>
+    
+    </div>
+
+    <div class="mdc-toolbar__row">
+      <!-- ADVANCED SEARCH TOGGLE-->
+      <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <div class="mdc-switch">
-            <input type="checkbox" id="basic-switch" onclick='toggleAdvancedSearch();' class="mdc-switch__native-control">
+            <input type="checkbox" id="adv-search-switch" onclick='toggleAdvancedSearch();' class="mdc-switch__native-control">
             <div class="mdc-switch__background">
               <div class="mdc-switch__knob"></div>
             </div>
           </div>
           <label for="basic-switch" class="mdc-switch-label">advanced search</label>
-        </div>
-        
       </section>
+    </div>
 
-        
-      <!--<input id="datefrom" type="text" class="datepicker picker__input mdc-text-field__input custom-text-field-input" readonly="" tabindex="-1" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="birthdate_root">  -->
-      
-      <!--<input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">-->
-      
-      <!--<input id="dateto" type="text" class="datepicker picker__input" readonly="" tabindex="-1" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="birthdate_root">  -->
+    <div id='advanced_search_form' class="srch mdc-toolbar__row">
+      <section class="mdc-toolbar__section">
+        <div class="mdc-text-field mdc-text-field--box" data-demo-no-auto-js="">
+          <input style='background: white;' type="text" class="mdc-text-field__input" id="advanced-search-box" placeholder="Search for keywords">
+        </div>
+      </section>
+    </div>
+
+    <div id='advanced_search_form' class="srch mdc-toolbar__row">
+      <section class="mdc-toolbar__section">
+          <input type="text" id="fromdatepicker" placeholder="from date" >
+      </section>
     </div>
     
-    <div id='advanced_search_form' class='hide'>
-      <div id="demo-tf-box-leading-wrapper">
-          <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded" data-demo-no-auto-js="" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:74px, -48.9969px; --mdc-ripple-fg-translate-end:60px, -62px;">
-            <i class="material-icons mdc-text-field__icon" tabindex="0">event</i>
-            <input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">
-            <label for="tf-box-leading" class="mdc-text-field__label">Your name</label>
-            <div class="mdc-text-field__bottom-line mdc-text-field__bottom-line--active" style="transform-origin: 164px center"></div>
-          </div>
+    <div id='advanced_search_form' class="srch mdc-toolbar__row">
+      <section class="mdc-toolbar__section">
+          <input type="text" id="todatepicker" placeholder="to date" >
+          
+      </section>
+    </div>
+
+    <div id='advanced_search_form' class="srch mdc-toolbar__row">
+      <section class="mdc-toolbar__section">
+        <div id="locationField">
+          <input id="autocomplete" placeholder="Location" 
+                 onFocus="geolocate()" type="text"></input>
         </div>
-        
-        <div id="demo-tf-box-trailing-wrapper">
-          <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" data-demo-no-auto-js="" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:74px, -72.9969px; --mdc-ripple-fg-translate-end:60px, -62px;">
-            <input type="text" id="tf-box-trailing" class="mdc-text-field__input custom-text-field-input">
-            <label for="tf-box-trailing" class="mdc-text-field__label">Your other name</label>
-            <i class="material-icons mdc-text-field__icon" tabindex="0">delete</i>
-            <div class="mdc-text-field__bottom-line" style="transform-origin: 164px center"></div>
-          </div>
-        </div>
+      </section>
     </div>
     
+    <div id='advanced_search_form' class="srch mdc-toolbar__row">
+      <section class="mdc-toolbar__section">
+          <button class="mdc-button mdc-button--raised" onclick='advanced_search(document.getElementById(&quot;advanced-search-box&quot;).value);' data-demo-no-js="">
+              <i class="material-icons mdc-button__icon">search</i>
+              Search
+            </button>
+      </section>
+    </div>    
     
   </header>
-  
-  
-  
-  
-  <main>
+
+  <main >
     <div class="search-results hide mdc-toolbar-fixed-adjust">
-      <span style="display:inline-block; width: 30px;"></span><h3 id='results-header'>Search results for</h3>
+      <span style="display:inline-block; width: 30px;"></span>
+      <h3 id='results-header'>Search results for</h3>
       <ul class="mdc-list" id="search-results-list">
-        <li class="hide mdc-list-item" id="template"> 
+        <li class="hide mdc-list-item" id="template">
           <p class='ranking'>95%</p>
           <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
-            <span class="mdc-list-item__text"> 
+          <span class="mdc-list-item__text"> 
               <a class='result-title' href="stories.html?id=story1">title</a> 
-              <span class="mdc-list-item__text__secondary">Secondary text</span>          
-              </span>
-              
-              <a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>          
+              <span class="mdc-list-item__text__secondary">Secondary text</span>
+          </span>
+
+          <a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>
         </li>
 
 
       </ul>
-      <button class="hide mdc-button mdc-button--compact mdc-ripple-upgraded" onClick='show_more_results(5)' id='showmoreresults'
-      style="--mdc-ripple-fg-size:51.2025px; --mdc-ripple-fg-scale:2.0042; --mdc-ripple-fg-translate-start:-0.93876px, -7.90127px; --mdc-ripple-fg-translate-end:17.0675px, -7.60125px;">
+      <button class="hide mdc-button mdc-button--compact mdc-ripple-upgraded" onClick='show_more_results(5);' id='showmoreresults' style="--mdc-ripple-fg-size:51.2025px; --mdc-ripple-fg-scale:2.0042; --mdc-ripple-fg-translate-start:-0.93876px, -7.90127px; --mdc-ripple-fg-translate-end:17.0675px, -7.60125px;">
         Show more results</button>
       <h3 class='hide' id='results-footer'>Search results for</h3>
     </div>
@@ -259,24 +186,15 @@
           </div>
         </div>
 
-        <button id="btnLogin"
-                type="submit"
-                class="mdc-button mdc-button--raised mdc-ripple-surface"
-                data-mdc-auto-init="MDCRipple">
+        <button id="btnLogin" type="submit" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
           Login
         </button>
 
-        <button id="btnSignUp"
-                type="submit"
-                class="mdc-button mdc-button--raised mdc-ripple-surface"
-                data-mdc-auto-init="MDCRipple">
+        <button id="btnSignUp" type="submit" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
           Sign up
         </button>
 
-        <button id="btnLogout"
-                type="submit"
-                class="mdc-button mdc-button--raised mdc-ripple-surface hide"
-                data-mdc-auto-init="MDCRipple">
+        <button id="btnLogout" type="submit" class="mdc-button mdc-button--raised mdc-ripple-surface hide" data-mdc-auto-init="MDCRipple">
           Logout
         </button>
       </form>
@@ -305,12 +223,25 @@
   </script>
 
 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script>
     window.mdc.autoInit();
+    
+    // $('#advanced_search_form').hide();
+    $('.srch').hide();
+  //   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+  // toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
 
-    $('.datepicker').pickadate({selectYears: 20});
+  $( function() {
+      $("#fromdatepicker" ).datepicker();
+  } );
+  
+  $( function() {
+    $( "#todatepicker" ).datepicker();
+  } );
 
     (function() {
       var tfs = document.querySelectorAll(
@@ -323,6 +254,79 @@
   </script>
 
 
+<script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+          document.getElementById(component).value = '';
+          document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl3WRRd7Q3H8mjLVWXoYiW-Ctx34IIJec&libraries=places&callback=initAutocomplete"
+        async defer></script>
+        
   <script src="search.js"></script>
 </body>
 

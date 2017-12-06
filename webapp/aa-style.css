@@ -144,4 +144,32 @@ html {
     padding-right:2px;
 }
 
+.user-icon {
+  height: 85%;
+  width: 100%;
+  padding: 9px 10px; 
+  filter: brightness(0%);
+}
 
+.user-icon-list {
+  margin-left: -20px;
+  filter: brightness(0%);
+}
+
+.username {
+  flex: 2; 
+  align-self: flex-end;
+  padding-top: 30px;
+}
+
+.follow-star {
+  flex: 1; 
+  align-self: flex-end;
+  padding-bottom: 15px;
+  padding-right: 10px;
+}
+
+.user-tabs {
+  color: white;
+  font-size: x-small;
+}
