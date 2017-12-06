@@ -62,7 +62,7 @@
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner" style="background: cornflowerblue">
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <img id="user-avatar" src='img/icons/Unknown.png' class="mdc-button user-avatar">
+                            <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
                         </div>
                         <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone"
                             style="display:flex;">
@@ -190,7 +190,7 @@
             var storyId = getUrlParameter("id");
             var username = getUrlParameter("username");    
             username = "Armadillo";
-            document.getElementById('user-avatar').src = "img/icons/"+username+".png";
+            document.getElementById('user-avatar').src = "img/avatars/"+username+".png";
             currentStory = storyId;
             currentUser = "immi2";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
@@ -228,11 +228,11 @@
                         '</li>');
                 }
             }
-       // <img id="user-avatar" src='img/icons/Unknown.png' class="mdc-button user-avatar">
+       // <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
             //get a commentary html template
             function GetCommnetaryTemplate(comment) {
                 var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<img id="user-avatar" src="img/icons/'+username+'.png"  class="mdc-button user-avatar-list">'+
+                    '<img id="user-avatar" src="img/avatars/'+username+'.png"  class="mdc-button user-avatar-list">'+
                     '<div class="' + username + '" title="Credibility rate of this user"></div>' +
                     '<div>' + comment.text +
                     '</div>' +
