@@ -222,9 +222,10 @@
                 // userValidations is an object of the form {"vote": "valid", "title": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"}
                 var userValidations = GetUserValidations(storiesData);
 
-                // userComments is an object of the form {"comment": "Oh no!", "storyLink": "stories.html?id=9"};
+                // userComments is an object of the form {"comment": "Oh no!", "title": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"};
                 var userComments = GetUserComments(storiesData);
 
+                
                 //DisplayComments(data);
             });
 
@@ -271,7 +272,7 @@
                             var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
                             
                             var storyLink = "stories.html?id="+storyID;
-                            commentLinkObj = {"comment": comObj.text, "storyLink": storyLink};
+                            commentLinkObj = {"comment": comObj.text, "title": storyObj.title, "storyLink": storyLink};
                             userComments.push(commentLinkObj);
                         }
                     })
