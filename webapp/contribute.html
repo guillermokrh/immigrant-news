@@ -453,11 +453,12 @@
             //functions when clicking on validate or invalidate tabs
             $('#validate-form, #invalidate-form, #edit-form').hide();
             $('#validate-form').show();
-
+            $('#validate-tab').addClass('validate-button');
             
             $('#validate-tab').click(function () {
-                //$('#invalidate-tab, #edit-tab,#validate-tab').removeClass('mdc-tab--active');
-                //$(this).addClass('mdc-tab--active');
+                $('#validate-tab').addClass('mdc-tab--active').addClass('validate-button');
+                $('#invalidate-tab').removeClass('mdc-tab--active').removeClass('invalidate-button');
+                $('#edit-tab').removeClass('mdc-tab--active').removeClass('selected-tab');
                 $('#validate-form').show();
                 $('#invalidate-form').hide();
                 $('#edit-form').hide();
@@ -465,8 +466,9 @@
             });
 
             $('#invalidate-tab').click(function () {
-               // $('#invalidate-tab, #edit-tab,#validate-tab').removeClass('mdc-tab--active');
-                //$(this).addClass('mdc-tab--active');
+                $('#invalidate-tab').addClass('mdc-tab--active').addClass('invalidate-button');
+                $('#validate-tab').removeClass('mdc-tab--active').removeClass('validate-button');
+                $('#edit-tab').removeClass('mdc-tab--active').removeClass('selected-tab');
                 $('#validate-form').hide();
                 $('#invalidate-form').show();
                 $('#edit-form').hide();
@@ -474,8 +476,9 @@
             });
 
             $('#edit-tab').click(function () {
-                //$('#invalidate-tab, #edit-tab,#validate-tab').removeClass('mdc-tab--active');
-                //$(this).addClass('mdc-tab--active');
+                $('#invalidate-tab').removeClass('mdc-tab--active').removeClass('invalidate-button');
+                $('#validate-tab').removeClass('mdc-tab--active').removeClass('validate-button');
+                $('#edit-tab').addClass('mdc-tab--active').addClass('selected-tab');
                 $('#validate-form').hide();
                 $('#invalidate-form').hide();
                 $("#edit-form").show();

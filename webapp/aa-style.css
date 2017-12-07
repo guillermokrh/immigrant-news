@@ -139,10 +139,12 @@ html {
 
 .validate-button{
   background-color: #04B404;
+  color:white;
 }
 
 .invalidate-button{
   background-color: #DF0101;
+  color:white;
 }
 
 .edit-button{
@@ -243,6 +245,16 @@ ul {
 .avatar-circle img {
     width: 100%;
     height: auto;
+}
+
+.avatar{
+    width: 3.5rem;
+}
+.user-comments{
+    white-space:pre-line;
+    height: 100% !important;
+    padding-top:0.2rem;
+    padding-bottom:0.2rem;
 }
 
 

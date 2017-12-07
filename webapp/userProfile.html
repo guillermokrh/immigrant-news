@@ -86,19 +86,36 @@
                     <a id="comments-tab-button" class="mdc-tab" href="#three">Comments</a>
                     <span class="mdc-tab-bar__indicator"></span>
                 </nav>
-
-                <div id="contributions-tab">
-                    <section>
-                        <ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul>
-                    </section>                    
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div id="contributions-tab">
+                                <section>
+                                    <ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="validations-tab">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div id="validations-tab">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="comments-tab">
-                    <section>
-                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
-                    </section>                    
-                </div>
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div id="comments-tab">
+                                <section>
+                                    <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                                </section>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
             </section>
         </main>
     </div>
@@ -236,8 +253,8 @@
        // <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
             //get a commentary html template
             function GetCommnetaryTemplate(commentsObj) {
-                var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<img id="user-avatar" src="img/avatars/'+user+'.png"  class="mdc-button user-avatar-list">'+
+                var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item user-comments">' +
+                    '<img id="user-avatar" src="img/avatars/' + user + '.png" title="Credibility rate of this user" class="avatar" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />' +
                     '<div> ' +
                     '<a href="'+commentsObj.storyLink+'"><div class="tab-list-title"> Story: ' + commentsObj.title + '</div></a>' +
                     '<div> Comment: ' + commentsObj.comment + '</div>' +
@@ -278,36 +295,33 @@
             //functions when clicking on validate or invalidate tabs
             $('#contributions-tab, #validations-tab, #comments-tab').hide();
             $('#contributions-tab').show();
-            document.getElementById('contributions-tab-button').classList.add('selected-tab');
+            $('#contributions-tab-button').addClass('selected-tab');
 
             $('#contributions-tab-button').click(function () {
                 $('#contributions-tab').show();
                 $('#validations-tab').hide();
                 $('#comments-tab').hide();
-                document.getElementById('contributions-tab-button').classList.add('selected-tab');
-                document.getElementById('validations-tab-button').classList.remove('selected-tab');
-                document.getElementById('comments-tab-button').classList.remove('selected-tab');
-                // currentStatusOfAction = "Validate";
+                $('#contributions-tab-button').addClass('selected-tab').addClass('mdc-tab--active');
+                $('#validations-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#comments-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
             });
 
             $('#validations-tab-button').click(function () {
                 $('#contributions-tab').hide();
                 $('#validations-tab').show();
                 $('#comments-tab').hide();
-                document.getElementById('contributions-tab-button').classList.remove('selected-tab');
-                document.getElementById('validations-tab-button').classList.add('selected-tab');
-                document.getElementById('comments-tab-button').classList.remove('selected-tab');
-                // currentStatusOfAction = "Invalidate";
+                $('#contributions-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#validations-tab-button').addClass('selected-tab').addClass('mdc-tab--active');
+                $('#comments-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
             });
 
             $('#comments-tab-button').click(function () {
                 $('#contributions-tab').hide();
                 $('#validations-tab').hide();
                 $('#comments-tab').show();
-                document.getElementById('contributions-tab-button').classList.remove('selected-tab');
-                document.getElementById('validations-tab-button').classList.remove('selected-tab');
-                document.getElementById('comments-tab-button').classList.add('selected-tab');                
-                // currentStatusOfAction = "Edit";
+                $('#contributions-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#validations-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#comments-tab-button').addClass('selected-tab').addClass('mdc-tab--active');
             });
         });
     </script>
