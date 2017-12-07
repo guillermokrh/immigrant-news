@@ -184,36 +184,56 @@
             };
 
 
+/*          
             var storyId = getUrlParameter("id");
             currentStory = storyId;
             currentUser = "immi2";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-
-            var user = getUrlParameter("user");
-            user = "Alligator";
-            document.getElementById('user-avatar').src = 'img/avatars/'+user+'.png';
-            var storiesUrl = "https://immigrant-news.firebaseio.com/stories.json";
                         
-/*            //story data
+            //story data
             $.getJSON(storyUrl, function (data) {
                 if (data != null) {
                     //alert(data.date);
                     FillStoryFields(data);
                     SetUserAvatar(data.author, true);
                 }
-            });*/
+            });
+
+            //fill the fields
+            function FillStoryFields(story) {
+                $('#storyTitle').text(story.title);
+                $('#storyAuthor').text(story.author);
+            }
+*/
             
-            // comments
+            // Display user avatar and username
+            var user = getUrlParameter("user");
+            user = "Alligator";
+            document.getElementById('username').textContent = user;
+            document.getElementById('user-avatar').src = 'img/avatars/'+user+'.png';
+
+            // get user stories, validations, and comments data
+            var storiesUrl = "https://immigrant-news.firebaseio.com/stories.json";
             $.getJSON(storiesUrl, function (storiesData) {
                 
-                // userComments is an object of the form {"comment": "Oh no!", "storylink": "stories.html?id=9"};
-                var userComments = GetUserComments(storiesData);
-                $.each(userComments, function(index, comment) {
-                    //console.log("Comment: "+comment.comment+"    Link: "+comment.storylink);
+                // userStories is an object of the form {"storyTitle": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"};
+                var userStories = GetUserStories(storiesData);
+                $.each(userStories, function(index, story) {
+                    //console.log("Story Title: "+story.title+"    Link: "+story.storyLink);
                 });
 
-                // userComments is an object of the form {"comment": "Oh no!", "storylink": "stories.html?id=9"};
-                var userStories = GetUserStories(storiesData);
+                // userValidations is an object of the form {"vote": "valid", "title": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"}
+                var userValidations = GetUserValidations(storiesData);
+                $.each(userValidations, function(index, validation) {
+                    console.log("Vote: "+validation.vote+"  Story Title: "+validation.title+"  Link: "+validation.storyLink);
+                });
+
+                // userComments is an object of the form {"comment": "Oh no!", "storyLink": "stories.html?id=9"};
+                var userComments = GetUserComments(storiesData);
+                $.each(userComments, function(index, comment) {
+                    //console.log("Comment: "+comment.comment+"    Link: "+comment.storyLink);
+                });
+
                 //DisplayComments(data);
             });
 
@@ -221,24 +241,47 @@
             function GetUserStories(storiesData) {
                 var userStories = [];
                 $.each(storiesData, function(storyIndex, storyObj) {
-                    if(user == storyObj.user) {
-                        console.log("*** "+storyIndex+" : "+storyObj+" : "+storyObj.user);
+                    if(user == storyObj.user) {                        
+                        //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                        var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                        
+                        var storyLink = "stories.html?id="+storyID;
+                        storyLinkObj = {"title": storyObj.title, "storyLink": storyLink};
+                        userStories.push(storyLinkObj);                        
                     }
                 });
+
+                return userStories;
             }
 
-            // get comments
+
+            function GetUserValidations(storiesData) {
+                var userValidations = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    $.each(storyObj.validations, function(index, validationObj) {
+                        if(user == validationObj.user) {
+                            //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                            var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                            
+                            var storyLink = "stories.html?id="+storyID;
+                            validationLinkObj = {"vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink};
+                            userValidations.push(validationLinkObj);
+                        }
+                    })
+                });
+                return userValidations;
+            }
+
             function GetUserComments(storiesData) {
                 var userComments = [];
                 $.each(storiesData, function(storyIndex, storyObj) {
-                    $.each(storyObj.comments, function(comIndex, comObj) {
+                    $.each(storyObj.comments, function(index, comObj) {
                         if(user == comObj.user) {
                             //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
                             var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
                             
-                            // console.log("*** "+storyIndex+" : "+storyID+" : "+comObj.user+" : "+comObj.text);
                             var storyLink = "stories.html?id="+storyID;
-                            commentLinkObj = {"comment": comObj.text, "storylink": storyLink};
+                            commentLinkObj = {"comment": comObj.text, "storyLink": storyLink};
                             userComments.push(commentLinkObj);
                         }
                     })
@@ -275,12 +318,7 @@
                     '</li>';
                 return commentTemplate;
             }
-/*
-            //fill the fields
-            function FillStoryFields(story) {
-                $('#storyTitle').text(story.title);
-                $('#storyAuthor').text(story.author);
-            }*/
+
 
             //set author avatar
             function SetUserAvatar(author, isStoryAuthor) {
@@ -297,7 +335,7 @@
                 });
             }
 
-/*            //get credibility color
+            //get credibility color
             function GetCredibilityColor(percentage) {
                 if (percentage <= 40) {
                     return '#ff0000';
@@ -311,7 +349,7 @@
                 else {
                     return '#31b404';
                 }
-            }*/
+            }
 
             //functions when clicking on validate or invalidate tabs
             $('#contributions-tab, #validations-tab, #comments-tab').hide();
