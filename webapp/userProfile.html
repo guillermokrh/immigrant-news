@@ -180,6 +180,11 @@
             // Display user avatar and username
             var user = getUrlParameter("user");
             user = "alligator";
+            
+            // Capitalize first letter of the username
+            // Source: https://paulund.co.uk/capitalize-first-letter-string-javascript
+            user = user.charAt(0).toUpperCase() + user.slice(1);
+
             document.getElementById('username').textContent = user;
             document.getElementById('user-avatar').src = 'img/avatars/'+user+'.png';
 
