@@ -2,18 +2,8 @@ var map;
 var geocoder;
 var drawerEl = document.querySelector('.mdc-persistent-drawer');
 var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
-// var drawer = new MDCPersistentDrawer(drawerEl);
 var myResults = [];
 var mapMarkers = [];
-// document.querySelector('.hamburger-menu').addEventListener('click', function() {
-//     drawer.open = !drawer.open;
-// });
-// drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
-//     console.log('Received MDCPersistentDrawer:open');
-// });
-// drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
-//     console.log('Received MDCPersistentDrawer:close');
-// });
 
 $("#mainsearchbox").keypress(function(event) {
     if (event.which == 13) {
@@ -96,87 +86,6 @@ function clearAllMarkers(){
     
     mapMarkers = [];
 }
-
-function search_to_map(what) {
-    var count = 0;
-    var result = [];
-    var news = {};
-
-                
-    // $('#results-header').text('Results for: ' + what);
-    // $('.mdc-list-item').not('#template').remove();
-    // $('.mdc-toolbar-fixed-adjust').removeClass('hide');
-    clearAllMarkers();
-    $.getJSON("https://immigrant-news.firebaseio.com/stories.json", function(data) {
-        
-        $.each(data, function(key, val) {
-            if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-                count++;
-                
-                // var $t = $('#template').clone();
-                // $t.prop('id', key);
-                
-                // $t.find('.ranking').text(val.percentage + '%');
-                // if (val.percentage > 80) {
-                //     $t.find('.ranking').addClass('high_ranking');    
-                // } else if (val.percentage < 40) {
-                //     $t.find('.ranking').addClass('low_ranking');    
-                // } else {
-                //     $t.find('.ranking').addClass('medium_ranking');    
-                // };
-                
-                // $t.find('.result-title').text(val.title.substring(0,100));
-                // $t.find('.result-title').prop('href', '/stories.html?id=' + key.replace('story',''));
-                // $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
-                // if (count < 10) {
-                //     $t.removeClass('hide');    
-                // };
-                
-                // $t.appendTo('#search-results-list');
-                
-                // console.log(val.validations);
-                
-                var validity_index = 0;
-                 
-                $.each(val.validations, function(key, val) {
-                    if (val.vote=='valid') {
-                        validity_index = validity_index + 1;    
-                    } else {
-                        validity_index = validity_index - 1;
-                    };
-                
-                });
-
-                 var contentString = '<div id="content">' +
-                            '<div id="siteNotice">' +
-                            '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading">' + val.title + '</h1>' +
-                            '<div id="bodyContent">' +
-                            '<p>' + val.description + '</p>' +
-                            '<p>See <a href="/stories.php?id=' + key.replace('story', '') + '">' + 
-                            'the complete post</a></p>' +
-                            '</div>' +
-                            '</div>';
-
-
-                
-                addNewsToMap(val.location, validity_index, contentString);
-
-            };
-        });
-        
-        
-        if (count > 0) {
-                $('#results-header').text('Results for: ' + what);
-                $('#showmoreresults').removeClass('hide');
-                $('#results-footer').text(count + ' results found');
-        } else {
-            $('#map-tab').click();
-        };
-    });
-    
-};
-
 
 /* Search for some word and look it up on all news 
    and add those results to the result list */
