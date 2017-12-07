@@ -70,8 +70,12 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <h1 id="username" style="padding:0.5rem 0 0.5rem 0.5rem;"></h1>
+                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" >
+                            <div style="padding-top: 1.5rem">
+                                <h1 class="mdc-card__title" id="user" style="margin:0;"></h1>
+                                <h2 class="mdc-card__subtitle" style="margin:0;"><a id="user_url" href="#"></a></h2>
+                            </div>
+                            
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
                             <button id="user-rate" class="mdc-button full-height full-width" title="User rate">5</button>
@@ -88,7 +92,7 @@
                             <ul class="mdc-list mdc-list--two-line mdc-list--dense">
                                 <li>
                                     <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width">
-                                        <i class="material-icons mdc-text-field__icon" tabindex="0">place</i>
+                                        <i class="material-icons mdc-text-field__icon" tabindex="0">create</i>
                                         <input type="text" id="storyTitle" class="mdc-text-field__input custom-text-field-input">
                                         <label for="tf-box-leading" class="mdc-text-field__label">Add a story title</label>
                                         <div class="mdc-text-field__bottom-line"></div>
@@ -227,7 +231,9 @@
             function SetUserAvatar(user) {
                 var userUrl = 'https://immigrant-news.firebaseio.com/users/' + user + '/rating.json';
 
-                $('#username').text(user);
+                $('#user_url').attr('href', 'userProfile.html?user=' + user);
+                $('#user_url').text(user);
+                $('#user').text(user);
                 $('#user-avatar').attr('src', 'img/avatars/' + user + '.png');
                 $.getJSON(userUrl, function (data) {
                     if (data != null) {
@@ -380,11 +386,16 @@
                         'images': currentSelectedImages,
                         'url': urlForStory,
                         'video': currentUploadedVideo,
-                        'location': validationDescription,
+                        'location': location,
                         'title': storyTitle
                     };
-                    ref.update(obj);
-                    window.location.replace('stories.html?id=' + countStories);
+                    ref.update(obj).then(function () {
+                        console.log("Data saved successfully.");
+                        window.location.replace('stories.html?id=' + countStories);
+                    }).catch(function (error) {
+                        console.log("Data could not be saved." + error);
+                    });
+                    
                 });
 
             }
