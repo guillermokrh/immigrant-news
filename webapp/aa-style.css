@@ -229,6 +229,8 @@ ul {
 .tab-list-title {
   font-weight: bold;
   font-size: small;
+  white-space: pre-line;
+  line-height: initial;
 }
 
 .tab-list-comment {
