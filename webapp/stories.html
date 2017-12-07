@@ -58,30 +58,34 @@
         </header>
 
         <main class="mdc-toolbar-fixed-adjust">
-            <section class="bar fixed-heigh-bar">
+            <section class="bar">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <section style="padding-left: 1em;padding-top: 1.2em;">
-                                <!--div class="demo-card__avatar"></!--div>-->
-                                <div id="storyAuthorAvatar" title="Credibility rate of this user"></div>
-                                    <h1 class="mdc-card__title" id="storyTitle">ICE Raid Illinois</h1>
-                                    <h2 class="mdc-card__subtitle"><a id="storyAuthor" href="#">Author</a></h2>
-</section>
+                        <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                            <section>
+                                <div style="padding:0.5rem 0 0.5rem 0.5rem;">
+                                    <span class="avatar-circle">
+                                        <img id="user-avatar" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />
+                                    </span>
+                                </div>
+                            </section>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width">
-                                Follow
-                            </button>
+                        <div class="mdc-layout-grid__cell--span-9-desktop  mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-1-phone" style="padding-top:1.5rem;">
+                            <h1 class="mdc-card__title" id="storyTitle" style="margin:0;">ICE Raid Illinois</h1>
+                            <h2 class="mdc-card__subtitle" style="margin:0;"><a id="storyAuthor" href="#">Author</a></h2>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button id="contributionsButton" class="mdc-button full-height full-width" title="Contributors">
-                            </button>
+                            <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                                <button class="mdc-button full-height full-width">
+                                    Follow
+                                </button>
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                                <button id="contributionsButton" class="mdc-button full-height full-width" title="Contributors"></button>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </section>
-            <section>
+            <section style="padding: 0.2rem 0.2rem 0.2rem 0.2rem">
                 <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded mdc-text-field--disabled full-width">
                     <i class="material-icons mdc-text-field__icon" tabindex="0">event</i>
                     <input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">
@@ -229,6 +233,7 @@
                 $('#storyLocation').text(story.location);
                 $('#storyDescription').text(story.description);
                 $('#storyAuthor').text(story.user);
+                $('#storyAuthor').attr('href', 'userProfile.html?user=' + story.user);
             }
 
             //display comments
@@ -252,9 +257,9 @@
             //get a commentary html template
             function GetCommnetaryTemplate(comment) {
                 var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<div class="' + comment.user + '" title="Credibility rate of this user"></div>' +
+                    '<img class="' + comment.user + ' avatar"src="img/avatars/' + comment.user + '.png" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />' +
                     '<div>' +
-                    '<a href="#">' + comment.user + '</a>' +
+                    '<a href="userProfile.html?user=' + comment.user + '">' + comment.user + '</a>' +
                     comment.text +
                     '</div>' +
                     '</li>';
@@ -263,17 +268,15 @@
 
             //set author avatar
             function SetUserAvatar(author, isStoryAuthor) {
-                var userUrl = "https://immigrant-news.firebaseio.com//users/"+author+".json";
-                $.getJSON(userUrl, function (data) {
-                    if (data != null) {
-                        var credibilityColor = GetCredibilityColor(data['rating']);
-                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
-                        $(authorSelector).percircle({
-                            progressBarColor: credibilityColor,
-                            percent: data['rating']
-                        }).addClass('small');
-                    }
-                });
+                var userUrl = "https://immigrant-news.firebaseio.com//users/" + author + ".json";
+
+                if (isStoryAuthor) {
+                    $('#username').text(author);
+                    $('#user-avatar').attr('src', 'img/avatars/' + author + '.png');
+                }
+                else {
+                    $('.'+author).attr('src', 'img/avatars/' + author + '.png');
+                }
             }
 
             //get credibility color
@@ -371,7 +374,7 @@
                     $('#contributionsButton').text(validity);
                     return;
                 }
-                else if(){
+                else if(validity >0){
                     $('#contributionsButton').addClass('verified');
                     $('#contributionsButton').text('+' + validity);
                     return;
