@@ -11,11 +11,11 @@
     width: 2.5rem;
     height: 100%;
     margin-right: 1rem;
-    color:white;
+    /*color:white;*/
     justify-content:center;
     vertical-align:middle;
     text-align:center;
-    padding-top:2rem;
+    /*padding-top:2rem;*/
 }
 
 .story-list div {
@@ -36,7 +36,6 @@
 .story-list span.downvoted {
     background-color: red;
     padding-top: 50px;
-
 }
 
 .story-list.downvoted {
@@ -69,36 +68,36 @@
     
 /*}*/
 
-.ranking{
-  display: block;
-  width: 40px;
-  height: 40px;
-  line-height: 
-  40px;
-  cursor: pointer;
-  -webkit-border-radius: 30px;
-  border-radius: 30px;
-  color: rgb(30, 205, 151);
-  text-align: center;
-}
+/*.ranking{*/
+/*  display: block;*/
+/*  width: 40px;*/
+/*  height: 40px;*/
+/*  line-height: */
+/*  40px;*/
+/*  cursor: pointer;*/
+/*  -webkit-border-radius: 30px;*/
+/*  border-radius: 30px;*/
+/*  color: rgb(30, 205, 151);*/
+/*  text-align: center;*/
+/*}*/
 
-.low_ranking{
-  border: 2px solid #e91e63;
-}
+/*.low_ranking{*/
+/*  border: 2px solid #e91e63;*/
+/*}*/
 
-.medium_ranking{
-  border: 2px solid #FFEB3B;
+/*.medium_ranking{*/
+/*  border: 2px solid #FFEB3B;*/
   
-}
+/*}*/
 
-.high_ranking{
-    border: 2px solid rgb(30,205,151);
-}
+/*.high_ranking{*/
+/*    border: 2px solid rgb(30,205,151);*/
+/*}*/
 
-.ranking:hover{
-    background: red;
+/*.ranking:hover{*/
+/*    background: red;*/
 
-}
+/*}*/
 
 a.result-title:link    {
   text-decoration:  none;

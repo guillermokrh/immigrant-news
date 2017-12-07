@@ -140,7 +140,7 @@ function search_and_display(what, panel) {
 
                 $t.find('.result-title').text(val.title.substring(0,100));
                 $t.find('.result-title').prop('href', 'stories.html?id=' + key.replace('story',''));
-                // $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
+                $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
                 
                 if (count < 10) {
                     $t.removeClass('hide');    
