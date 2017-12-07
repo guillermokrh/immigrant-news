@@ -127,20 +127,21 @@ function search_and_display(what, panel) {
                 };
                 
                 if (validity_index < 0) {
-                    $t.find('#news-ranking').addClass('downvoted').text('-' + validity_index);
+                    $t.find('#news-ranking').addClass('downvoted').text(validity_index);
                     $t.addClass('downvoted');
                     validation_status = 'false';
                 };
                 
                 if (validity_index == 0) {
-                    $t.find('#news-ranking').addClass('novoted').text('+' + validity_index);
+                    $t.find('#news-ranking').addClass('novoted').text(validity_index);
                     $t.addClass('novoted');
                     validation_status = 'unverified';
                 };                
 
                 $t.find('.result-title').text(val.title.substring(0,100));
                 $t.find('.result-title').prop('href', 'stories.html?id=' + key.replace('story',''));
-                $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
+                // $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
+                
                 if (count < 10) {
                     $t.removeClass('hide');    
                 };
