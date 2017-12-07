@@ -60,18 +60,18 @@
         <main class="mdc-toolbar-fixed-adjust">
             <section class="bar fixed-heigh-bar">
                 <div class="mdc-layout-grid">
-                    <div class="mdc-layout-grid__inner" style="background: cornflowerblue">
+                    <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <img id="user-icon" src='img/icons/Unknown.png' class="mdc-button user-icon">
+                            <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
                         </div>
-                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone"
-                            style="display:flex;">
+                        <div class="mdc-layout-grid__cell--span-9-desktop  mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-1-phone">
                             <h2 id="username" class="username">Username</h2>
-                            <!-- <button class="mdc-button" style="flex:1; align-self: center;">Follow</button>                     -->
-                            <a class="mdc-list-item follow-star" href="#">
-                              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>
-                            </a>    
                         </div>
+                       <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                            <button class="mdc-button full-height full-width">
+                                Follow
+                            </button>
+                        </div>                        
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
                             <button class="mdc-button full-height full-width verified" title="Contributors">
                                 +5
@@ -84,9 +84,9 @@
             <!-- TODO: TAB BAR -->
             <section>
                 <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
-                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button user-tabs" href="#one">Contributions</a>
-                    <a id="invalidate-tab" class="mdc-tab invalidate-button user-tabs" href="#two">Validations</a>
-                    <a id="edit-tab" class="mdc-tab edit-button user-tabs" href="#three">Comments</a>
+                    <a id="contributions-tab-button" class="mdc-tab mdc-tab--active contributions-button user-tabs" href="#one">Contributions</a>
+                    <a id="validations-tab-button" class="mdc-tab validations-button user-tabs" href="#two">Validations</a>
+                    <a id="comments-tab-button" class="mdc-tab comments-button user-tabs" href="#three">Comments</a>
                 </nav>
 
                 <div id="contributions-tab">
@@ -157,18 +157,38 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
     <script src="story.js"></script>
-    
-
-
     <script type="text/javascript">
         $(document).ready(function () {
-            var currentStory = null;
+/*          
+           var currentStory = null;
             var currentUser = null;
             var currentStatusOfAction = "Validate";
 
             //validating or invalidating data
             var validateReason = "";
             var invalidateReason = "";
+
+            var storyId = getUrlParameter("id");
+            currentStory = storyId;
+            currentUser = "immi2";
+            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
+                        
+            //story data
+            $.getJSON(storyUrl, function (data) {
+                if (data != null) {
+                    //alert(data.date);
+                    FillStoryFields(data);
+                    SetUserAvatar(data.author, true);
+                }
+            });
+
+            //fill the fields
+            function FillStoryFields(story) {
+                $('#storyTitle').text(story.title);
+                $('#storyAuthor').text(story.author);
+            }
+*/
+            
 
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
@@ -186,30 +206,88 @@
                 }
             };
 
+            // Display user avatar and username
+            var user = getUrlParameter("user");
+            user = "Alligator";
+            document.getElementById('username').textContent = user;
+            document.getElementById('user-avatar').src = 'img/avatars/'+user+'.png';
 
-            var storyId = getUrlParameter("id");
-            var username = getUrlParameter("username");    
-            username = "Armadillo";
-            document.getElementById('user-icon').src = "img/icons/"+username+".png";
-            currentStory = storyId;
-            currentUser = "immi2";
-            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-            var contributionsUrl = "https://immigrant-news.firebaseio.com/stories.json";
-            var commentsUrl = "https://immigrant-news.firebaseio.com/comments.json";
-            
-            //story data
-            $.getJSON(storyUrl, function (data) {
-                if (data != null) {
-                    //alert(data.date);
-                    FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
-                }
+            // get user stories, validations, and comments data
+            var storiesUrl = "https://immigrant-news.firebaseio.com/stories.json";
+            $.getJSON(storiesUrl, function (storiesData) {
+                
+                // userStories is an object of the form {"storyTitle": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"};
+                var userStories = GetUserStories(storiesData);
+                $.each(userStories, function(index, story) {
+                    //console.log("Story Title: "+story.title+"    Link: "+story.storyLink);
+                });
+
+                // userValidations is an object of the form {"vote": "valid", "title": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"}
+                var userValidations = GetUserValidations(storiesData);
+                $.each(userValidations, function(index, validation) {
+                    console.log("Vote: "+validation.vote+"  Story Title: "+validation.title+"  Link: "+validation.storyLink);
+                });
+
+                // userComments is an object of the form {"comment": "Oh no!", "storyLink": "stories.html?id=9"};
+                var userComments = GetUserComments(storiesData);
+                $.each(userComments, function(index, comment) {
+                    //console.log("Comment: "+comment.comment+"    Link: "+comment.storyLink);
+                });
+
+                //DisplayComments(data);
             });
-            
-            // comments
-            $.getJSON(commentsUrl, function (data) {
-                DisplayComments(data);
-            });
+
+
+            function GetUserStories(storiesData) {
+                var userStories = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    if(user == storyObj.user) {                        
+                        //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                        var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                        
+                        var storyLink = "stories.html?id="+storyID;
+                        storyLinkObj = {"title": storyObj.title, "storyLink": storyLink};
+                        userStories.push(storyLinkObj);                        
+                    }
+                });
+
+                return userStories;
+            }
+
+
+            function GetUserValidations(storiesData) {
+                var userValidations = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    $.each(storyObj.validations, function(index, validationObj) {
+                        if(user == validationObj.user) {
+                            //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                            var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                            
+                            var storyLink = "stories.html?id="+storyID;
+                            validationLinkObj = {"vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink};
+                            userValidations.push(validationLinkObj);
+                        }
+                    })
+                });
+                return userValidations;
+            }
+
+            function GetUserComments(storiesData) {
+                var userComments = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    $.each(storyObj.comments, function(index, comObj) {
+                        if(user == comObj.user) {
+                            //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                            var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                            
+                            var storyLink = "stories.html?id="+storyID;
+                            commentLinkObj = {"comment": comObj.text, "storyLink": storyLink};
+                            userComments.push(commentLinkObj);
+                        }
+                    })
+                });
+                return userComments;
+            }
 
             //display comments
             function DisplayComments(comments) {
@@ -228,11 +306,12 @@
                         '</li>');
                 }
             }
-       // <img id="user-icon" src='img/icons/Unknown.png' class="mdc-button user-icon">
+
+       // <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
             //get a commentary html template
             function GetCommnetaryTemplate(comment) {
                 var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<img id="user-icon" src="img/icons/'+username+'.png"  class="mdc-button user-icon-list">'+
+                    '<img id="user-avatar" src="img/avatars/'+username+'.png"  class="mdc-button user-avatar-list">'+
                     '<div class="' + username + '" title="Credibility rate of this user"></div>' +
                     '<div>' + comment.text +
                     '</div>' +
@@ -240,11 +319,6 @@
                 return commentTemplate;
             }
 
-            //fill the fields
-            function FillStoryFields(story) {
-                $('#storyTitle').text(story.title);
-                $('#storyAuthor').text(story.author);
-            }
 
             //set author avatar
             function SetUserAvatar(author, isStoryAuthor) {
@@ -280,26 +354,36 @@
             //functions when clicking on validate or invalidate tabs
             $('#contributions-tab, #validations-tab, #comments-tab').hide();
             $('#contributions-tab').show();
+            document.getElementById('contributions-tab-button').classList.add('selected-tab');
 
-            $('#validate-tab').click(function () {
+            $('#contributions-tab-button').click(function () {
                 $('#contributions-tab').show();
                 $('#validations-tab').hide();
                 $('#comments-tab').hide();
-                currentStatusOfAction = "Validate";
+                document.getElementById('contributions-tab-button').classList.add('selected-tab');
+                document.getElementById('validations-tab-button').classList.remove('selected-tab');
+                document.getElementById('comments-tab-button').classList.remove('selected-tab');
+                // currentStatusOfAction = "Validate";
             });
 
-            $('#invalidate-tab').click(function () {
+            $('#validations-tab-button').click(function () {
                 $('#contributions-tab').hide();
                 $('#validations-tab').show();
                 $('#comments-tab').hide();
-                currentStatusOfAction = "Invalidate";
+                document.getElementById('contributions-tab-button').classList.remove('selected-tab');
+                document.getElementById('validations-tab-button').classList.add('selected-tab');
+                document.getElementById('comments-tab-button').classList.remove('selected-tab');
+                // currentStatusOfAction = "Invalidate";
             });
 
-            $('#edit-tab').click(function () {
+            $('#comments-tab-button').click(function () {
                 $('#contributions-tab').hide();
                 $('#validations-tab').hide();
                 $('#comments-tab').show();
-                currentStatusOfAction = "Edit";
+                document.getElementById('contributions-tab-button').classList.remove('selected-tab');
+                document.getElementById('validations-tab-button').classList.remove('selected-tab');
+                document.getElementById('comments-tab-button').classList.add('selected-tab');                
+                // currentStatusOfAction = "Edit";
             });
         });
     </script>

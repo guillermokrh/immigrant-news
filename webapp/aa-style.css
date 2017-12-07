@@ -153,29 +153,36 @@ html {
     padding-right:2px;
 }
 
-.user-icon {
-  height: 85%;
+
+.contributions-button{
+  background-color: gray;
+}
+
+.validations-button{
+  background-color: gray;
+}
+
+.comments-button{
+  background-color: gray;
+}
+
+#contributions-tab, #validations-tab, #comments-tab {
+    padding-left: 2px;
+    padding-right:2px;
+}
+
+.user-avatar {
+  height: 100%;
   width: 100%;
-  padding: 9px 10px; 
   filter: brightness(0%);
 }
 
-.user-icon-list {
+.user-avatar-list {
   margin-left: -20px;
   filter: brightness(0%);
 }
 
 .username {
-  flex: 2; 
-  align-self: flex-end;
-  padding-top: 30px;
-}
-
-.follow-star {
-  flex: 1; 
-  align-self: flex-end;
-  padding-bottom: 15px;
-  padding-right: 10px;
 }
 
 .user-tabs {
@@ -183,7 +190,6 @@ html {
   font-size: x-small;
 }
 
-/*Added for thumbnails slider*/
 ul {
     list-style: none outside none;
     padding-left: 0;
@@ -213,3 +219,8 @@ ul {
     bottom:0;
     z-index:12000;
 }
+.selected-tab {
+  background-color: #3f51b5;
+  color: white !important;
+}
+

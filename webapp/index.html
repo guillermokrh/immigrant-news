@@ -5,24 +5,36 @@
   <title>Immigrant news</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
   <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://<ajax class=" googl "></ajax>eapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+  <link rel="stylesheet" href="login.css">
   <link rel="stylesheet" href="search.css">
 
   <!-- Compiled and minified CSS -->
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+  <!--<link rel="<st></st>ylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <style>
+    #newsmap {
+      height: 800px;
+    }
+    /*html, body {*/
+    /*  height: 100%;*/
+    /*  margin: 0;*/
+    /*  padding: 0;*/
+    /*}*/
+  </style>
 
 </head>
 
@@ -33,38 +45,38 @@
 
       <div class="mdc-persistent-drawer__toolbar-spacer"></div>
 
-      <div class="mdc-list-group">
-        <nav class="mdc-list">
-          <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>User profile
-            </a>
-          <a class="mdc-list-item" href="#">
-              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>News feed
-            </a>
-        </nav>
+      <!--<div class="mdc-list-group">-->
+        <!--<nav class="mdc-list">-->
+        <!--  <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">-->
+        <!--      <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>User profile-->
+        <!--    </a>-->
+        <!--  <a class="mdc-list-item" href="#">-->
+        <!--      <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>News feed-->
+        <!--    </a>-->
+        <!--</nav>-->
 
-        <hr class="mdc-list-divider">
+        <!--<hr class="mdc-list-divider">-->
 
-        <nav class="mdc-list">
-          <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>My news
-              </a>
-          <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Following
-              </a>
-          <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Logout
-              </a>
-        </nav>
+        <!--<nav class="mdc-list">-->
+        <!--  <a class="mdc-list-item" href="#">-->
+        <!--        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>My news-->
+        <!--      </a>-->
+        <!--  <a class="mdc-list-item" href="#">-->
+        <!--        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Following-->
+        <!--      </a>-->
+        <!--  <a class="mdc-list-item" href="#">-->
+        <!--        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Logout-->
+        <!--      </a>-->
+        <!--</nav>-->
       </div>
     </nav>
   </aside>
 
 
-  <header class="topbar mdc-toolbar mdc-toolbar--fixed">
+  <header class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-        <a href="#" class="material-icons hamburger-menu mdc-toolbar__menu-icon">menu</a>
+        <a href="#" class="material-icons hamburger-menu mdc-toolbar__menu-icon" onClick='goHome();'>home</a>
         <span class="mdc-toolbar__title">Immigrant news</span>
       </section>
 
@@ -77,13 +89,22 @@
           <div class="mdc-text-field__bottom-line" style=" --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
         </div>
 
-        <a id="login" class="mdc-button--stroked mdc-toolbar__icon" onclick="document.getElementById('loginModal').style.display='block'">LOGIN</a>
+        
+          <img class="mdc-toolbar__icon user-avatar hide" id="avatar" src="img/avatars/Unknown.png">
+
+          <div>
+            <a href="#" 
+              id="logButton"
+              class="mdc-button--stroked mdc-toolbar__icon"
+              onclick="modalAction();"
+              style="color: white; width:auto;">LOGIN</a>
+          </div>
       </section>
     
     </div>
 
     <div class="mdc-toolbar__row">
-      <!-- ADVANCED SEARCH TOGGLE-->
+       <!--ADVANCED SEARCH TOGGLE-->
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <div class="mdc-switch">
             <input type="checkbox" id="adv-search-switch" onclick='toggleAdvancedSearch();' class="mdc-switch__native-control">
@@ -136,12 +157,27 @@
     
   </header>
 
-  <main >
-    <div class="search-results hide mdc-toolbar-fixed-adjust">
-      <span style="display:inline-block; width: 30px;"></span>
+  <main>
+    <div id='tabs' >
+      <nav class="mdc-tab-bar mdc-tab-bar--icons-with-text">
+            <a id='map-tab' class="mdc-tab mdc-tab--with-icon-and-text mdc-tab--active" onclick='show_map();' href="#displaymap">Map
+              <i class="material-icons mdc-tab__icon" aria-hidden="true" onclick='show_map();'>map</i>
+              <!--<span class="mdc-tab__icon-text">Map</span>-->
+            </a>
+            <a id='list-tab' class="mdc-tab mdc-tab--with-icon-and-text" onclick='show_list();' href="#displaylist">List
+              <i class="material-icons mdc-tab__icon" aria-hidden="true" onclick='show_list();'>list</i>
+              <!--<span class="mdc-tab__icon-text">list</span>-->
+            </a>
+            <span class="mdc-tab-bar__indicator"></span>
+          </nav>
+    </div>
+    
+    <div id='newslist' class="search-results hide">
+      <!--<span style="display:inline-block; width: 30px;"></span>-->
       <h3 id='results-header'>Search results for</h3>
       <ul class="mdc-list" id="search-results-list">
         <li class="hide mdc-list-item" id="template">
+          <div id='news-ranking'></div>
           <p class='ranking'>95%</p>
           <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
           <span class="mdc-list-item__text"> 
@@ -149,7 +185,7 @@
               <span class="mdc-list-item__text__secondary">Secondary text</span>
           </span>
 
-          <a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>
+          <!--<a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>-->
         </li>
 
 
@@ -158,80 +194,71 @@
         Show more results</button>
       <h3 class='hide' id='results-footer'>Search results for</h3>
     </div>
-  </main>
-
+    
+    
+    
+    <div id="newsmap"></div>
 
   <!-- Login Modal -->
-  <div id="loginModal" class="hide modal">
-    <div class="animate modal-box">
 
-      <div class="modal-header mdc-toolbar">
-        <h1>Login</h1>
-        <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <!--Login Modal -->
+      <div id="loginModal" class="modal">
+          <div class="animate modal-box">
+
+              <div class="modal-header mdc-toolbar">
+                  <h1>Login</h1>
+                  <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+              </div>
+
+              <form class="modal-form">
+                  <div class="mdc-form-field">
+                      <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                          <input id="txtEmail" type="email" class="mdc-text-field__input" required autocomplete="off">
+                          <label for="txtEmail" class="mdc-text-field__label">Email</label>
+                          <div class="mdc-text-field__bottom-line"></div>
+                      </div>
+                  </div>
+                  <div class="mdc-form-field">
+                      <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                          <input id="txtPassword" type="password" class="mdc-text-field__input" required minlength=6 autocomplete="off">
+                          <label for="txtPassword" class="mdc-text-field__label">Password</label>
+                          <div class="mdc-text-field__bottom-line"></div>
+                      </div>
+                  </div>
+
+                  <button id="btnLogin"
+                          type="submit"
+                          class="mdc-button mdc-button--raised mdc-ripple-surface"
+                          data-mdc-auto-init="MDCRipple">
+                      Login
+                  </button>
+
+                  <button id="btnSignUp"
+                          type="submit"
+                          class="mdc-button mdc-button--raised mdc-ripple-surface"
+                          data-mdc-auto-init="MDCRipple">
+                      Sign up
+                  </button>
+                  <p id='loginError' class="login-error"></p>
+              </form>
+
+          </div>
       </div>
-
-      <form class="modal-form">
-        <div class="mdc-form-field">
-          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-            <input id="txtEmail" type="email" class="mdc-text-field__input" required autocomplete="off">
-            <label for="txtEmail" class="mdc-text-field__label">Email</label>
-            <div class="mdc-text-field__bottom-line"></div>
-          </div>
-        </div>
-        <div class="mdc-form-field">
-          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-            <input id="txtPassword" type="password" class="mdc-text-field__input" required minlength=8 autocomplete="off">
-            <label for="txtPassword" class="mdc-text-field__label">Password</label>
-            <div class="mdc-text-field__bottom-line"></div>
-          </div>
-        </div>
-
-        <button id="btnLogin" type="submit" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
-          Login
-        </button>
-
-        <button id="btnSignUp" type="submit" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
-          Sign up
-        </button>
-
-        <button id="btnLogout" type="submit" class="mdc-button mdc-button--raised mdc-ripple-surface hide" data-mdc-auto-init="MDCRipple">
-          Logout
-        </button>
-      </form>
-
-    </div>
-  </div>
   <script src="login.js"></script>
-
-
-
-
-
-  <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
-  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyA-I9XVJya_5zR-BsXSYct7W8zCxkPh7PM",
-      authDomain: "immigrant-news.firebaseapp.com",
-      databaseURL: "https://immigrant-news.firebaseio.com",
-      projectId: "immigrant-news",
-      storageBucket: "immigrant-news.appspot.com",
-      messagingSenderId: "598567031572"
-    };
-    firebase.initializeApp(config);
-  </script>
+  
+    </main>
 
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script>
-    window.mdc.autoInit();
     
     // $('#advanced_search_form').hide();
-    $('.srch').hide();
+  $('.srch').hide();
+    
+  window.mdc.autoInit();
+
   //   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
   // toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
 
@@ -275,6 +302,9 @@
       function initAutocomplete() {
         // Create the autocomplete object, restricting the search to geographical
         // location types.
+        
+        geocoder = new google.maps.Geocoder();
+
         autocomplete = new google.maps.places.Autocomplete(
             /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
             {types: ['geocode']});
@@ -282,6 +312,32 @@
         // When the user selects an address from the dropdown, populate the address
         // fields in the form.
         autocomplete.addListener('place_changed', fillInAddress);
+        
+        var myLatLng = {lat: 41.8781, lng: 87.6298};
+
+        map = new google.maps.Map(document.getElementById('newsmap'), {
+          zoom: 8,
+          center: myLatLng
+        });
+        
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });        
+        
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+  
+          map.setCenter(pos);
+        }, function() {
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+        
+        search_to_map('');
       }
 
       function fillInAddress() {

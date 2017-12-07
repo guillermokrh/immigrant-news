@@ -1,33 +1,33 @@
-.centered_toolbar{
-    width:100%;
-    margin:auto;
-}
-.mdc-toolbar-demo {
-  margin: 0px;
-}
+/*.centered_toolbar{*/
+/*    width:100%;*/
+/*    margin:auto;*/
+/*}*/
+/*.mdc-toolbar-demo {*/
+/*  margin: 0px;*/
+/*}*/
 
-.demo-paragraph {
-  margin: 0px;
-  padding: 20px 28px;
-}
+/*.demo-paragraph {*/
+/*  margin: 0px;*/
+/*  padding: 20px 28px;*/
+/*}*/
 
 /* Place drawer and content side by side. */
 
-.demo-body {
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-}
+/*.demo-body {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  padding: 0;*/
+/*  margin: 0;*/
+/*  box-sizing: border-box;*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+/*}*/
 
-@media (max-width: 599px) {
-  .demo-paragraph {
-    padding: 16px;
-  }
-}
+/*@media (max-width: 599px) {*/
+/*  .demo-paragraph {*/
+/*    padding: 16px;*/
+/*  }*/
+/*}*/
 
 
 .topbar{
@@ -35,7 +35,7 @@
 }
 
 .hide{
-  display:none;  
+  display: none;  
 }
 
 /*.ranking{*/
