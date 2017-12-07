@@ -119,6 +119,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
     <script src="story.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -140,8 +141,9 @@
 
             // Display user avatar and username
             var user = getUrlParameter("user");
-            user = "Alligator";
-
+            // Capitalize first letter of the username
+            // Source: https://paulund.co.uk/capitalize-first-letter-string-javascript
+            user = user.charAt(0).toUpperCase() + user.slice(1);
             SetUserAvatar();
             // get user stories, validations, and comments data
             var storiesUrl = "https://immigrant-news.firebaseio.com/stories.json";
@@ -157,7 +159,9 @@
                 var userComments = GetUserComments(storiesData);
 
                 
-                //DisplayComments(data);
+                // DisplayStories(userStories);
+                // DisplayValidations(userValidations);
+                DisplayComments(userComments);
             });
 
 
@@ -214,10 +218,10 @@
             //display comments
             function DisplayComments(comments) {
                 if (comments != null) {
-                    $.each(comments, function (index, value) {
-                        $('#userComments').append(GetCommnetaryTemplate(value));
+                    $.each(comments, function (index, commentsObj) {
+                        $('#userComments').append(GetCommnetaryTemplate(commentsObj));
                         //set the commentary user credibility avatar
-                        SetUserAvatar(value.user, false);
+                        SetUserAvatar(user, false);
                     });
                 }
                 else {
@@ -231,12 +235,13 @@
 
        // <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
             //get a commentary html template
-            function GetCommnetaryTemplate(comment) {
+            function GetCommnetaryTemplate(commentsObj) {
                 var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<img id="user-avatar" src="img/avatars/'+username+'.png"  class="mdc-button user-avatar-list">'+
-                    '<div class="' + username + '" title="Credibility rate of this user"></div>' +
-                    '<div>' + comment.text +
-                    '</div>' +
+                    '<img id="user-avatar" src="img/avatars/'+user+'.png"  class="mdc-button user-avatar-list">'+
+                    '<div> ' +
+                    '<a href="'+commentsObj.storyLink+'"><div class="tab-list-title"> Story: ' + commentsObj.title + '</div></a>' +
+                    '<div> Comment: ' + commentsObj.comment + '</div>' +
+                    '</div>' +                    
                     '</li>';
                 return commentTemplate;
             }
@@ -253,11 +258,6 @@
                         var credibilityStyle = GetCredibilityColor(data);
                         $('#user-rate').text(data);
                         $('#user-rate').addClass(credibilityStyle);
-                        $('#lala').percircle({
-                            progressBarColor: '#ff0000',
-                            percent: 80
-                        }).addClass('small');
-
                     }
                 });
             }
