@@ -93,7 +93,7 @@
                                 <section>
                                     <!--ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul-->
                                     <ul id="userContributions" class="mdc-list mdc-list--two-line"></ul>
-</section>
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -102,6 +102,10 @@
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
                             <div id="validations-tab">
+                                <section>
+                                    <!--ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul-->
+                                    <ul id="userValidations" class="mdc-list mdc-list--two-line"></ul>
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -181,6 +185,7 @@
                 // DisplayValidations(userValidations);
                 DisplayComments(userComments);
                 DisplayUserStories(userStories);
+                DisplayUserValidations(userValidations);
             });
 
 
@@ -211,8 +216,8 @@
                             //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
                             var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
                             
-                            var storyLink = "stories.html?id="+storyID;
-                            validationLinkObj = {"vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink};
+                            var storyLink = "stories.html?id=" + storyID;
+                            validationLinkObj = { "vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink, "reason": storyObj.reason };
                             userValidations.push(validationLinkObj);
                         }
                     })
@@ -221,6 +226,7 @@
             }
 
             function GetUserComments(storiesData) {
+                
                 var userComments = [];
                 $.each(storiesData, function(storyIndex, storyObj) {
                     $.each(storyObj.comments, function(index, comObj) {
@@ -344,6 +350,17 @@
             }
 
             function DisplayUserStories(stories) {
+                if (stories.length == 0) {
+                    var storyTpl = '<li class="mdc-list-item story-list ">' +
+                        '<span class="mdc-list-item__start-detail "></span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href=""><div class="tab-list-title">This user has not contributed with any story yet!</div></a>' +
+                        '</div>' +
+                        '</li>';
+
+                    $('#userContributions').append(storyTpl);
+                    return;
+                }
                 $.each(stories, function (index, value) {
                     var cssClass = "";
                     if (value.validity > 0) {
@@ -366,6 +383,37 @@
 
                     $('#userContributions').append(storyTpl);
                 })
+            }
+
+            function DisplayUserValidations(stories) {
+                if (stories.length == 0) {
+                    var storyTpl = '<li class="mdc-list-item story-list ">' +
+                        '<span class="mdc-list-item__start-detail "></span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href=""><div class="tab-list-title">This user has not contributed with any story yet!</div></a>' +
+                        '</div>' +
+                        '</li>';
+                    $('#userValidations').append(storyTpl);
+                    return;
+                }
+                $.each(stories, function (index, value) {
+                    if (value.vote == 'valid') {
+                        cssClass = "upvoted"
+                    }
+                    else {
+                        cssClass = "downvoted";
+                    }
+                        
+                    var storyTpl = '<li class="mdc-list-item story-list ' + cssClass + '">' +
+                        '<span class="mdc-list-item__start-detail ' + cssClass + '">' + ((value.vote == 'valid') ? '+' : '-') + '</span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href="' + value.storyLink + '"><div class="tab-list-title">' + value.title + '</div></a>' +
+                        '<div class="mdc-list-item__text__secondary"> Support: ' + value.reason + '</div>' +
+                        '</div>' +
+                        '</li>';
+
+                    $('#userValidations').append(storyTpl);
+                });
             }
         });
     </script>

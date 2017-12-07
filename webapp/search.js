@@ -160,7 +160,7 @@ function search_and_display(what, panel) {
                             '<h3>Status: ' + validation_status + '</h3>' +
                             '<div id="bodyContent">' +
                             '<p>' + val.description + '</p>' +
-                            '<p>See <a href="stories.php?id=' + key.replace('story', '') + '">' + 
+                            '<p>See <a href="stories.html?id=' + key.replace('story', '') + '">' + 
                             'the complete post</a></p>' +
                             '</div>' +
                             '</div>';
