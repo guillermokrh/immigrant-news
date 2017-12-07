@@ -61,7 +61,7 @@
             </div>
         </header>
 
-        <main class="mdc-toolbar-fixed-adjust content">
+        <main id="main-display" class="mdc-toolbar-fixed-adjust content">
             <section class="bar">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
@@ -326,6 +326,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             window.mdc.autoInit();
+            
+            // Redirect user to login if not logged in
+            if(!firebase.auth().currentUser) {
+                document.getElementById("main-display").display = "none";
+                window.location.replace('index.html?login=true');
+            }
+
+
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
                 var sPageURL = decodeURIComponent(window.location.search.substring(1)),
