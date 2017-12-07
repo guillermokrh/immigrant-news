@@ -217,7 +217,7 @@
                             var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
                             
                             var storyLink = "stories.html?id=" + storyID;
-                            validationLinkObj = { "vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink, "reason": storyObj.reason };
+                            validationLinkObj = { "vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink, "reason": validationObj.reason };
                             userValidations.push(validationLinkObj);
                         }
                     })
