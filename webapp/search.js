@@ -93,6 +93,7 @@ function search_and_display(what, panel) {
     var count = 0;
     var result = [];
     var news = {};
+    var validation_status;
 
     clearAllMarkers();
                 
@@ -103,11 +104,6 @@ function search_and_display(what, panel) {
         
         $.each(data, function(key, val) {
             if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-                // news.id = key;
-                // news.value = JSON.parse(val);
-                // console.log(hola, news);
-                // result.push(news);
-                
                 count++;
                 
                 var $t = $('#template').clone();
@@ -126,14 +122,17 @@ function search_and_display(what, panel) {
                 
                 if (validity_index > 0) {
                     $t.find('#news-ranking').css('background', 'green');
+                    validation_status = 'true';
                 };
                 
                 if (validity_index < 0) {
                     $t.find('#news-ranking').css('background', 'red');
+                    validation_status = 'false';
                 };
                 
                 if (validity_index == 0) {
                     $t.find('#news-ranking').css('background', 'yellow');
+                    validation_status = 'unverified';
                 };                
                 // if (val.percentage > 80) {
                 //     $t.find('.ranking').addClass('high_ranking');    
@@ -157,16 +156,16 @@ function search_and_display(what, panel) {
                  var contentString = '<div id="content">' +
                             '<div id="siteNotice">' +
                             '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading">' + val.title + '</h1>' +
+                            '<h2 id="firstHeading" class="firstHeading">' + val.title + '</h2>' +
+                            '<h3>Status: ' + validation_status + '</h3>' +
                             '<div id="bodyContent">' +
                             '<p>' + val.description + '</p>' +
-                            '<p>See <a href="/stories.php?id=' + key.replace('story', '') + '">' + 
+                            '<p>See <a href="stories.php?id=' + key.replace('story', '') + '">' + 
                             'the complete post</a></p>' +
                             '</div>' +
                             '</div>';
 
 
-                
                 addNewsToMap(val.location, validity_index, contentString);
 
             };
