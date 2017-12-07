@@ -6,8 +6,9 @@
 .story-list {
     margin: 1rem 0 1rem 0;
 }
+
 .story-list span {
-    width: 2rem;
+    width: 2.5rem;
     height: 100%;
     margin-right: 1rem;
     color:white;
@@ -25,6 +26,7 @@
 
 .story-list span.upvoted {
     background-color: green;
+    padding-top: 50px;
 }
 
 .story-list.upvoted {
@@ -33,6 +35,8 @@
 
 .story-list span.downvoted {
     background-color: red;
+    padding-top: 50px;
+
 }
 
 .story-list.downvoted {
@@ -41,15 +45,12 @@
 
 .story-list span.novoted {
     background-color: gold;
+    padding-top: 50px;
+
 }
 
 .story-list.novoted {
     border: 1px solid gold;
-}
-
-
-.topbar{
-  --mdc-theme-primary: #03A9F4;
 }
 
 .hide{
