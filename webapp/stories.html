@@ -52,7 +52,7 @@
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
-                    <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+                    <span class="mdc-toolbar__title catalog-title">Immigrant News</span>
                 </section>
             </div>
         </header>
@@ -70,15 +70,10 @@
                                 </div>
                             </section>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-9-desktop  mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-1-phone" style="padding-top:1.5rem;">
+                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" style="padding-top:1.5rem;">
                             <h1 class="mdc-card__title" id="storyTitle" style="margin:0;">ICE Raid Illinois</h1>
                             <h2 class="mdc-card__subtitle" style="margin:0;"><a id="storyAuthor" href="#">Author</a></h2>
                         </div>
-                            <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                                <button class="mdc-button full-height full-width">
-                                    Follow
-                                </button>
-                            </div>
                             <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
                                 <button id="contributionsButton" class="mdc-button full-height full-width" title="Contributors"></button>
                             </div>
@@ -125,7 +120,7 @@
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <label for="text-field-no-js">Commentary: </label>
+                            <label for="text-field-no-js">Comment: </label>
                             <div class="mdc-text-field full-width">
                                 <input type="text" id="commentaryInputText" class="mdc-text-field__input" placeholder="Write your commentary here...">
                                 <div class="mdc-text-field__bottom-line"></div>
@@ -260,7 +255,7 @@
                     '<img class="' + comment.user + ' avatar"src="img/avatars/' + comment.user + '.png" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />' +
                     '<div>' +
                     '<a href="userProfile.html?user=' + comment.user + '">' + comment.user + '</a>' +
-                    comment.text +
+                    ': ' + comment.text +
                     '</div>' +
                     '</li>';
                 return commentTemplate;
