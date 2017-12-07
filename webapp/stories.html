@@ -75,8 +75,7 @@
                             </button>
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width verified" title="Contributors">
-                                +5
+                            <button id="contributionsButton" class="mdc-button full-height full-width" title="Contributors">
                             </button>
                         </div>
                     </div>
@@ -203,9 +202,9 @@
 
             var storyId = getUrlParameter("id");
             currentStory = storyId;
-            currentUser = "immi2";
+            currentUser = "Panda";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-            var commentsUrl = "https://immigrant-news.firebaseio.com/commentaries/story" + storyId + ".json";
+            var commentsUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + "/comments.json"; 
 
             $('#contribute').attr('href', 'contribute.html?id=' + storyId);
             //story data
@@ -213,7 +212,8 @@
                 if (data != null) {
                     //alert(data.date);
                     FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
+                    SetUserAvatar(data.user, true);
+                    SetStoryValidation(data.validations);
                 }
             });
 
@@ -228,7 +228,7 @@
                 $('#storyDate').text(story.date);
                 $('#storyLocation').text(story.location);
                 $('#storyDescription').text(story.description);
-                $('#storyAuthor').text(story.author);
+                $('#storyAuthor').text(story.user);
             }
 
             //display comments
@@ -263,7 +263,7 @@
 
             //set author avatar
             function SetUserAvatar(author, isStoryAuthor) {
-                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
+                var userUrl = "https://immigrant-news.firebaseio.com//users/"+author+".json";
                 $.getJSON(userUrl, function (data) {
                     if (data != null) {
                         var credibilityColor = GetCredibilityColor(data['credibility-rate']);
@@ -292,13 +292,12 @@
                 } 
             }
 
-
             function SaveCommentary(commentary) {
-                var ref = firebase.database().ref('/commentaries/story' + currentStory);
+                var ref = firebase.database().ref("/stories/story" + currentStory + "/comments");
                 var commentName = 'comment-' + currentStory + '-';
                 var countCommentaries = 0;
                 ref.once('value', function (snapshot) {
-                    countCommentaries = snapshot.numChildren();
+                    countCommentaries = snapshot.numChildren()+1;
                     commentName += countCommentaries;
                     var obj = {};
                     obj[commentName] = {
@@ -354,6 +353,32 @@
             
             //hide adding a new commentary section
             $('#addCommentarySection').hide();
+
+            //update story validation
+            function SetStoryValidation(validations) {
+                var validCount = 0;
+                var invalidCount = 0;
+                var validity = 0;
+                $.each(validations, function (index, value) {
+                    if (value.vote == 'valid') validCount += 1;
+                    else if (value.vote == 'invalid') invalidCount += 1;
+                });
+                validity = validCount - invalidCount;
+               
+                if (validity < 0) {
+
+                    $('#contributionsButton').addClass('unverified');
+                    $('#contributionsButton').text(validity);
+                    return;
+                }
+                else if(validity>0){
+                    $('#contributionsButton').addClass('verified');
+                    $('#contributionsButton').text('+' + validity);
+                    return;
+                }
+                $('#contributionsButton').addClass('no-voted');
+                $('#contributionsButton').text(validity);
+            }
         });
     </script>
 </body>
