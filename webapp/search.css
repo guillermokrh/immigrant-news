@@ -53,12 +53,6 @@
     border: 1px solid gold;
 }
 
-
-
-.topbar{
-  --mdc-theme-primary: #03A9F4;
-}
-
 .hide{
   display: none;  
 }
