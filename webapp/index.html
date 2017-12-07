@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -38,11 +38,13 @@
 
 </head>
 
-<body class="demo-body mdc-typography">
+<body class="mdc-typography">
 
 <aside class="mdc-persistent-drawer">
     <nav class="mdc-persistent-drawer__drawer">
+        <div class="mdc-persistent-drawer__toolbar-spacer"></div>   
         <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+
         <div class="mdc-list-group">
             <nav class="mdc-list">
                 <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
@@ -56,7 +58,7 @@
     </nav>
 </aside>
 
-<div class="demo-content">
+<!--<div class="demo-content">-->
   <header class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -139,7 +141,7 @@
     
   </header>
 
-  <main class="demo-main">
+  <main>
     <div id='tabs' >
       <nav class="mdc-tab-bar mdc-tab-bar--icons-with-text">
             <a id='map-tab' class="mdc-tab mdc-tab--with-icon-and-text mdc-tab--active" onclick='show_map();' href="#displaymap">Map
@@ -372,7 +374,7 @@
         
   <script src="search.js"></script>
   
-</div>  
+<!--</div>  -->
 </body>
 
 </html>
