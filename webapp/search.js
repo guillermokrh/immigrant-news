@@ -42,13 +42,28 @@ function show_list() {
     $('#newslist').show();    
 };
 
-function addNewsToMap(address) {
+function addNewsToMap(address, verified) {
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
+        
         map.setCenter(results[0].geometry.location);
+        
+        if (verified<0) {
+            var image = 'img/red-marker.png';
+        }
+        
+        if (verified==0) {
+            var image = 'img/yellow-marker.png';
+        }
+
+        if (verified>0) {
+            var image = 'img/green-marker.png';
+        }
+
         var marker = new google.maps.Marker({
             map: map,
-            position: results[0].geometry.location
+            position: results[0].geometry.location,
+            icon: image
         });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -103,7 +118,21 @@ function search_to_map(what) {
                 
                 $t.appendTo('#search-results-list');
                 
-                addNewsToMap(val.location);
+                console.log(val.validations);
+                
+                var validity_index = 0;
+                 
+                $.each(val.validations, function(key, val) {
+                    if (val.vote=='valid') {
+                        validity_index = validity_index + 1;    
+                    } else {
+                        validity_index = validity_index - 1;
+                    };
+                
+                });
+                
+                addNewsToMap(val.location, validity_index);
+
             };
         });
         
