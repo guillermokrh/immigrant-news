@@ -59,7 +59,7 @@
             </div>
         </header>
 
-        <main class="mdc-toolbar-fixed-adjust">
+        <main id="main-display" class="mdc-toolbar-fixed-adjust">
             <section class="bar">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
@@ -207,8 +207,9 @@
         
         // Redirect user to login if not logged in
         if(!firebase.auth().currentUser) {
+            document.getElementById("main-display").display = "none";
             window.location.replace('index.html?login=true');
-        }     
+        }
 
         $('#template').hide();
         $('#do_submit').hide();
