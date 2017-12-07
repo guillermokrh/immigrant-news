@@ -2,18 +2,8 @@ var map;
 var geocoder;
 var drawerEl = document.querySelector('.mdc-persistent-drawer');
 var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
-// var drawer = new MDCPersistentDrawer(drawerEl);
 var myResults = [];
-
-// document.querySelector('.hamburger-menu').addEventListener('click', function() {
-//     drawer.open = !drawer.open;
-// });
-// drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
-//     console.log('Received MDCPersistentDrawer:open');
-// });
-// drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
-//     console.log('Received MDCPersistentDrawer:close');
-// });
+var mapMarkers = [];
 
 $("#mainsearchbox").keypress(function(event) {
     if (event.which == 13) {
@@ -42,11 +32,17 @@ function show_list() {
     $('#newslist').show();    
 };
 
-function addNewsToMap(address, verified) {
+function addNewsToMap(address, verified, contentString) {
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
+          
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });          
+          
         
-        map.setCenter(results[0].geometry.location);
+        // map.setCenter(results[0].geometry.location);
         
         if (verified<0) {
             var image = 'img/red-marker.png';
@@ -65,6 +61,12 @@ function addNewsToMap(address, verified) {
             position: results[0].geometry.location,
             icon: image
         });
+        
+        mapMarkers.push(marker);
+        
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -77,48 +79,35 @@ function advanced_search(what) {
     
 };
 
-function search_to_map(what) {
-        var count = 0;
+function clearAllMarkers(){
+    for (var i = 0; i < mapMarkers.length; i++) {
+        mapMarkers[i].setMap(null);
+    };
+    
+    mapMarkers = [];
+}
+
+/* Search for some word and look it up on all news 
+   and add those results to the result list */
+function search_and_display(what, panel) {
+    var count = 0;
     var result = [];
     var news = {};
+    var validation_status;
 
+    clearAllMarkers();
                 
-    // $('#results-header').text('Results for: ' + what);
-    // $('.mdc-list-item').not('#template').remove();
-    // $('.mdc-toolbar-fixed-adjust').removeClass('hide');
+    $('#results-header').text('Results for: ' + what);
+    $('.mdc-list-item').not('#template').remove();
+    $('.mdc-toolbar-fixed-adjust').removeClass('hide');
     $.getJSON("https://immigrant-news.firebaseio.com/stories.json", function(data) {
         
         $.each(data, function(key, val) {
             if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-                // news.id = key;
-                // news.value = JSON.parse(val);
-                // console.log(hola, news);
-                // result.push(news);
-                
                 count++;
                 
                 var $t = $('#template').clone();
                 $t.prop('id', key);
-                
-                $t.find('.ranking').text(val.percentage + '%');
-                if (val.percentage > 80) {
-                    $t.find('.ranking').addClass('high_ranking');    
-                } else if (val.percentage < 40) {
-                    $t.find('.ranking').addClass('low_ranking');    
-                } else {
-                    $t.find('.ranking').addClass('medium_ranking');    
-                };
-                
-                $t.find('.result-title').text(val.title.substring(0,100));
-                $t.find('.result-title').prop('href', 'stories.html?id=' + key.replace('story',''));
-                $t.find('.mdc-list-item__text__secondary').text(val.description.substring(0,100));
-                if (count < 10) {
-                    $t.removeClass('hide');    
-                };
-                
-                $t.appendTo('#search-results-list');
-                
-                console.log(val.validations);
                 
                 var validity_index = 0;
                  
@@ -129,59 +118,29 @@ function search_to_map(what) {
                         validity_index = validity_index - 1;
                     };
                 
-                });
+                });                
                 
-                addNewsToMap(val.location, validity_index);
-
-            };
-        });
-        
-        
-        if (count > 0) {
-                $('#results-header').text('Results for: ' + what);
-                $('#showmoreresults').removeClass('hide');
-                $('#results-footer').text(count + ' results found');
-        } else {
-            $('#map-tab').click();
-        };
-    });
-    
-};
-
-
-/* Search for some word and look it up on all news 
-   and add those results to the result list */
-function search_and_display(what) {
-    var count = 0;
-    var result = [];
-    var news = {};
-
-                
-    $('#results-header').text('Results for: ' + what);
-    $('.mdc-list-item').not('#template').remove();
-    $('.mdc-toolbar-fixed-adjust').removeClass('hide');
-    $.getJSON("https://immigrant-news.firebaseio.com/stories.json", function(data) {
-        
-        $.each(data, function(key, val) {
-            if (JSON.stringify(val).toLowerCase().includes(what.toLowerCase())) {
-                // news.id = key;
-                // news.value = JSON.parse(val);
-                // console.log(hola, news);
-                // result.push(news);
-                
-                count++;
-                
-                var $t = $('#template').clone();
-                $t.prop('id', key);
-                
-                $t.find('.ranking').text(val.percentage + '%');
-                if (val.percentage > 80) {
-                    $t.find('.ranking').addClass('high_ranking');    
-                } else if (val.percentage < 40) {
-                    $t.find('.ranking').addClass('low_ranking');    
-                } else {
-                    $t.find('.ranking').addClass('medium_ranking');    
+                if (validity_index > 0) {
+                    $t.find('#news-ranking').css('background', 'green');
+                    validation_status = 'true';
                 };
+                
+                if (validity_index < 0) {
+                    $t.find('#news-ranking').css('background', 'red');
+                    validation_status = 'false';
+                };
+                
+                if (validity_index == 0) {
+                    $t.find('#news-ranking').css('background', 'yellow');
+                    validation_status = 'unverified';
+                };                
+                // if (val.percentage > 80) {
+                //     $t.find('.ranking').addClass('high_ranking');    
+                // } else if (val.percentage < 40) {
+                //     $t.find('.ranking').addClass('low_ranking');    
+                // } else {
+                //     $t.find('.ranking').addClass('medium_ranking');    
+                // };
                 
                 $t.find('.result-title').text(val.title.substring(0,100));
                 $t.find('.result-title').prop('href', 'stories.html?id=' + key.replace('story',''));
@@ -192,7 +151,23 @@ function search_and_display(what) {
                 
                 $t.appendTo('#search-results-list');
                 
-                addNewsToMap(val.location);
+
+
+                 var contentString = '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            '</div>' +
+                            '<h2 id="firstHeading" class="firstHeading">' + val.title + '</h2>' +
+                            '<h3>Status: ' + validation_status + '</h3>' +
+                            '<div id="bodyContent">' +
+                            '<p>' + val.description + '</p>' +
+                            '<p>See <a href="stories.php?id=' + key.replace('story', '') + '">' + 
+                            'the complete post</a></p>' +
+                            '</div>' +
+                            '</div>';
+
+
+                addNewsToMap(val.location, validity_index, contentString);
+
             };
         });
         
@@ -206,6 +181,12 @@ function search_and_display(what) {
             $('#results-footer').removeClass('hide').text(count + ' results found');
         }
     });
+    
+    if (panel=='map') {
+      $('#map-tab').click();
+    } else {
+      $('#list-tab').click();
+    };
 }
 
 function show_more_results(count) {

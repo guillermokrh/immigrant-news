@@ -45,29 +45,6 @@
 
       <div class="mdc-persistent-drawer__toolbar-spacer"></div>
 
-      <!--<div class="mdc-list-group">-->
-        <!--<nav class="mdc-list">-->
-        <!--  <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">-->
-        <!--      <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>User profile-->
-        <!--    </a>-->
-        <!--  <a class="mdc-list-item" href="#">-->
-        <!--      <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>News feed-->
-        <!--    </a>-->
-        <!--</nav>-->
-
-        <!--<hr class="mdc-list-divider">-->
-
-        <!--<nav class="mdc-list">-->
-        <!--  <a class="mdc-list-item" href="#">-->
-        <!--        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>My news-->
-        <!--      </a>-->
-        <!--  <a class="mdc-list-item" href="#">-->
-        <!--        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Following-->
-        <!--      </a>-->
-        <!--  <a class="mdc-list-item" href="#">-->
-        <!--        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Logout-->
-        <!--      </a>-->
-        <!--</nav>-->
       </div>
     </nav>
   </aside>
@@ -76,19 +53,12 @@
   <header class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-        <a href="#" class="material-icons hamburger-menu mdc-toolbar__menu-icon" onClick='goHome();'>home</a>
+        <a href="/index.html" class="material-icons hamburger-menu mdc-toolbar__menu-icon">home</a>
         <span class="mdc-toolbar__title">Immigrant news</span>
       </section>
 
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-        <div id="simple-search-box" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:131px, -55.3875px; --mdc-ripple-fg-translate-end:60px, -62px;">
-          <input type="text" id="mainsearchbox" class="mdc-text-field__input custom-text-field-input">
-          <label for="mainsearchbox" class="mdc-text-field__label">Search</label>
-          <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_and_display(document.getElementById(&quot;mainsearchbox&quot;).value);' tabindex="0">search</a>
-
-          <div class="mdc-text-field__bottom-line" style=" --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
-        </div>
-
+        
         
           <img class="mdc-toolbar__icon user-avatar hide" id="avatar" src="img/avatars/Unknown.png">
 
@@ -104,6 +74,14 @@
     </div>
 
     <div class="mdc-toolbar__row">
+      <div id="simple-search-box" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:180px; --mdc-ripple-fg-scale:1.75101; --mdc-ripple-fg-translate-start:131px, -55.3875px; --mdc-ripple-fg-translate-end:60px, -62px;">
+          <input type="text" id="mainsearchbox" class="mdc-text-field__input custom-text-field-input" style="color: white;">
+          <label for="mainsearchbox" class="mdc-text-field__label" style="color: white;">Search</label>
+          <a id="do_search" class="material-icons mdc-text-field__icon" onclick='search_and_display(document.getElementById(&quot;mainsearchbox&quot;, &quot;list&quot;).value);' tabindex="0">search</a>
+
+          <div class="mdc-text-field__bottom-line" style=" --mdc-theme-text-primary-on-light:white; transform-origin: 118px center"></div>
+        </div>
+
        <!--ADVANCED SEARCH TOGGLE-->
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <div class="mdc-switch">
@@ -112,7 +90,7 @@
               <div class="mdc-switch__knob"></div>
             </div>
           </div>
-          <label for="basic-switch" class="mdc-switch-label">advanced search</label>
+          <label for="basic-switch" class="mdc-switch-label" size="small">advanced</label>
       </section>
     </div>
 
@@ -174,12 +152,12 @@
     
     <div id='newslist' class="search-results hide">
       <!--<span style="display:inline-block; width: 30px;"></span>-->
-      <h3 id='results-header'>Search results for</h3>
-      <ul class="mdc-list" id="search-results-list">
+      <h3 id='results-header' class='mdc-list-group__subheader'>Search results for</h3>
+      <ul class="mdc-list mdc-list--two-line" id="search-results-list">
         <li class="hide mdc-list-item" id="template">
-          <div id='news-ranking'></div>
-          <p class='ranking'>95%</p>
-          <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
+          <span id='news-ranking' class="mdc-list-item__start-detail grey-bg"></span>          
+          <!--<div id='news-ranking'></div>-->
+          <!--<p class='ranking'>95%</p>-->
           <span class="mdc-list-item__text"> 
               <a class='result-title' href="stories.html?id=story1">title</a> 
               <span class="mdc-list-item__text__secondary">Secondary text</span>
@@ -317,7 +295,7 @@
 
         map = new google.maps.Map(document.getElementById('newsmap'), {
           zoom: 8,
-          center: myLatLng
+          // center: myLatLng
         });
         
         var marker = new google.maps.Marker({
@@ -332,12 +310,19 @@
             lng: position.coords.longitude
           };
   
-          map.setCenter(pos);
+        geocoder.geocode( { 'address': 'Chicago, Illinois'}, function(results, status) {
+          if (status == 'OK') {
+             map.setCenter(results[0].geometry.location);
+
+            // map.setCenter(pos);
+          };
+        });
+          
         }, function() {
           handleLocationError(true, infoWindow, map.getCenter());
         });
         
-        search_to_map('');
+        search_and_display('', 'map');
       }
 
       function fillInAddress() {
