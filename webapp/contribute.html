@@ -86,10 +86,11 @@
                 </div>
             </section>
             <section>
-                <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
-                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button story-contribution-buttons" href="#one">Validate</a>
-                    <a id="invalidate-tab" class="mdc-tab invalidate-button story-contribution-buttons" href="#two">Invalidate</a>
-                    <a id="edit-tab" class="mdc-tab edit-button story-contribution-buttons" href="#three">Edit</a>
+                <nav id="basic-tab-bar" class="mdc-tab-bar mdc-tab-bar--indicator-primary full-width">
+                    <a id="validate-tab" class="mdc-tab mdc-tab--active" href="#validate">Validate</a>
+                    <a id="invalidate-tab" class="mdc-tab" href="#invalidate">Invalidate</a>
+                    <a id="edit-tab" class="mdc-tab" href="#edit">Edit</a>
+                    <span class="mdc-tab-bar__indicator"></span>
                 </nav>
                 <div id="contributeForm">
                     <div class="mdc-layout-grid">
@@ -361,14 +362,14 @@
                 if (data != null) {
                     //alert(data.date);
                     FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
+                    SetUserAvatar(data.user, true);
                 }
             });
 
             //fill the fields
             function FillStoryFields(story) {
                 $('#storyTitle').text(story.title);
-                $('#storyAuthor').text(story.author);
+                $('#storyAuthor').text(story.user);
             }
 
             //set author avatar
@@ -453,7 +454,10 @@
             $('#validate-form, #invalidate-form, #edit-form').hide();
             $('#validate-form').show();
 
+            
             $('#validate-tab').click(function () {
+                //$('#invalidate-tab, #edit-tab,#validate-tab').removeClass('mdc-tab--active');
+                //$(this).addClass('mdc-tab--active');
                 $('#validate-form').show();
                 $('#invalidate-form').hide();
                 $('#edit-form').hide();
@@ -461,6 +465,8 @@
             });
 
             $('#invalidate-tab').click(function () {
+               // $('#invalidate-tab, #edit-tab,#validate-tab').removeClass('mdc-tab--active');
+                //$(this).addClass('mdc-tab--active');
                 $('#validate-form').hide();
                 $('#invalidate-form').show();
                 $('#edit-form').hide();
@@ -468,6 +474,8 @@
             });
 
             $('#edit-tab').click(function () {
+                //$('#invalidate-tab, #edit-tab,#validate-tab').removeClass('mdc-tab--active');
+                //$(this).addClass('mdc-tab--active');
                 $('#validate-form').hide();
                 $('#invalidate-form').hide();
                 $("#edit-form").show();

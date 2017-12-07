@@ -40,6 +40,7 @@ html {
 
 .bar{
   background-color: #e0ebeb;
+  min-height:70px;
 }
 
 .full-height{
@@ -223,4 +224,21 @@ ul {
   background-color: #3f51b5;
   color: white !important;
 }
+
+
+.avatar-circle {
+    border: 2px solid #04B404 !important;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: auto;
+}
+
 

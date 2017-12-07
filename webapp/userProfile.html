@@ -58,35 +58,33 @@
         </header>
 
         <main class="mdc-toolbar-fixed-adjust">
-            <section class="bar fixed-heigh-bar">
+            <section class="bar">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
+                        <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                                <!--div class="demo-card__avatar"></!--div>-->
+                                <div style="padding:0.5rem 0 0.5rem 0.5rem;">
+                                    <span class="avatar-circle">
+                                        <img id="user-avatar" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />
+                                    </span>
+                                </div>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-9-desktop  mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-1-phone">
-                            <h2 id="username" class="username">Username</h2>
+                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" >
+                            <h1 id="username" style="padding:0.5rem 0 0.5rem 0.5rem;"></h1>
                         </div>
-                       <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width">
-                                Follow
-                            </button>
-                        </div>                        
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width verified" title="Contributors">
-                                +5
-                            </button>
+                            <button id="user-rate" class="mdc-button full-height full-width" title="User rate">5</button>
                         </div>
                     </div>
                 </div>
             </section>
-
             <!-- TODO: TAB BAR -->
             <section>
-                <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
-                    <a id="contributions-tab-button" class="mdc-tab mdc-tab--active contributions-button user-tabs" href="#one">Contributions</a>
-                    <a id="validations-tab-button" class="mdc-tab validations-button user-tabs" href="#two">Validations</a>
-                    <a id="comments-tab-button" class="mdc-tab comments-button user-tabs" href="#three">Comments</a>
+                <nav class="mdc-tab-bar mdc-tab-bar--indicator-primary full-width">
+                    <a id="contributions-tab-button" class="mdc-tab mdc-tab--active" href="#one">Contributions</a>
+                    <a id="validations-tab-button" class="mdc-tab" href="#two">Validations</a>
+                    <a id="comments-tab-button" class="mdc-tab" href="#three">Comments</a>
+                    <span class="mdc-tab-bar__indicator"></span>
                 </nav>
 
                 <div id="contributions-tab">
@@ -95,29 +93,6 @@
                     </section>                    
                 </div>
                 <div id="validations-tab">
-                 <!--    <section>
-                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
-                    </section>   -->
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-5" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-5-label" for="radio-5">
-                                            This did not happen
-                                            </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div id="comments-tab">
                     <section>
@@ -125,19 +100,6 @@
                     </section>                    
                 </div>
             </section>
-            <footer>
-                <section class="footer">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
-                                <button id="contribute" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </footer>
         </main>
     </div>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
@@ -159,36 +121,6 @@
     <script src="story.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-/*          
-           var currentStory = null;
-            var currentUser = null;
-            var currentStatusOfAction = "Validate";
-
-            //validating or invalidating data
-            var validateReason = "";
-            var invalidateReason = "";
-
-            var storyId = getUrlParameter("id");
-            currentStory = storyId;
-            currentUser = "immi2";
-            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-                        
-            //story data
-            $.getJSON(storyUrl, function (data) {
-                if (data != null) {
-                    //alert(data.date);
-                    FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
-                }
-            });
-
-            //fill the fields
-            function FillStoryFields(story) {
-                $('#storyTitle').text(story.title);
-                $('#storyAuthor').text(story.author);
-            }
-*/
-            
 
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
@@ -209,9 +141,8 @@
             // Display user avatar and username
             var user = getUrlParameter("user");
             user = "Alligator";
-            document.getElementById('username').textContent = user;
-            document.getElementById('user-avatar').src = 'img/avatars/'+user+'.png';
 
+            SetUserAvatar();
             // get user stories, validations, and comments data
             var storiesUrl = "https://immigrant-news.firebaseio.com/stories.json";
             $.getJSON(storiesUrl, function (storiesData) {
@@ -312,33 +243,35 @@
 
 
             //set author avatar
-            function SetUserAvatar(author, isStoryAuthor) {
-                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
+            function SetUserAvatar() {
+                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + user + '/rating.json';
+
+                $('#username').text(user);
+                $('#user-avatar').attr('src', 'img/avatars/' + user + '.png');
                 $.getJSON(userUrl, function (data) {
                     if (data != null) {
-                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
-                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
-                        $(authorSelector).percircle({
-                            progressBarColor: credibilityColor,
-                            percent: data['credibility-rate']
+                        var credibilityStyle = GetCredibilityColor(data);
+                        $('#user-rate').text(data);
+                        $('#user-rate').addClass(credibilityStyle);
+                        $('#lala').percircle({
+                            progressBarColor: '#ff0000',
+                            percent: 80
                         }).addClass('small');
+
                     }
                 });
             }
 
             //get credibility color
             function GetCredibilityColor(percentage) {
-                if (percentage <= 40) {
-                    return '#ff0000';
+                if (percentage >0) {
+                    return 'verified';
                 }
-                else if (percentage > 40 && percentage <= 60) {
-                    return '#ff8000';
-                }
-                else if (percentage > 60 && percentage < 80) {
-                    return '#bfff00';
+                else if (percentage <0) {
+                    return 'unverified';
                 }
                 else {
-                    return '#31b404';
+                    return 'no-voted';
                 }
             }
 

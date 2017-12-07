@@ -266,11 +266,11 @@
                 var userUrl = "https://immigrant-news.firebaseio.com//users/"+author+".json";
                 $.getJSON(userUrl, function (data) {
                     if (data != null) {
-                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
+                        var credibilityColor = GetCredibilityColor(data['rating']);
                         var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
                         $(authorSelector).percircle({
                             progressBarColor: credibilityColor,
-                            percent: data['credibility-rate']
+                            percent: data['rating']
                         }).addClass('small');
                     }
                 });
@@ -371,7 +371,7 @@
                     $('#contributionsButton').text(validity);
                     return;
                 }
-                else if(validity>0){
+                else if(){
                     $('#contributionsButton').addClass('verified');
                     $('#contributionsButton').text('+' + validity);
                     return;
