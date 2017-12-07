@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <!--link rel="stylesheet" href="story-style.css"-->
     <link rel="stylesheet" href="aa-style.css">
     <link rel="stylesheet" href="assets/lightslider/css/lightslider.css" />
@@ -197,7 +198,10 @@
     <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="assets/lightslider/js/lightslider.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="assets/ubilabs-geocomplete/jquery.geocomplete.min.js"></script>
     <script>
         window.mdc.autoInit();
 
@@ -403,6 +407,10 @@
             $('#submitStory').click(function () {
                 OnSubmit();
             });
+
+            //add the autocomplete locationo
+            $('#storyLocation').geocomplete();
+            $('#storyDate').datepicker();
         });
     </script>
 
