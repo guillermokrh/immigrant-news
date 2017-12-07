@@ -65,11 +65,21 @@ html {
   height: 80px;
 }
 
-.verified{
-  background-color: #04B404 !important;
-  color: white !important;
+.verified, .unverified, .no-voted {
+    color: white !important;
+    text-align: center;
 }
 
+.verified {
+    background-color: #04B404 !important;
+}
+.unverified {
+    background-color: #ff0000 !important;
+}
+
+.no-voted {
+    background-color: #ffd800 !important;
+}
 .right-align {
   text-align: right;
 }
@@ -101,7 +111,6 @@ html {
 }
 
 .footer{
-  height: 50px;
   width: 100%;
   position:fixed;
   bottom:0px;
@@ -172,4 +181,35 @@ html {
 .user-tabs {
   color: white;
   font-size: x-small;
+}
+
+/*Added for thumbnails slider*/
+ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#uploadedImagesSection .item {
+    margin-bottom: 60px;
+}
+
+.content-slider li {
+    text-align: center;
+}
+
+.content-slider h3 {
+    margin: 0;
+    padding: 70px 0;
+}
+.demo-content main{
+    padding-bottom:50px;
+}
+
+#progressBar{
+    background-color: red;
+    position:absolute;
+    top:0;
+    bottom:0;
+    z-index:12000;
 }
