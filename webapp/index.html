@@ -38,22 +38,29 @@
 
 </head>
 
-<body class="mdc-typography">
-  <aside class="mdc-persistent-drawer">
+<body class="demo-body mdc-typography">
+
+<aside class="mdc-persistent-drawer">
     <nav class="mdc-persistent-drawer__drawer">
-      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
-
-      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
-
-      </div>
+        <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+        <div class="mdc-list-group">
+            <nav class="mdc-list">
+                <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
+                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                </a>
+                <a class="mdc-list-item" href="#">
+                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+                </a>
+            </nav>
+        </div>
     </nav>
-  </aside>
+</aside>
 
-
+<div class="demo-content">
   <header class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-        <a href="/index.html" class="material-icons hamburger-menu mdc-toolbar__menu-icon">home</a>
+        <a class="material-icons hamburger-menu mdc-toolbar__menu-icon">menu</a>
         <span class="mdc-toolbar__title">Immigrant News</span>
       </section>
 
@@ -132,7 +139,7 @@
     
   </header>
 
-  <main>
+  <main class="demo-main">
     <div id='tabs' >
       <nav class="mdc-tab-bar mdc-tab-bar--icons-with-text">
             <a id='map-tab' class="mdc-tab mdc-tab--with-icon-and-text mdc-tab--active" onclick='show_map();' href="#displaymap">Map
@@ -231,7 +238,7 @@
   $('.srch').hide();
     
   window.mdc.autoInit();
-
+  
   //   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
   // toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
 
@@ -364,6 +371,8 @@
         async defer></script>
         
   <script src="search.js"></script>
+  
+</div>  
 </body>
 
 </html>
