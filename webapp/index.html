@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -39,21 +39,30 @@
 </head>
 
 <body class="mdc-typography">
-  <aside class="mdc-persistent-drawer">
+
+<aside class="mdc-persistent-drawer">
     <nav class="mdc-persistent-drawer__drawer">
-      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+        <div class="mdc-persistent-drawer__toolbar-spacer"></div>   
+        <div class="mdc-persistent-drawer__toolbar-spacer"></div>
 
-      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
-
-      </div>
+        <div class="mdc-list-group">
+            <nav class="mdc-list">
+                <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
+                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                </a>
+                <a class="mdc-list-item" href="#">
+                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+                </a>
+            </nav>
+        </div>
     </nav>
-  </aside>
+</aside>
 
-
+<!--<div class="demo-content">-->
   <header class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-        <a href="/index.html" class="material-icons hamburger-menu mdc-toolbar__menu-icon">home</a>
+        <a class="material-icons hamburger-menu mdc-toolbar__menu-icon">menu</a>
         <span class="mdc-toolbar__title">Immigrant News</span>
       </section>
 
@@ -232,6 +241,30 @@
     
   window.mdc.autoInit();
 
+  
+  //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+  var getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : sParameterName[1];
+          }
+      }
+  };
+
+  loginParam = getUrlParameter("login");
+  console.log('login param: ' + loginParam);
+  if(loginParam == "true") {
+    modalAction();
+  }
+
+
   //   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
   // toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
 
@@ -364,6 +397,8 @@
         async defer></script>
         
   <script src="search.js"></script>
+  
+<!--</div>  -->
 </body>
 
 </html>
