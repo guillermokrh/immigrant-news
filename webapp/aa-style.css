@@ -297,11 +297,11 @@ ul {
 }
 
 .story-list span.novoted {
-    background-color: yellow;
+    background-color: gold;
 }
 
 .story-list.novoted {
-    border: 1px solid yellow;
+    border: 1px solid gold;
 }
 
 
