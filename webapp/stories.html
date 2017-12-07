@@ -120,7 +120,7 @@
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <label for="text-field-no-js">Commentary: </label>
+                            <label for="text-field-no-js">Comment: </label>
                             <div class="mdc-text-field full-width">
                                 <input type="text" id="commentaryInputText" class="mdc-text-field__input" placeholder="Write your commentary here...">
                                 <div class="mdc-text-field__bottom-line"></div>
@@ -255,7 +255,7 @@
                     '<img class="' + comment.user + ' avatar"src="img/avatars/' + comment.user + '.png" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />' +
                     '<div>' +
                     '<a href="userProfile.html?user=' + comment.user + '">' + comment.user + '</a>' +
-                    comment.text +
+                    ': ' + comment.text +
                     '</div>' +
                     '</li>';
                 return commentTemplate;
