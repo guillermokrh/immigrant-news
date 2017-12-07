@@ -308,10 +308,10 @@
             window.mdc.autoInit();
             
             // Redirect user to login if not logged in
-            if(!firebase.auth().currentUser) {
+            /*if(!firebase.auth().currentUser) {
                 document.getElementById("main-display").display = "none";
                 window.location.replace('index.html?login=true');
-            }
+            }*/
 
 
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
@@ -346,7 +346,7 @@
 
 
             function getCurrentUser() {
-                var currentUserEmail = firebase.auth().currentUser.email;
+                var currentUserEmail = "Alligator";
                 $.getJSON("https://immigrant-news.firebaseio.com/users.json", function(data) {
                     console.log("HERES THE DATA: " + data);
                 });
