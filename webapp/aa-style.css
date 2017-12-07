@@ -254,7 +254,7 @@ ul {
     width: 3.5rem;
 }
 .user-comments{
-    white-space:pre-line;
+    white-space:nowrap;
     height: 100% !important;
     padding-top:0.2rem;
     padding-bottom:0.2rem;
