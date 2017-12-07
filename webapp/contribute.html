@@ -354,7 +354,7 @@
             var currentSelectedImages = new Array();
 
             var currentStory = getUrlParameter("id");
-            var currentUser = "Alligator";
+            var currentUser = getCurrentUser();
             var currentStatusOfAction = "valid";
             var currentUploadedVideo = "";
             //validating or invalidating data
@@ -363,6 +363,14 @@
             var currentDescription = "";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + currentStory + ".json";
             var backUrl = "stories.html?id=" + currentStory;
+
+
+            function getCurrentUser() {
+                var currentUserEmail = firebase.auth().currentUser.email;
+                $.getJSON("https://immigrant-news.firebaseio.com/users.json", function(data) {
+                    console.log("HERES THE DATA: " + data);
+                });
+            }
 
             //story data
             $.getJSON(storyUrl, function (data) {
