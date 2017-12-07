@@ -163,6 +163,7 @@
 
             // Display user avatar and username
             var user = getUrlParameter("user");
+            user = "alligator";
             // Capitalize first letter of the username
             // Source: https://paulund.co.uk/capitalize-first-letter-string-javascript
             user = user.charAt(0).toUpperCase() + user.slice(1);
@@ -373,11 +374,20 @@
                         cssClass = "novoted";
                     }
 
+                    var storyDescription = value.description;
+                    console.log(storyDescription.length);
+                    if(storyDescription.length > 45)
+                    {
+                        console.log(storyDescription + storyDescription.length);
+                        storyDescription = storyDescription.substring(0,45) + '...'
+                        console.log(storyDescription + storyDescription.length);
+                    }
+
                     var storyTpl = '<li class="mdc-list-item story-list ' + cssClass + '">' +
                         '<span class="mdc-list-item__start-detail ' + cssClass + '">' + ((value.validity > 0) ? '+' + value.validity : value.validity) + '</span>' +
                         '<div class="mdc-list-item__text">' +
                         ' <a href="' + value.storyLink + '"><div class="tab-list-title">' + value.title + '</div></a>' +
-                        '<div class="mdc-list-item__text__secondary">' + value.description + '</div>' +
+                        '<div class="mdc-list-item__text__secondary">' + storyDescription + '</div>' +
                         '</div>' +
                         '</li>';
 
