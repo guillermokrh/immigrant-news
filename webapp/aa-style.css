@@ -228,9 +228,12 @@ ul {
 }
 .tab-list-title {
   font-weight: bold;
-  font-size: large;
+  font-size: small;
 }
 
+.tab-list-comment {
+  font-size: small;
+}
 
 .avatar-circle {
     border: 2px solid #04B404 !important;
