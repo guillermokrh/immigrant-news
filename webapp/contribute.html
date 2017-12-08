@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--Needed for slightslider to work-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
     <title>Immigrant News</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
@@ -10,6 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="aa-style.css">
     <link rel="stylesheet" href="assets/percircle/css/percircle.css" />
+    <link rel="stylesheet" href="assets/lightslider/css/lightslider.css" />
 </head>
 <body class="demo-body mdc-typography">
     <aside class="mdc-persistent-drawer">
@@ -17,31 +21,11 @@
             <div class="mdc-persistent-drawer__toolbar-spacer"></div>
             <div class="mdc-list-group">
                 <nav class="mdc-list">
-                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="index.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>Home
                     </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
-                    </a>
-                </nav>
-
-                <hr class="mdc-list-divider">
-
-                <nav class="mdc-list">
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+                    <a class="mdc-list-item" href="add_story.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">+</i>Add a story
                     </a>
                 </nav>
             </div>
@@ -52,105 +36,176 @@
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
-                    <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+                    <span class="mdc-toolbar__title catalog-title">Immigrant News</span>
                 </section>
             </div>
         </header>
 
-        <main class="mdc-toolbar-fixed-adjust">
-            <section class="bar fixed-heigh-bar">
+        <main id="main-display" class="mdc-toolbar-fixed-adjust content">
+            <section class="bar">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <section style="padding-left: 1em;padding-top: 1.2em;">
-                                <div id="storyAuthorAvatar" title="Credibility rate of this user"></div>
-                                <h1 id="storyTitle" class="mdc-card__title">ICE Raid Illinois</h1>
-                                <h2 class="mdc-card__subtitle"><a id="storyAuthor" href="#">Author</a></h2>
+                        <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                            <section>
+                                <div style="padding:0.5rem 0 0.5rem 0.5rem;">
+                                    <span class="avatar-circle">
+                                        <img id="user-avatar" title="User" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />
+                                    </span>
+                                </div>
                             </section>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width">
-                                Follow
-                            </button>
+                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" style="padding-top:1.5rem;">
+                            <h1 class="mdc-card__title" id="storyTitle" style="margin:0;">ICE Raid Illinois</h1>
+                            <h2 class="mdc-card__subtitle" style="margin:0;"><a id="storyAuthor" href="#">Author</a></h2>
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width verified" title="Contributors">
-                                +5
-                            </button>
+                            <button id="contributionsButton" class="mdc-button full-height full-width" title="Contributors"></button>
                         </div>
                     </div>
                 </div>
             </section>
             <section>
-                <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
-                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button story-contribution-buttons" href="#one">Validate</a>
-                    <a id="invalidate-tab" class="mdc-tab invalidate-button story-contribution-buttons" href="#two">Invalidate</a>
-                    <a id="edit-tab" class="mdc-tab edit-button story-contribution-buttons" href="#three">Edit</a>
+                <nav id="basic-tab-bar" class="mdc-tab-bar mdc-tab-bar--indicator-primary full-width">
+                    <a id="validate-tab" class="mdc-tab mdc-tab--active" href="#validate">Validate</a>
+                    <a id="invalidate-tab" class="mdc-tab" href="#invalidate">Invalidate</a>
+                    <a id="edit-tab" class="mdc-tab" href="#edit">Edit</a>
+                    <span class="mdc-tab-bar__indicator"></span>
                 </nav>
-
-                <div id="validate-form">
+                <div id="contributeForm">
                     <div class="mdc-layout-grid">
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
+                                <div id="validate-form">
+                                    <ul class="mdc-list mdc-list--two-line mdc-list--dense">
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radiosValidate" checked value="I saw this happened">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
                                             </div>
+                           <label id="radio-1-label" for="radio-1">
+                                                I saw this happened
+                                            </label>
+                                        </li>
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-2" name="radiosValidate" value="This happened to me">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
                                         </div>
-                                        <label id="radio-1-label" for="radio-1">
-                                            I saw this happen
-                                        </label>
+                                            <label id="radio-1-label" for="radio-1">
+                                                This happened to me
+                                            </label>
                                     </li>
-                                    <li class="mdc-list-item">
-
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-2" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-3" name="radiosValidate" value="This happened to a friend of mine">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <label id="radio-2-label" for="radio-2">
-                                            This happened to me
-                                        </label>
-                                    </li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-3" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
+                                            <label id="radio-3-label" for="radio-3">
+                                                This happened to a friend of mine
+                                            </label>
+                                        </li>
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-4" name="radiosValidate" value="Other">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <label id="radio-3-label" for="radio-3">
-                                            This happened to a friend of mine
-                                        </label>
-                                    </li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-4" name="radios" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
+                                            <label id="radio-4-label" for="radio-4">
+                                                Other
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="invalidate-form">
+                                    <ul class="mdc-list mdc-list--two-line mdc-list--dense">
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-5" name="radiosInvalidate" checked value="This did not happen">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <label id="radio-4-label" for="radio-4">
-                                            Other
-                                        </label>
-                                    </li>
-                                </ul>
+                                            <label id="radio-5-label" for="radio-5">
+                                                This did not happen
+                                            </label>
+                                        </li>
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-6" name="radiosInvalidate" value="This is innacurate">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
+                                            </div>
+                                            <label id="radio-6-label" for="radio-6">
+                                                This is innacurate
+                                            </label>
+                                        </li>
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-7" name="radiosInvalidate" value="No supporting evidence">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
+                                            </div>
+                                            <label id="radio-7-label" for="radio-7">
+                                                No supporting evidence
+                                            </label>
+                                        </li>
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-radio">
+                                                <input class="mdc-radio__native-control" type="radio" id="radio-8" name="radiosInvalidate" value="Other">
+                                                <div class="mdc-radio__background">
+                                                    <div class="mdc-radio__outer-circle"></div>
+                                                    <div class="mdc-radio__inner-circle"></div>
+                                                </div>
+                                            </div>
+                                            <label id="radio-8-label" for="radio-8">
+                                                Other
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="edit-form" style="padding-top:5px;">
+                                    <ul class="mdc-list mdc-list--two-line mdc-list--dense">
+                                        <li class="mdc-list-item">
+                                            <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width">
+                                                <i class="material-icons mdc-text-field__icon" tabindex="0">event</i>
+                                                <input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">
+                                                <label id="storyDate" for="tf-box-leading" class="mdc-text-field__label">10/01/17</label>
+                                                <div class="mdc-text-field__bottom-line"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width">
+                                                <i class="material-icons mdc-text-field__icon" tabindex="0">place</i>
+                                                <input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">
+                                                <label id="storyLocation" for="tf-box-leading" class="mdc-text-field__label">Aurora, IL</label>
+                                                <div class="mdc-text-field__bottom-line"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-
                                 <div class="mdc-layout-grid">
                                     <div class="mdc-layout-grid__inner">
                                         <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
                                             <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
-                                                <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
+                                                <textarea id="validationDescription" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
                                             </div>
                                         </div>
                                         <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
@@ -158,7 +213,7 @@
                                                 <div class="mdc-layout-grid__inner">
                                                     <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
                                                         <div class="mdc-text-field full-width full-height">
-                                                            <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
+                                                            <input id="validationUrl" class="mdc-text-field__input" placeholder="Url">
                                                             <div class="mdc-text-field__bottom-line"></div>
                                                         </div>
                                                     </div>
@@ -174,144 +229,26 @@
                                                             Video
                                                         </button>
                                                     </div>
+                                                    <input id="pictureFileOpener" type="file" accept=".png, .jpg, .jpeg" multiple style="visibility:hidden" />
+                                                    <input id="videoFileOpener" name="file[]" type="file" accept=".mp4" style="visibility:hidden" />
                                                 </div>
-
-                                                <label class="selectedPicVal">File Name</label>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="invalidate-form">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-5" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
+                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone" style="text-align:center;">
+                                            <section id="uploadedImagesSection"></section>
                                         </div>
-                                        <label id="radio-5-label" for="radio-5">
-                                            This did not happen
-                                            </label>
-</li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-6" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
+                                        <div class="mdc-layout-grid__cell--span-2-desktop">
                                         </div>
-                                        <label id="radio-6-label" for="radio-6">
-                                            This is inaccurate
-                                            </label>
-</li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-7" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
+                                        <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                            <section id="uploadVideoSection">
+                                                <video id="videoPlayer" style="width:100%;" controls type="video/mp4">
+                                                    <source src="" id="story_video">
+                                                    Your browser does not support HTML5 video.
+                                                </video>
+                                            </section>
                                         </div>
-                                        <label id="radio-7-label" for="radio-7">
-                                            No supporting evidence
-                                            </label>
-</li>
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-8" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
+                                        <div class="mdc-layout-grid__cell--span-2-desktop">
                                         </div>
-                                        <label id="radio-8-label" for="radio-8">
-                                            Other
-                                            </label>
-</li>
-                                </ul>
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-
-                                <div class="mdc-layout-grid">
-                                    <div class="mdc-layout-grid__inner">
-                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                            <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
-                                                <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="20" placeholder="Add some details"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                            <div class="mdc-layout-grid">
-                                                <div class="mdc-layout-grid__inner">
-                                                    <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
-                                                        <div class="mdc-text-field full-width full-height">
-                                                            <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
-                                                            <div class="mdc-text-field__bottom-line"></div>
-                                                        </div>
-                                                    </div>
-                                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                            <button class="mdc-button full-height full-width picturefileOpener" title="Upload a picture">
-                                                                <i class="material-icons mdc-button__icon">photo</i>
-                                                                Photo
-                                                            </button>
-                                                        </div>
-                                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                                            <button class="mdc-button full-height full-width videofileOpener" title="Upload a video">
-                                                                <i class="material-icons mdc-button__icon">movie</i>
-                                                                Video
-                                                            </button>
-                                                        </div>
-                                                        <input id="pictureFileOpener" type="file" style="visibility:hidden;" accept=".jpg,.png,.jpeg" />
-                                                        <input id="videoFileOpener" type="file" style="visibility:hidden;" accept=".mp4" />
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="edit-form">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
-                                    <textarea id="textarea-css-only" class="mdc-text-field__input" rows="8" cols="20" placeholder="Add some details"></textarea>
-                                </div>
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <div class="mdc-layout-grid">
-                                    <div class="mdc-layout-grid__inner">
-                                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
-                                            <div class="mdc-text-field full-width full-height">
-                                                <input type="text" id="my-text-field" class="mdc-text-field__input" placeholder="Url">
-                                                <div class="mdc-text-field__bottom-line"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                            <button class="mdc-button full-height full-width picturefileOpener" title="Upload a picture">
-                                                <i class="material-icons mdc-button__icon">photo</i>
-                                                Photo
-                                            </button>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
-                                            <button class="mdc-button full-height full-width videofileOpener" title="Upload a video">
-                                                <i class="material-icons mdc-button__icon">movie</i>
-                                                Video
-                                            </button>
-                                        </div>
-                                        <input id="pictureFileOpener" type="file" style="visibility:hidden;" accept=".jpg,.png,.jpeg" />
-                                        <input id="videoFileOpener" type="file" style="visibility:hidden;" accept=".mp4" />
                                     </div>
                                 </div>
                             </div>
@@ -319,21 +256,34 @@
                     </div>
                 </div>
             </section>
-            <footer>
-                <section class="footer">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
-                                <button id="contribute" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit">
-                                    Submit
-                                </button>
-                            </div>
+            <!--div id="progressBar">
+                <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate">
+                    <div class="mdc-linear-progress__buffering-dots"></div>
+                    <div class="mdc-linear-progress__buffer"></div>
+
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                        <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                </div>
+            </div-->
+        </main>
+        <footer class="footer">
+            <section>
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
+                            <button id="contribute" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit">
+                                Submit
+                            </button>
                         </div>
                     </div>
-                </section>
-            </footer>
-        </main>
+                </div>
+            </section>
+        </footer>
     </div>
+
+    
+
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -346,20 +296,23 @@
             messagingSenderId: "598567031572"
         };
         firebase.initializeApp(config);
+
     </script>
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
+    <script src="assets/lightslider/js/lightslider.js"></script>
     <script src="story.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var currentStory = null;
-            var currentUser = null;
-            var currentStatusOfAction = "Validate";
+            window.mdc.autoInit();
+            
+            // Redirect user to login if not logged in
+            /*if(!firebase.auth().currentUser) {
+                document.getElementById("main-display").display = "none";
+                window.location.replace('index.html?login=true');
+            }*/
 
-            //validating or invalidating data
-            var validateReason = "";
-            var invalidateReason = "";
 
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
@@ -377,39 +330,55 @@
                 }
             };
 
-            var storyId = getUrlParameter("id");
-            currentStory = storyId;
-            currentUser = "immi2";
-            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
+            var imagesCounter = 0;
+            var currentSelectedImages = new Array();
+
+            var currentStory = getUrlParameter("id");
+            var currentUser = getCurrentUser();
+            var currentStatusOfAction = "valid";
+            var currentUploadedVideo = "";
+            //validating or invalidating data
+            var validateReason = "";
+            var invalidateReason = "";
+            var currentDescription = "";
+            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + currentStory + ".json";
+            var backUrl = "stories.html?id=" + currentStory;
+
+
+            function getCurrentUser() {
+                var currentUserEmail = "Alligator";
+                $.getJSON("https://immigrant-news.firebaseio.com/users.json", function(data) {
+                    console.log("HERES THE DATA: " + data);
+                });
+            }
 
             //story data
             $.getJSON(storyUrl, function (data) {
                 if (data != null) {
                     //alert(data.date);
                     FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
+                    SetUserAvatar(data.user, true);
+                    SetStoryValidation(data.validations);
                 }
             });
 
             //fill the fields
             function FillStoryFields(story) {
                 $('#storyTitle').text(story.title);
-                $('#storyAuthor').text(story.author);
+                $('#storyAuthor').text(story.user);
+                $('#storyAuthor').attr('href', 'userProfile.html?user=' + story.user);
             }
 
             //set author avatar
             function SetUserAvatar(author, isStoryAuthor) {
-                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
-                $.getJSON(userUrl, function (data) {
-                    if (data != null) {
-                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
-                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
-                        $(authorSelector).percircle({
-                            progressBarColor: credibilityColor,
-                            percent: data['credibility-rate']
-                        }).addClass('small');
-                    }
-                });
+                var userUrl = "https://immigrant-news.firebaseio.com//users/" + author + ".json";
+                if (isStoryAuthor) {
+                    $('#username').text(author);
+                    $('#user-avatar').attr('src', 'img/avatars/' + author + '.png');
+                }
+                else {
+                    $('.' + author).attr('src', 'img/avatars/' + author + '.png');
+                }
             }
 
             //get credibility color
@@ -443,35 +412,199 @@
                     $('#videoFileOpener').trigger('click');
             }
 
-            $('#pictureFileOpener').change(function (value) {
-                $('.selectedPicVal').text($(this).val());
+            $('#pictureFileOpener').change(function (event) {
+                var files = $(this)[0].files;
+                var input = this;
+                if (files.length > 5) {
+                    alert('You can upload up to 5 pictures only');
+                    return;
+                }
+
+                for (var i = 0; i < files.length; i++) {
+                    var reader = new FileReader();
+                    var currentName = files[i].name;
+                    reader.onload = function (e) {
+                        //$('#blah').attr('src', e.target.result);
+                        //alert(e.target.result);
+
+                        var currentImage = {
+                            name: currentName,
+                            url: e.target.result
+                        }
+
+                        currentSelectedImages.push(currentImage);
+                        //PreviewUploadedImages(e.target.result);
+                        imagesCounter += 1;
+                        ActivateSlider(files.length);
+                    }
+                    reader.readAsDataURL(files[i]);
+                }
+                //$(".selectedPicVal").text(fileNames);
+
             });
 
 
             //functions when clicking on validate or invalidate tabs
             $('#validate-form, #invalidate-form, #edit-form').hide();
             $('#validate-form').show();
-
+            $('#validate-tab').addClass('validate-button');
+            $('#invalidate-tab').addClass('invalidate-button');
+            $('#edit-tab').addClass('selected-tab');
+            
             $('#validate-tab').click(function () {
+                $('#validate-tab').addClass('mdc-tab--active');
+                $('#invalidate-tab').removeClass('mdc-tab--active');
+                $('#edit-tab').removeClass('mdc-tab--active');
                 $('#validate-form').show();
                 $('#invalidate-form').hide();
                 $('#edit-form').hide();
-                currentStatusOfAction = "Validate";
+                currentStatusOfAction = "valid";
             });
 
             $('#invalidate-tab').click(function () {
+                $('#invalidate-tab').addClass('mdc-tab--active');
+                $('#validate-tab').removeClass('mdc-tab--active');
+                $('#edit-tab').removeClass('mdc-tab--active');
                 $('#validate-form').hide();
                 $('#invalidate-form').show();
                 $('#edit-form').hide();
-                currentStatusOfAction = "Invalidate";
+                currentStatusOfAction = "invalid";
             });
 
             $('#edit-tab').click(function () {
+                $('#invalidate-tab').removeClass('mdc-tab--active');
+                $('#validate-tab').removeClass('mdc-tab--active');
+                $('#edit-tab').addClass('mdc-tab--active');
                 $('#validate-form').hide();
                 $('#invalidate-form').hide();
                 $("#edit-form").show();
-                currentStatusOfAction = "Edit";
+                currentStatusOfAction = "edit";
             });
+
+
+
+            //function to build the thumbnail slider
+            function PreviewUploadedImages(image) {
+                var previewSection = $('#uploadedImagesSection .item #content-slider');
+                var thumbnailTemplate =
+                    '<li>' +
+                    '<img src="' + image.url + '" alt="' + image.name + '" style="width:100%">' +
+                    '</li>';
+                $(previewSection).append(thumbnailTemplate);
+            }
+
+            function ActivateSlider(flag) {
+                if (imagesCounter == flag) {
+                    $('#uploadedImagesSection').html();
+                    $('#uploadedImagesSection').html('<div class="item"><ul id="content-slider" class="content-slider"></ul></div>');
+                    for (var i = 0; i < currentSelectedImages.length; i++) {
+                        PreviewUploadedImages(currentSelectedImages[i]);
+                    }
+
+                    $("#content-slider").lightSlider({
+                        loop: true,
+                        keyPress: true
+                    });
+                    imagesCounter = 0;
+                }
+            }
+
+            //hiding video section
+            $('#uploadVideoSection').hide();
+
+            $('#videoFileOpener').change(function (event) {
+                var files = $(this)[0].files;
+                var videoName = files[0].name;
+                if (files.length > 0) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#story_video').attr('src', e.target.result);
+                        $('#uploadVideoSection').show();
+                        $('#videoPlayer').load();
+                        currentUploadedVideo = e.target.result;
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+
+            //detect changes in the radiobuttons
+            $('input[type=radio][name=radiosValidate]').change(function () {
+                validateReason = this.value;
+            });
+
+            $('input[type=radio][name=radiosInvalidate]').change(function () {
+                invalidateReason = this.value;
+            });
+
+            //submit changes
+            $('#contribute').click(function () {
+                var validationUrl = $("validationUrl").val();
+                validationUrl = typeof validationUrl == 'undefined' ? "" : validationUrl;
+                var validationDescription = $("#validationDescription").val();
+                validationDescription = typeof validationDescription == 'undefined' ? "" : validationDescription;
+                var reason = "";
+                var vote = "";
+                if (currentStatusOfAction == "valid") {
+                    reason = validateReason;
+                    vote = currentStatusOfAction;
+                }
+                else if (currentStatusOfAction == "invalid") {
+                    reason = invalidateReason;
+                    vote = currentStatusOfAction;
+                }
+                else if (currentStatusOfAction = "edit") {
+
+                }
+
+                if ($.trim(validationDescription) == "" || validationDescription.length<10) {
+                    alert('description cannot be empty or too short');
+                }
+                //firebaseLink to that obj
+                var ref = firebase.database().ref('/stories/story' + currentStory + '/validations');
+                ref.once('value', function (snapshot) {
+                    var countValidations = snapshot.numChildren()+1;
+                    var validationName = "validation" + countValidations;
+                    var obj = {};
+                    obj[validationName] = {
+                        'reason': reason,
+                        'user': currentUser,
+                        'vote': vote,
+                        'images': currentSelectedImages,
+                        'url': validationUrl,
+                        'video': currentUploadedVideo,
+                        'description': validationDescription
+                    };
+                    ref.update(obj);
+                    window.location.replace(backUrl);
+                });
+            });
+
+            //update story validation
+            function SetStoryValidation(validations) {
+                var validCount = 0;
+                var invalidCount = 0;
+                var validity = 0;
+                $.each(validations, function (index, value) {
+                    if (value.vote == 'valid') validCount += 1;
+                    else if (value.vote == 'invalid') invalidCount += 1;
+                });
+                validity = validCount - invalidCount;
+
+                if (validity < 0) {
+
+                    $('#contributionsButton').addClass('unverified');
+                    $('#contributionsButton').text(validity);
+                    return;
+                }
+                else if (validity > 0) {
+                    $('#contributionsButton').addClass('verified');
+                    $('#contributionsButton').text('+' + validity);
+                    return;
+                }
+                $('#contributionsButton').addClass('no-voted');
+                $('#contributionsButton').text(validity);
+            }
         });
     </script>
 

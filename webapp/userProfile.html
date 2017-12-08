@@ -17,31 +17,11 @@
             <div class="mdc-persistent-drawer__toolbar-spacer"></div>
             <div class="mdc-list-group">
                 <nav class="mdc-list">
-                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="index.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>Home
                     </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
-                    </a>
-                </nav>
-
-                <hr class="mdc-list-divider">
-
-                <nav class="mdc-list">
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+                    <a class="mdc-list-item" href="add_story.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">+</i>Add a story
                     </a>
                 </nav>
             </div>
@@ -52,92 +32,76 @@
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
-                    <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+                    <span class="mdc-toolbar__title catalog-title">Immigrant News</span>
                 </section>
             </div>
         </header>
 
         <main class="mdc-toolbar-fixed-adjust">
-            <section class="bar fixed-heigh-bar">
+            <section class="bar">
                 <div class="mdc-layout-grid">
-                    <div class="mdc-layout-grid__inner" style="background: cornflowerblue">
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                                <!--div class="demo-card__avatar"></!--div>-->
+                                <div style="padding:0.5rem 0 0.5rem 0.5rem;">
+                                    <span class="avatar-circle">
+                                        <img id="user-avatar" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />
+                                    </span>
+                                </div>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone"
-                            style="display:flex;">
-                            <h2 id="username" class="username">Username</h2>
-                            <!-- <button class="mdc-button" style="flex:1; align-self: center;">Follow</button>                     -->
-                            <a class="mdc-list-item follow-star" href="#">
-                              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>
-                            </a>    
+                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" >
+                            <h1 id="username" style="padding:0.5rem 0 0.5rem 0.5rem;"></h1>
                         </div>
                         <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width verified" title="Contributors">
-                                +5
-                            </button>
+                            <button id="user-rate" class="mdc-button full-height full-width" title="User rate">5</button>
                         </div>
                     </div>
                 </div>
             </section>
-
             <!-- TODO: TAB BAR -->
             <section>
-                <nav id="basic-tab-bar" class="mdc-tab-bar full-width">
-                    <a id="validate-tab" class="mdc-tab mdc-tab--active validate-button user-tabs" href="#one">Contributions</a>
-                    <a id="invalidate-tab" class="mdc-tab invalidate-button user-tabs" href="#two">Validations</a>
-                    <a id="edit-tab" class="mdc-tab edit-button user-tabs" href="#three">Comments</a>
+                <nav class="mdc-tab-bar mdc-tab-bar--indicator-primary full-width">
+                    <a id="contributions-tab-button" class="mdc-tab mdc-tab--active" href="#contributions">Contributions</a>
+                    <a id="validations-tab-button" class="mdc-tab" href="#validations">Validations</a>
+                    <a id="comments-tab-button" class="mdc-tab" href="#comments">Comments</a>
+                    <span class="mdc-tab-bar__indicator"></span>
                 </nav>
-
-                <div id="contributions-tab">
-                    <section>
-                        <ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul>
-                    </section>                    
-                </div>
-                <div id="validations-tab">
-                 <!--    <section>
-                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
-                    </section>   -->
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
-                                <ul class="mdc-list mdc-list--two-line mdc-list--dense">
-                                    <li class="mdc-list-item">
-                                        <div class="mdc-radio">
-                                            <input class="mdc-radio__native-control" type="radio" id="radio-5" name="radiosInvalidate" checked>
-                                            <div class="mdc-radio__background">
-                                                <div class="mdc-radio__outer-circle"></div>
-                                                <div class="mdc-radio__inner-circle"></div>
-                                            </div>
-                                        </div>
-                                        <label id="radio-5-label" for="radio-5">
-                                            This did not happen
-                                            </label>
-                                    </li>
-                                </ul>
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div id="contributions-tab">
+                                <section>
+                                    <!--ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul-->
+                                    <ul id="userContributions" class="mdc-list mdc-list--two-line"></ul>
+                                </section>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="comments-tab">
-                    <section>
-                        <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
-                    </section>                    
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div id="validations-tab">
+                                <section>
+                                    <!--ul id="userContributions" class="mdc-list mdc-list--avatar-list comment-list"></ul-->
+                                    <ul id="userValidations" class="mdc-list mdc-list--two-line"></ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div id="comments-tab">
+                                <section>
+                                    <ul id="userComments" class="mdc-list mdc-list--avatar-list comment-list"></ul>
+                                </section>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
             </section>
-            <footer>
-                <section class="footer">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
-                                <button id="contribute" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </footer>
         </main>
     </div>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
@@ -157,18 +121,9 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="assets/percircle/js/percircle.js" type="text/javascript"></script>
     <script src="story.js"></script>
-    
-
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var currentStory = null;
-            var currentUser = null;
-            var currentStatusOfAction = "Validate";
-
-            //validating or invalidating data
-            var validateReason = "";
-            var invalidateReason = "";
 
             //source: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
             var getUrlParameter = function getUrlParameter(sParam) {
@@ -186,38 +141,96 @@
                 }
             };
 
+            // Display user avatar and username
+            var user = getUrlParameter("user");
+            user = "Cheetah";
+            // Capitalize first letter of the username
+            // Source: https://paulund.co.uk/capitalize-first-letter-string-javascript
+            user = user.charAt(0).toUpperCase() + user.slice(1);
+            SetUserAvatar();
+            // get user stories, validations, and comments data
+            var storiesUrl = "https://immigrant-news.firebaseio.com/stories.json";
+            $.getJSON(storiesUrl, function (storiesData) {
+                
+                // userStories is an object of the form {"storyTitle": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"};
+                var userStories = GetUserStories(storiesData);
 
-            var storyId = getUrlParameter("id");
-            var username = getUrlParameter("username");    
-            username = "Armadillo";
-            document.getElementById('user-avatar').src = "img/avatars/"+username+".png";
-            currentStory = storyId;
-            currentUser = "immi2";
-            var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-            var contributionsUrl = "https://immigrant-news.firebaseio.com/stories.json";
-            var commentsUrl = "https://immigrant-news.firebaseio.com/comments.json";
-            
-            //story data
-            $.getJSON(storyUrl, function (data) {
-                if (data != null) {
-                    //alert(data.date);
-                    FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
-                }
+                // userValidations is an object of the form {"vote": "valid", "title": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"}
+                var userValidations = GetUserValidations(storiesData);
+
+                // userComments is an object of the form {"comment": "Oh no!", "title": "Immigrants arrested without evidence!", "storyLink": "stories.html?id=9"};
+                var userComments = GetUserComments(storiesData);
+
+                
+                // DisplayStories(userStories);
+                // DisplayValidations(userValidations);
+                DisplayComments(userComments);
+                DisplayUserStories(userStories);
+                DisplayUserValidations(userValidations);
             });
-            
-            // comments
-            $.getJSON(commentsUrl, function (data) {
-                DisplayComments(data);
-            });
+
+
+            function GetUserStories(storiesData) {
+                var userStories = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    if(user == storyObj.user) {                        
+                        //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                        var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                        
+                        var storyLink = "stories.html?id=" + storyID;
+
+                        var validations = storyObj.validations;
+                        var validity = GetStoryValidation(validations);
+                        storyLinkObj = { "title": storyObj.title, "storyLink": storyLink, "validity": validity, "description": storyObj.description };
+                        userStories.push(storyLinkObj);                        
+                    }
+                });
+
+                return userStories;
+            }
+
+            function GetUserValidations(storiesData) {
+                var userValidations = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    $.each(storyObj.validations, function(index, validationObj) {
+                        if(user == validationObj.user) {
+                            //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                            var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                            
+                            var storyLink = "stories.html?id=" + storyID;
+                            validationLinkObj = { "vote": validationObj.vote, "title": storyObj.title, "storyLink": storyLink, "reason": validationObj.reason };
+                            userValidations.push(validationLinkObj);
+                        }
+                    })
+                });
+                return userValidations;
+            }
+
+            function GetUserComments(storiesData) {
+                
+                var userComments = [];
+                $.each(storiesData, function(storyIndex, storyObj) {
+                    $.each(storyObj.comments, function(index, comObj) {
+                        if(user == comObj.user) {
+                            //source: https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
+                            var storyID = storyIndex.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+                            
+                            var storyLink = "stories.html?id="+storyID;
+                            commentLinkObj = {"comment": comObj.text, "title": storyObj.title, "storyLink": storyLink};
+                            userComments.push(commentLinkObj);
+                        }
+                    })
+                });
+                return userComments;
+            }
 
             //display comments
             function DisplayComments(comments) {
                 if (comments != null) {
-                    $.each(comments, function (index, value) {
-                        $('#userComments').append(GetCommnetaryTemplate(value));
+                    $.each(comments, function (index, commentsObj) {
+                        $('#userComments').append(GetCommnetaryTemplate(commentsObj));
                         //set the commentary user credibility avatar
-                        SetUserAvatar(value.user, false);
+                        SetUserAvatar(user, false);
                     });
                 }
                 else {
@@ -228,79 +241,170 @@
                         '</li>');
                 }
             }
+
        // <img id="user-avatar" src='img/avatars/Unknown.png' class="mdc-button user-avatar">
             //get a commentary html template
-            function GetCommnetaryTemplate(comment) {
-                var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<img id="user-avatar" src="img/avatars/'+username+'.png"  class="mdc-button user-avatar-list">'+
-                    '<div class="' + username + '" title="Credibility rate of this user"></div>' +
-                    '<div>' + comment.text +
-                    '</div>' +
+            function GetCommnetaryTemplate(commentsObj) {
+                var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item user-comments">' +
+                    '<img id="user-avatar" src="img/avatars/' + user + '.png" title="Credibility rate of this user" class="avatar" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />' +
+                    '<div class="comment-story-link"> ' +
+                    '<a href="'+commentsObj.storyLink+'"><div class="tab-list-title"> ' + commentsObj.title + '</div></a>' +
+                    '<div class="tab-list-comment"> ' + commentsObj.comment + '</div>' +
+                    '</div>' +                    
                     '</li>';
                 return commentTemplate;
             }
 
-            //fill the fields
-            function FillStoryFields(story) {
-                $('#storyTitle').text(story.title);
-                $('#storyAuthor').text(story.author);
-            }
 
             //set author avatar
-            function SetUserAvatar(author, isStoryAuthor) {
-                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
+            function SetUserAvatar() {
+                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + user + '/rating.json';
+
+                $('#username').text(user);
+                $('#user-avatar').attr('src', 'img/avatars/' + user + '.png');
                 $.getJSON(userUrl, function (data) {
                     if (data != null) {
-                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
-                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
-                        $(authorSelector).percircle({
-                            progressBarColor: credibilityColor,
-                            percent: data['credibility-rate']
-                        }).addClass('small');
+                        var credibilityStyle = GetCredibilityColor(data);
+                        $('#user-rate').text(data);
+                        $('#user-rate').addClass(credibilityStyle);
                     }
                 });
             }
 
             //get credibility color
             function GetCredibilityColor(percentage) {
-                if (percentage <= 40) {
-                    return '#ff0000';
+                if (percentage >0) {
+                    return 'verified';
                 }
-                else if (percentage > 40 && percentage <= 60) {
-                    return '#ff8000';
-                }
-                else if (percentage > 60 && percentage < 80) {
-                    return '#bfff00';
+                else if (percentage <0) {
+                    return 'unverified';
                 }
                 else {
-                    return '#31b404';
+                    return 'no-voted';
                 }
             }
 
             //functions when clicking on validate or invalidate tabs
             $('#contributions-tab, #validations-tab, #comments-tab').hide();
             $('#contributions-tab').show();
+            $('#contributions-tab-button').addClass('selected-tab');
 
-            $('#validate-tab').click(function () {
+            $('#contributions-tab-button').click(function () {
                 $('#contributions-tab').show();
                 $('#validations-tab').hide();
                 $('#comments-tab').hide();
-                currentStatusOfAction = "Validate";
+                $('#contributions-tab-button').addClass('selected-tab').addClass('mdc-tab--active');
+                $('#validations-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#comments-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
             });
 
-            $('#invalidate-tab').click(function () {
+            $('#validations-tab-button').click(function () {
                 $('#contributions-tab').hide();
                 $('#validations-tab').show();
                 $('#comments-tab').hide();
-                currentStatusOfAction = "Invalidate";
+                $('#contributions-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#validations-tab-button').addClass('selected-tab').addClass('mdc-tab--active');
+                $('#comments-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
             });
 
-            $('#edit-tab').click(function () {
+            $('#comments-tab-button').click(function () {
                 $('#contributions-tab').hide();
                 $('#validations-tab').hide();
                 $('#comments-tab').show();
-                currentStatusOfAction = "Edit";
+                $('#contributions-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#validations-tab-button').removeClass('selected-tab').removeClass('mdc-tab--active');
+                $('#comments-tab-button').addClass('selected-tab').addClass('mdc-tab--active');
             });
+
+            //update story validation
+            function GetStoryValidation(validations) {
+                var validCount = 0;
+                var invalidCount = 0;
+                var validity = 0;
+                $.each(validations, function (index, value) {
+                    if (value.vote == 'valid') validCount += 1;
+                    else if (value.vote == 'invalid') invalidCount += 1;
+                });
+                validity = validCount - invalidCount;
+
+                return validity;
+            }
+
+            function DisplayUserStories(stories) {
+                if (stories.length == 0) {
+                    var storyTpl = '<li class="mdc-list-item story-list ">' +
+                        '<span class="mdc-list-item__start-detail "></span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href=""><div class="tab-list-title">This user has not contributed with any story yet!</div></a>' +
+                        '</div>' +
+                        '</li>';
+
+                    $('#userContributions').append(storyTpl);
+                    return;
+                }
+                $.each(stories, function (index, value) {
+                    var cssClass = "";
+                    if (value.validity > 0) {
+                        cssClass = 'upvoted';
+                    }
+                    else if (value.validity < 0) {
+                        cssClass = "downvoted";
+                    }
+                    else {
+                        cssClass = "novoted";
+                    }
+
+                    var storyDescription = value.description;
+                    console.log(storyDescription.length);
+                    if(storyDescription.length > 45)
+                    {
+                        console.log(storyDescription + storyDescription.length);
+                        storyDescription = storyDescription.substring(0,45) + '...'
+                        console.log(storyDescription + storyDescription.length);
+                    }
+
+                    var storyTpl = '<li class="mdc-list-item story-list ' + cssClass + '">' +
+                        '<span class="mdc-list-item__start-detail ' + cssClass + '">' + ((value.validity > 0) ? '+' + value.validity : value.validity) + '</span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href="' + value.storyLink + '"><div class="tab-list-title">' + value.title + '</div></a>' +
+                        '<div class="mdc-list-item__text__secondary">' + storyDescription + '</div>' +
+                        '</div>' +
+                        '</li>';
+
+                    $('#userContributions').append(storyTpl);
+                })
+            }
+
+            function DisplayUserValidations(stories) {
+                if (stories.length == 0) {
+                    var storyTpl = '<li class="mdc-list-item story-list ">' +
+                        '<span class="mdc-list-item__start-detail "></span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href=""><div class="tab-list-title">This user has not contributed with any story yet!</div></a>' +
+                        '</div>' +
+                        '</li>';
+                    $('#userValidations').append(storyTpl);
+                    return;
+                }
+                $.each(stories, function (index, value) {
+                    if (value.vote == 'valid') {
+                        cssClass = "upvoted"
+                    }
+                    else {
+                        cssClass = "downvoted";
+                    }
+                        
+                    var storyTpl = '<li class="mdc-list-item story-list ' + cssClass + '">' +
+                        '<span class="mdc-list-item__start-detail ' + cssClass + '">' + ((value.vote == 'valid') ? '+' : '-') + '</span>' +
+                        '<div class="mdc-list-item__text">' +
+                        ' <a href="' + value.storyLink + '"><div class="tab-list-title">' + value.title + '</div></a>' +
+                        '<div class="mdc-list-item__text__secondary"> Support: ' + value.reason + '</div>' +
+                        '</div>' +
+                        '</li>';
+
+                    $('#userValidations').append(storyTpl);
+                });
+            }
         });
     </script>
 

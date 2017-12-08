@@ -1,84 +1,55 @@
-.centered_toolbar{
-    width:100%;
-    margin:auto;
-}
-.mdc-toolbar-demo {
-  margin: 0px;
+/*Stories view*/
+.story-list {
+    margin: 1rem 0 1rem 0;
 }
 
-.demo-paragraph {
-  margin: 0px;
-  padding: 20px 28px;
+.story-list span {
+    width: 2.5rem;
+    height: 100%;
+    margin-right: 1rem;
+    /*color:white;*/
+    justify-content:center;
+    vertical-align:middle;
+    text-align:center;
+    /*padding-top:2rem;*/
 }
 
-/* Place drawer and content side by side. */
-
-.demo-body {
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
+.story-list div {
+    width: 100%;
+    overflow:hidden;
+    padding-right:3rem;
 }
 
-@media (max-width: 599px) {
-  .demo-paragraph {
-    padding: 16px;
-  }
+.story-list span.upvoted {
+    background-color: green;
+    padding-top: 50px;
 }
 
+.story-list.upvoted {
+    border: 1px solid green;
+}
 
-.topbar{
-  --mdc-theme-primary: #03A9F4;
+.story-list span.downvoted {
+    background-color: red;
+    padding-top: 50px;
+}
+
+.story-list.downvoted {
+    border: 1px solid red;
+}
+
+.story-list span.novoted {
+    background-color: gold;
+    padding-top: 50px;
+
+}
+
+.story-list.novoted {
+    border: 1px solid gold;
 }
 
 .hide{
-  display:none;  
-}
-
-/*.ranking{*/
-/*    display: inline-block;*/
-/*    background: #000;*/
-/*    border-radius: 4px;*/
-/*    font-family: "arial-black";*/
-/*    font-size: 14px;*/
-/*    color: #FFF;*/
-/*    padding: 8px 12px;*/
-/*    cursor: pointer;*/
-    
-/*}*/
-
-.ranking{
-  display: block;
-  width: 40px;
-  height: 40px;
-  line-height: 
-  40px;
-  cursor: pointer;
-  -webkit-border-radius: 30px;
-  border-radius: 30px;
-  color: rgb(30, 205, 151);
-  text-align: center;
-}
-
-.low_ranking{
-  border: 2px solid #e91e63;
-}
-
-.medium_ranking{
-  border: 2px solid #FFEB3B;
-  
-}
-
-.high_ranking{
-    border: 2px solid rgb(30,205,151);
-}
-
-.ranking:hover{
-    background: red;
-
+  display: none;  
 }
 
 a.result-title:link    {
@@ -671,3 +642,35 @@ button.picker__today:focus,
 button.picker__clear:focus,
 button.picker__close:focus {
     background-color: #a1ded8
+}
+
+
+
+  /* Ensure layout covers the entire screen. */
+  /*    html {*/
+  /*      height: 100%;*/
+  /*    }*/
+
+      /* Place drawer and content side by side. */
+  /*    .demo-body {*/
+  /*      display: flex;*/
+  /*      flex-direction: row;*/
+  /*      padding: 0;*/
+  /*      margin: 0;*/
+  /*      box-sizing: border-box;*/
+  /*      height: 100%;*/
+  /*      width: 100%;*/
+  /*    }*/
+
+      /* Stack toolbar and main on top of each other. */
+  /*    .demo-content {*/
+  /*      display: inline-flex;*/
+  /*      flex-direction: column;*/
+  /*      flex-grow: 1;*/
+  /*      height: 100%;*/
+  /*      box-sizing: border-box;*/
+  /*    }*/
+
+  /*    .demo-main {*/
+  /*      padding-left: 16px;*/
+  /*    }*/

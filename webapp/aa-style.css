@@ -40,6 +40,7 @@ html {
 
 .bar{
   background-color: #e0ebeb;
+  min-height:70px;
 }
 
 .full-height{
@@ -65,11 +66,21 @@ html {
   height: 80px;
 }
 
-.verified{
-  background-color: #04B404 !important;
-  color: white !important;
+.verified, .unverified, .no-voted {
+    color: white !important;
+    text-align: center;
 }
 
+.verified {
+    background-color: #04B404 !important;
+}
+.unverified {
+    background-color: #ff0000 !important;
+}
+
+.no-voted {
+    background-color: #ffd800 !important;
+}
 .right-align {
   text-align: right;
 }
@@ -97,11 +108,10 @@ html {
 }
 
 .comment-list-item{
-  padding-left: 1em;
+  padding-left: 0.5em;
 }
 
 .footer{
-  height: 50px;
   width: 100%;
   position:fixed;
   bottom:0px;
@@ -129,10 +139,12 @@ html {
 
 .validate-button{
   background-color: #04B404;
+  color:white;
 }
 
 .invalidate-button{
   background-color: #DF0101;
+  color:white;
 }
 
 .edit-button{
@@ -144,10 +156,27 @@ html {
     padding-right:2px;
 }
 
+
+.contributions-button{
+  background-color: gray;
+}
+
+.validations-button{
+  background-color: gray;
+}
+
+.comments-button{
+  background-color: gray;
+}
+
+#contributions-tab, #validations-tab, #comments-tab {
+    padding-left: 2px;
+    padding-right:2px;
+}
+
 .user-avatar {
-  height: 85%;
+  height: 100%;
   width: 100%;
-  padding: 9px 10px; 
   filter: brightness(0%);
 }
 
@@ -157,19 +186,135 @@ html {
 }
 
 .username {
-  flex: 2; 
-  align-self: flex-end;
-  padding-top: 30px;
-}
-
-.follow-star {
-  flex: 1; 
-  align-self: flex-end;
-  padding-bottom: 15px;
-  padding-right: 10px;
 }
 
 .user-tabs {
   color: white;
   font-size: x-small;
 }
+
+ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#uploadedImagesSection .item {
+    margin-bottom: 60px;
+}
+
+.content-slider li {
+    text-align: center;
+}
+
+.content-slider h3 {
+    margin: 0;
+    padding: 70px 0;
+}
+.demo-content main{
+    padding-bottom:50px;
+}
+
+#progressBar{
+    background-color: red;
+    position:absolute;
+    top:0;
+    bottom:0;
+    z-index:12000;
+}
+.selected-tab {
+  background-color: #3f51b5;
+  color: white !important;
+}
+.tab-list-title {
+  font-weight: bold;
+  font-size: small;
+  white-space: pre-line;
+  line-height: initial;
+}
+
+.tab-list-comment {
+  font-size: small;
+}
+
+.avatar-circle {
+    border: 2px solid #04B404 !important;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-circle img {
+    width: 90%;
+    height: auto;
+}
+
+.avatar{
+    width: 3.5rem;
+}
+.user-comments{
+    white-space:nowrap;
+    height: 100% !important;
+    padding-top:0.2rem;
+    padding-bottom:0.2rem;
+}
+
+
+
+/*Stories view*/
+.story-list {
+    margin: 1rem 0 1rem 0;
+}
+
+.story-list span {
+    width: 2.5rem;
+    height: 100%;
+    margin-right: 1rem;
+    color:white;
+    justify-content:center;
+    vertical-align:middle;
+    text-align:center;
+    padding-top:2rem;
+}
+
+.story-list div {
+    width: 100%;
+    overflow:hidden;
+    padding-right:3rem;
+}
+
+.story-list span.upvoted {
+    background-color: green;
+    padding-top: 50px;
+}
+
+.story-list.upvoted {
+    border: 1px solid green;
+}
+
+.story-list span.downvoted {
+    background-color: red;
+    padding-top: 50px;
+
+}
+
+.story-list.downvoted {
+    border: 1px solid red;
+}
+
+.story-list span.novoted {
+    background-color: gold;
+    padding-top: 50px;
+
+}
+
+.story-list.novoted {
+    border: 1px solid gold;
+}
+
+
+
+

@@ -17,31 +17,11 @@
             <div class="mdc-persistent-drawer__toolbar-spacer"></div>
             <div class="mdc-list-group">
                 <nav class="mdc-list">
-                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="index.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>Home
                     </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
-                    </a>
-                </nav>
-
-                <hr class="mdc-list-divider">
-
-                <nav class="mdc-list">
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
-                    </a>
-                    <a class="mdc-list-item" href="#">
-                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+                    <a class="mdc-list-item" href="add_story.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">+</i>Add a story
                     </a>
                 </nav>
             </div>
@@ -52,37 +32,35 @@
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     <button class="demo-menu material-icons mdc-toolbar__menu-icon">menu</button>
-                    <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+                    <span class="mdc-toolbar__title catalog-title">Immigrant News</span>
                 </section>
             </div>
         </header>
 
         <main class="mdc-toolbar-fixed-adjust">
-            <section class="bar fixed-heigh-bar">
+            <section class="bar">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <section style="padding-left: 1em;padding-top: 1.2em;">
-                                <!--div class="demo-card__avatar"></!--div>-->
-                                <div id="storyAuthorAvatar" title="Credibility rate of this user"></div>
-                                    <h1 class="mdc-card__title" id="storyTitle">ICE Raid Illinois</h1>
-                                    <h2 class="mdc-card__subtitle"><a id="storyAuthor" href="#">Author</a></h2>
-</section>
+                        <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                            <section>
+                                <div style="padding:0.5rem 0 0.5rem 0.5rem;">
+                                    <span class="avatar-circle">
+                                        <img id="user-avatar" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />
+                                    </span>
+                                </div>
+                            </section>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width">
-                                Follow
-                            </button>
+                        <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" style="padding-top:1.5rem;">
+                            <h1 class="mdc-card__title" id="storyTitle" style="margin:0;">ICE Raid Illinois</h1>
+                            <h2 class="mdc-card__subtitle" style="margin:0;"><a id="storyAuthor" href="#">Author</a></h2>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
-                            <button class="mdc-button full-height full-width verified" title="Contributors">
-                                +5
-                            </button>
+                            <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                                <button id="contributionsButton" class="mdc-button full-height full-width" title="Contributors"></button>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </section>
-            <section>
+            <section style="padding: 0.2rem 0.2rem 0.2rem 0.2rem">
                 <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded mdc-text-field--disabled full-width">
                     <i class="material-icons mdc-text-field__icon" tabindex="0">event</i>
                     <input type="text" id="tf-box-leading" class="mdc-text-field__input custom-text-field-input">
@@ -122,7 +100,7 @@
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-10-desktop  mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone">
-                            <label for="text-field-no-js">Commentary: </label>
+                            <label for="text-field-no-js">Comment: </label>
                             <div class="mdc-text-field full-width">
                                 <input type="text" id="commentaryInputText" class="mdc-text-field__input" placeholder="Write your commentary here...">
                                 <div class="mdc-text-field__bottom-line"></div>
@@ -203,9 +181,9 @@
 
             var storyId = getUrlParameter("id");
             currentStory = storyId;
-            currentUser = "immi2";
+            currentUser = "Panda";
             var storyUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + ".json";
-            var commentsUrl = "https://immigrant-news.firebaseio.com/commentaries/story" + storyId + ".json";
+            var commentsUrl = "https://immigrant-news.firebaseio.com/stories/story" + storyId + "/comments.json"; 
 
             $('#contribute').attr('href', 'contribute.html?id=' + storyId);
             //story data
@@ -213,7 +191,8 @@
                 if (data != null) {
                     //alert(data.date);
                     FillStoryFields(data);
-                    SetUserAvatar(data.author, true);
+                    SetUserAvatar(data.user, true);
+                    SetStoryValidation(data.validations);
                 }
             });
 
@@ -228,7 +207,8 @@
                 $('#storyDate').text(story.date);
                 $('#storyLocation').text(story.location);
                 $('#storyDescription').text(story.description);
-                $('#storyAuthor').text(story.author);
+                $('#storyAuthor').text(story.user);
+                $('#storyAuthor').attr('href', 'userProfile.html?user=' + story.user);
             }
 
             //display comments
@@ -252,10 +232,10 @@
             //get a commentary html template
             function GetCommnetaryTemplate(comment) {
                 var commentTemplate = '<li class="mdc-list-item comment-box comment-list-item">' +
-                    '<div class="' + comment.user + '" title="Credibility rate of this user"></div>' +
+                    '<img class="' + comment.user + ' avatar"src="img/avatars/' + comment.user + '.png" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />' +
                     '<div>' +
-                    '<a href="#">' + comment.user + '</a>' +
-                    comment.text +
+                    '<a href="userProfile.html?user=' + comment.user + '">' + comment.user + '</a>' +
+                    ': ' + comment.text +
                     '</div>' +
                     '</li>';
                 return commentTemplate;
@@ -263,17 +243,15 @@
 
             //set author avatar
             function SetUserAvatar(author, isStoryAuthor) {
-                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + author + '.json';
-                $.getJSON(userUrl, function (data) {
-                    if (data != null) {
-                        var credibilityColor = GetCredibilityColor(data['credibility-rate']);
-                        var authorSelector = isStoryAuthor ? "#storyAuthorAvatar" : "." + author;
-                        $(authorSelector).percircle({
-                            progressBarColor: credibilityColor,
-                            percent: data['credibility-rate']
-                        }).addClass('small');
-                    }
-                });
+                var userUrl = "https://immigrant-news.firebaseio.com//users/" + author + ".json";
+
+                if (isStoryAuthor) {
+                    $('#username').text(author);
+                    $('#user-avatar').attr('src', 'img/avatars/' + author + '.png');
+                }
+                else {
+                    $('.'+author).attr('src', 'img/avatars/' + author + '.png');
+                }
             }
 
             //get credibility color
@@ -292,13 +270,12 @@
                 } 
             }
 
-
             function SaveCommentary(commentary) {
-                var ref = firebase.database().ref('/commentaries/story' + currentStory);
+                var ref = firebase.database().ref("/stories/story" + currentStory + "/comments");
                 var commentName = 'comment-' + currentStory + '-';
                 var countCommentaries = 0;
                 ref.once('value', function (snapshot) {
-                    countCommentaries = snapshot.numChildren();
+                    countCommentaries = snapshot.numChildren()+1;
                     commentName += countCommentaries;
                     var obj = {};
                     obj[commentName] = {
@@ -354,6 +331,32 @@
             
             //hide adding a new commentary section
             $('#addCommentarySection').hide();
+
+            //update story validation
+            function SetStoryValidation(validations) {
+                var validCount = 0;
+                var invalidCount = 0;
+                var validity = 0;
+                $.each(validations, function (index, value) {
+                    if (value.vote == 'valid') validCount += 1;
+                    else if (value.vote == 'invalid') invalidCount += 1;
+                });
+                validity = validCount - invalidCount;
+               
+                if (validity < 0) {
+
+                    $('#contributionsButton').addClass('unverified');
+                    $('#contributionsButton').text(validity);
+                    return;
+                }
+                else if(validity >0){
+                    $('#contributionsButton').addClass('verified');
+                    $('#contributionsButton').text('+' + validity);
+                    return;
+                }
+                $('#contributionsButton').addClass('no-voted');
+                $('#contributionsButton').text(validity);
+            }
         });
     </script>
 </body>

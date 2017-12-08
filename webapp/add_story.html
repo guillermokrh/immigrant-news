@@ -1,162 +1,406 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="mdc-typography">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Immigrant News</title>
-  <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-  <link rel="stylesheet" href="story-style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Immigrant News</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <!--link rel="stylesheet" href="story-style.css"-->
+    <link rel="stylesheet" href="aa-style.css">
+    <link rel="stylesheet" href="assets/lightslider/css/lightslider.css" />
 </head>
 <body class="demo-body mdc-typography">
-  <aside class="mdc-persistent-drawer">
-    <nav class="mdc-persistent-drawer__drawer">
-      <div class="mdc-persistent-drawer__toolbar-spacer"></div>
-      <div class="mdc-list-group">
-        <nav class="mdc-list">
-          <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
-          </a>
-          <a class="mdc-list-item" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-          </a>
-          <a class="mdc-list-item" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
-          </a>
-          <a class="mdc-list-item" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
-          </a>
-        </nav>
-
-        <hr class="mdc-list-divider">
-
-        <nav class="mdc-list">
-          <a class="mdc-list-item" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
-          </a>
-          <a class="mdc-list-item" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
-          </a>
-          <a class="mdc-list-item" href="#">
-            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
-          </a>
-        </nav>
-      </div>
-    </nav>
-  </aside>
-  <div class="demo-content">
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <button class="demo-menu material-icons hamburger-menu mdc-toolbar__menu-icon">menu</button>
-          <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
-        </section>
-      </div>
-    </header>
-
-    <main class="mdc-toolbar-fixed-adjust">
-      <!-- TODO goes here-->
-      <section>
-
-        <!--Fix: this shows up every time -->
-        <div class="hide mdc-toolbar-fixed-adjust">
-          <h3 id='results-header'>Search results for</h3>
-          <ul class="mdc-list" id="search-results-list">
-            <li class="hide mdc-list-item" id="template">
-              <p class='ranking'>95%</p>
-              <!--<img class="mdc-list-item__start-detail" src="img/percent.png" width="56" height="56">-->
-              <span class="mdc-list-item__text">
-              <a class='result-title' href="stories.html?id=story1">title</a>
-              <span class="mdc-list-item__text__secondary">Secondary text</span>
-              </span>
-              <a class="mdc-list-item__end-detail material-icons resultNav" style="text-decoration: none;color=" #000 ';'="" href="story.html?id=story1" aria-label="Add to favorites" title="Add to favorites" onclick="alert(&quot;you like it! you really like it!&quot;);"> star_border </a>
-            </li>
-          </ul>
-        </div>
-
-        <div id="demo-tf-box-trailing-wrapper">
-          <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width" data-demo-no-auto-js="" style="--mdc-ripple-fg-size: 180px; --mdc-ripple-fg-scale: 1.75101; --mdc-ripple-fg-translate-start: 181px, -58.3438px; --mdc-ripple-fg-translate-end: 60px, -62px;">
-            <input type="text" id="submission_title" class="mdc-text-field__input custom-text-field-input">
-            <label for="submission_title" class="mdc-text-field__label">Title</label>
-            <!--<i class="material-icons mdc-text-field__icon" tabindex="-1">delete</i>-->
-            <div class="mdc-text-field__bottom-line"></div>
-          </div>
-        </div>
-
-        <div id="demo-tf-box-trailing-wrapper">
-          <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width" data-demo-no-auto-js="" style="--mdc-ripple-fg-size: 180px; --mdc-ripple-fg-scale: 1.75101; --mdc-ripple-fg-translate-start: 181px, -58.3438px; --mdc-ripple-fg-translate-end: 60px, -62px;">
-            <input type="text" id="submission_date" class="mdc-text-field__input custom-text-field-input">
-            <label for="submission_date" class="mdc-text-field__label">Date</label>
-            <!--<i class="material-icons mdc-text-field__icon" tabindex="-1">delete</i>-->
-            <div class="mdc-text-field__bottom-line"></div>
-          </div>
-        </div>
-
-        <div id="demo-tf-box-trailing-wrapper">
-          <div id="tf-box-trailing-example" class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width" data-demo-no-auto-js="" style="--mdc-ripple-fg-size: 180px; --mdc-ripple-fg-scale: 1.75101; --mdc-ripple-fg-translate-start: 181px, -58.3438px; --mdc-ripple-fg-translate-end: 60px, -62px;">
-            <input type="text" id="submission_location" class="mdc-text-field__input custom-text-field-input">
-            <label for="submission_location" class="mdc-text-field__label">Location</label>
-            <!--<i class="material-icons mdc-text-field__icon" tabindex="-1">delete</i>-->
-            <div class="mdc-text-field__bottom-line"></div>
-          </div>
-        </div>
-
-        <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth full-width-textarea-example mdc-text-field--upgraded">
-          <textarea id="submission_description" class="mdc-text-field__input" rows="8"></textarea>
-          <label for="submission_description" class="mdc-text-field__label">Description</label>
-        </div>
-
-
-
-      </section>
-
-      <footer>
-        <section class="footer">
-          <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">
-              <div class="mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone right-align">
-                <a id="do_search" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" onclick='search_news(document.getElementById(&quot;submission_title&quot;).value);' tabindex="0">
-                  Search
-                </a>
-              </div>
-              <div class="mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone right-align">
-                <a id="do_submit" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" onclick='submit_story();' tabindex="0">
-                  Submit
-                </a>
-              </div>
+    <aside class="mdc-persistent-drawer">
+        <nav class="mdc-persistent-drawer__drawer">
+            <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+            <div class="mdc-list-group">
+                <nav class="mdc-list">
+                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="index.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>Home
+                    </a>
+                    <a class="mdc-list-item" href="add_story.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">+</i>Add a story
+                    </a>
+                </nav>
             </div>
-          </div>
-        </section>
-      </footer>
-    </main>
-  </div>
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        </nav>
+    </aside>
+    <div class="demo-content">
+        <header class="mdc-toolbar mdc-toolbar--fixed">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="demo-menu material-icons hamburger-menu mdc-toolbar__menu-icon">menu</button>
+                    <span class="mdc-toolbar__title catalog-title">Immigrant news</span>
+                </section>
+            </div>
+        </header>
 
-  <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
-  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+        <main id="main-display" class="mdc-toolbar-fixed-adjust">
+            <section class="bar">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-1-desktop  mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+                            <!--div class="demo-card__avatar"></!--div>-->
+                            <div style="padding:0.5rem 0 0.5rem 0.5rem;">
+                                <span class="avatar-circle">
+                                    <img id="user-avatar" title="Credibility rate of this user" style="filter: brightness(30.6%) sepia(100) saturate(84.6) hue-rotate(337deg);" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone" >
+                            <div style="padding-top: 1.5rem">
+                                <h1 class="mdc-card__title" id="user" style="margin:0;"></h1>
+                                <h2 class="mdc-card__subtitle" style="margin:0;"><a id="user_url" href="#"></a></h2>
+                            </div>
+                            
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone right-align">
+                            <button id="user-rate" class="mdc-button full-height full-width" title="User rate">5</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- TODO goes here-->
 
-  <script>
-    window.mdc.autoInit();
+            <section>
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <ul class="mdc-list mdc-list--two-line mdc-list--dense">
+                                <li>
+                                    <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width">
+                                        <i class="material-icons mdc-text-field__icon" tabindex="0">create</i>
+                                        <input type="text" id="storyTitle" class="mdc-text-field__input custom-text-field-input">
+                                        <label for="tf-box-leading" class="mdc-text-field__label">Add a story title</label>
+                                        <div class="mdc-text-field__bottom-line"></div>
+                                    </div>
+                                </li>
 
-    $('#template').hide();
-    $('#do_submit').hide();
-    
-    (function() {
-      var tfs = document.querySelectorAll(
-        '.mdc-text-field:not([data-demo-no-auto-js])'
-      );
-      for (var i = 0, tf; tf = tfs[i]; i++) {
-        mdc.textField.MDCTextField.attachTo(tf);
-      }
-    })();
-  </script>
+                                <li class="mdc-list-item">
+                                    <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width">
+                                        <i class="material-icons mdc-text-field__icon" tabindex="0">event</i>
+                                        <input type="text" id="storyDate" class="mdc-text-field__input custom-text-field-input">
+                                        <label for="tf-box-leading" class="mdc-text-field__label">Pick a date</label>
+                                        <div class="mdc-text-field__bottom-line"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon mdc-text-field--upgraded mdc-ripple-upgraded full-width">
+                                        <i class="material-icons mdc-text-field__icon" tabindex="0">place</i>
+                                        <input type="text" id="storyLocation" class="mdc-text-field__input custom-text-field-input">
+                                        <label for="tf-box-leading" class="mdc-text-field__label">Select a location</label>
+                                        <div class="mdc-text-field__bottom-line"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid" style="padding:0 1rem 0 1rem;">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                            <div class="mdc-layout-grid">
+                                <div class="mdc-layout-grid__inner">
+                                    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                                        <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--upgraded full-width">
+                                            <textarea id="storyDescription" class="mdc-text-field__input" rows="8" cols="40" placeholder="Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+                                        <div class="mdc-layout-grid">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-2-phone ">
+                                                    <div class="mdc-text-field full-width full-height">
+                                                        <input id="descriptionUrl" class="mdc-text-field__input" placeholder="Url">
+                                                        <div class="mdc-text-field__bottom-line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
+                                                    <button class="mdc-button full-height full-width picturefileOpener" title="Upload a picture">
+                                                        <i class="material-icons mdc-button__icon">photo</i>
+                                                        Photo
+                                                    </button>
+                                                </div>
+                                                <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone ">
+                                                    <button class="mdc-button full-height full-width videofileOpener" title="Upload a video">
+                                                        <i class="material-icons mdc-button__icon">movie</i>
+                                                        Video
+                                                    </button>
+                                                </div>
+                                                <input id="pictureFileOpener" type="file" accept=".png, .jpg, .jpeg" multiple style="visibility:hidden" />
+                                                <input id="videoFileOpener" name="file[]" type="file" accept=".mp4" style="visibility:hidden" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone" style="text-align:center;">
+                                        <section id="uploadedImagesSection"></section>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell--span-2-desktop">
+                                    </div>
+                                    <div class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <section id="uploadVideoSection">
+                                            <video id="evidenceVideo" style="width:100%;" controls type="video/mp4">
+                                                <source src="" id="story_video">
+                                                Your browser does not support HTML5 video.
+                                            </video>
+                                        </section>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell--span-2-desktop">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <section class="footer">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone right-align">
+                                <a id="submitStory" class="mdc-button mdc-button--raised secondary-filled-button full-height full-width" title="Submit your story">
+                                    Submit
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+        </main>
+    </div>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!--SCRIPT TO ADD FIREBASE TO OUR APP: NEEDS TO BE AT THE END OF THE HTML FILE BEFORE ALL OTHER SCRIPTS  -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="assets/lightslider/js/lightslider.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="assets/ubilabs-geocomplete/jquery.geocomplete.min.js"></script>
+    <script>
+        window.mdc.autoInit();
+        
+        // Redirect user to login if not logged in
+/*        if(!firebase.auth().currentUser) {
+            document.getElementById("main-display").display = "none";
+            window.location.replace('index.html?login=true');
+        }*/
+
+       /* $('#template').hide();
+        $('#do_submit').hide();*/
+
+        (function () {
+            var tfs = document.querySelectorAll(
+                '.mdc-text-field:not([data-demo-no-auto-js])'
+            );
+            for (var i = 0, tf; tf = tfs[i]; i++) {
+                mdc.textField.MDCTextField.attachTo(tf);
+            }
+        })();
+
+        $(document).ready(function () {
+            var date = "";
+            var location = "";
+            var description = "";
+            var imagesCounter = 0;
+            var currentSelectedImages = new Array();
+            var currentUploadedVideo = "";
+            var currentUser = "Alligator";
+            var urlForStory = "";
+            var storyTitle = "";
+
+            //initial settings
+            SetUserAvatar(currentUser);
+
+            //set author avatar
+            function SetUserAvatar(user) {
+                var userUrl = 'https://immigrant-news.firebaseio.com/users/' + user + '/rating.json';
+
+                $('#user_url').attr('href', 'userProfile.html?user=' + user);
+                $('#user_url').text(user);
+                $('#user').text(user);
+                $('#user-avatar').attr('src', 'img/avatars/' + user + '.png');
+                $.getJSON(userUrl, function (data) {
+                    if (data != null) {
+                        var credibilityStyle = GetCredibilityColor(data);
+                        $('#user-rate').text(data);
+                        $('#user-rate').addClass(credibilityStyle);
+                    }
+                });
+            }
+
+            //get credibility color
+            function GetCredibilityColor(percentage) {
+                if (percentage > 0) {
+                    return 'verified';
+                }
+                else if (percentage < 0) {
+                    return 'unverified';
+                }
+                else {
+                    return 'no-voted';
+                }
+            }
+
+            $(".picturefileOpener").click(function () {
+                OpenFileExplorer(1);
+            });
+
+            $(".videofileOpener").click(function () {
+                OpenFileExplorer(2);
+            });
+
+            function OpenFileExplorer(option) {
+                if (option == 1)
+                    $('#pictureFileOpener').trigger('click');
+                else if (option == 2)
+                    $('#videoFileOpener').trigger('click');
+            }
+
+            $('#pictureFileOpener').change(function (event) {
+                var files = $(this)[0].files;
+                var input = this;
+                if (files.length > 5) {
+                    alert('You can upload up to 5 pictures only');
+                    return;
+                }
+
+                for (var i = 0; i < files.length; i++) {
+                    var reader = new FileReader();
+                    var currentName = files[i].name;
+                    reader.onload = function (e) {
+                        //$('#blah').attr('src', e.target.result);
+                        //alert(e.target.result);
+
+                        var currentImage = {
+                            name: currentName,
+                            url: e.target.result
+                        }
+
+                        currentSelectedImages.push(currentImage);
+                        //PreviewUploadedImages(e.target.result);
+                        imagesCounter += 1;
+                        ActivateSlider(files.length);
+                    }
+                    reader.readAsDataURL(files[i]);
+                }
+                //$(".selectedPicVal").text(fileNames);
+
+            });
+
+            //function to build the thumbnail slider
+            function PreviewUploadedImages(image) {
+                var previewSection = $('#uploadedImagesSection .item #content-slider');
+                var thumbnailTemplate =
+                    '<li>' +
+                    '<img src="' + image.url + '" alt="' + image.name + '" style="width:100%">' +
+                    '</li>';
+                $(previewSection).append(thumbnailTemplate);
+            }
+
+            function ActivateSlider(flag) {
+                if (imagesCounter == flag) {
+                    $('#uploadedImagesSection').html();
+                    $('#uploadedImagesSection').html('<div class="item"><ul id="content-slider" class="content-slider"></ul></div>');
+                    for (var i = 0; i < currentSelectedImages.length; i++) {
+                        PreviewUploadedImages(currentSelectedImages[i]);
+                    }
+
+                    $("#content-slider").lightSlider({
+                        loop: true,
+                        keyPress: true
+                    });
+                    imagesCounter = 0;
+                }
+            }
+
+            //hiding video section
+            $('#uploadVideoSection').hide();
+
+            $('#videoFileOpener').change(function (event) {
+                var files = $(this)[0].files;
+                var videoName = files[0].name;
+                if (files.length > 0) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#story_video').attr('src', e.target.result);
+                        $('#uploadVideoSection').show();
+                        $('#evidenceVideo').load();
+                        currentUploadedVideo = e.target.result;
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            //when submit
+            function OnSubmit() {
+                date = ($('#storyDate').val());
+                location = $('#storyLocation').val();
+                description = $('#storyDescription').val();
+                urlForStory = $('#descriptionUrl').val();
+                storyTitle = $("#storyTitle").val();
+                //currentUploadedVideo, currentUser, currentSelectedImages
+
+                if ($.trim(storyTitle) == "") {
+                    alert('Title cannot be empty');
+                    return;
+                }
+                if ($.trim(date) == "") {
+                    alert('Date cannot be empty');
+                    return;
+                }
+                if ($.trim(location) == "") {
+                    alert('Location cannot be empty');
+                    return;
+                }
+                if ($.trim(description) == "" || $.trim(description).length < 10) {
+                    alert('Description cannot be empty and must be valid');
+                    return;
+                }
+
+                var ref = firebase.database().ref('/stories');
+                var countStories = 0;
+                ref.once('value', function (snapshot) {
+                    countStories = snapshot.numChildren() + 1;
+                    var storyName = "story" + countStories;
+                    var obj = {};
+                    obj[storyName] = {
+                        'date': date,
+                        'user': currentUser,
+                        'description': description,
+                        'images': currentSelectedImages,
+                        'url': urlForStory,
+                        'video': currentUploadedVideo,
+                        'location': location,
+                        'title': storyTitle
+                    };
+                    ref.update(obj).then(function () {
+                        console.log("Data saved successfully.");
+                        window.location.replace('stories.html?id=' + countStories);
+                    }).catch(function (error) {
+                        console.log("Data could not be saved." + error);
+                    });
+
+                });
+
+            }
+
+            $('#submitStory').click(function () {
+                OnSubmit();
+            });
+
+            //add the autocomplete locationo
+            $('#storyLocation').geocomplete();
+            $('#storyDate').datepicker();
+        });
+    </script>
 
 
-  <script src="add_story.js"></script>
+    <script src="add_story.js"></script>
 
 </body>
 </html>

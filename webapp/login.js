@@ -150,10 +150,10 @@ function displayUserAvatar() {
         for(var i = 0; i < users.length; i++)
         {
             var currUser = users[i];
-            console.log("Looking for email: " + userEmail + "    current at email: " + userList[currUser].email);
-            console.log("currUser: " + currUser);
+            // console.log("Looking for email: " + userEmail + "    current at email: " + userList[currUser].email);
+            // console.log("currUser: " + currUser);
             if(userList[currUser].email == userEmail) {
-                console.log("In func" + userEmail + "  matches  " + userList[currUser].email);
+                // console.log("In func" + userEmail + "  matches  " + userList[currUser].email);
                 i = users.length;
                 }
         }
