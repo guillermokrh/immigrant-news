@@ -351,6 +351,7 @@
                 $.getJSON("https://immigrant-news.firebaseio.com/users.json", function(data) {
                     console.log("HERES THE DATA: " + data);
                 });
+                return currentUserEmail;
             }
 
             //story data
@@ -569,7 +570,7 @@
                     var obj = {};
                     obj[validationName] = {
                         'reason': reason,
-                        'user': currentUser,
+                        'user': currentuser,
                         'vote': vote,
                         'images': currentSelectedImages,
                         'url': validationUrl,
